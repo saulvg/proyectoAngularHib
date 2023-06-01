@@ -7,6 +7,8 @@ import { HomeComponent } from './paginasEstaticas/home/home.component';
 import { QuienesSomosComponent } from './paginasEstaticas/quienes-somos/quienes-somos.component';
 import { ContactanosComponent } from './paginasEstaticas/contactanos/contactanos.component';
 import { NotFoundComponent } from './paginasEstaticas/not-found/not-found.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LayoutModule } from './layout/layout.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { NotFoundComponent } from './paginasEstaticas/not-found/not-found.compon
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    LayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]

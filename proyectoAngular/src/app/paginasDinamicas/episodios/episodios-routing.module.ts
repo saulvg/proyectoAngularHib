@@ -1,8 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { EpisodiosComponent } from './episodios.component';
+import { PrivadaEpisodiosComponent } from './paginas/privada/privada-episodios.component';
+import { PublicaEpisodiosComponent } from './paginas/publica/publica-episodios.component';
 
-const routes: Routes = [{ path: '', component: EpisodiosComponent }];
+const routes: Routes = [
+  {
+    path: 'privada',
+    component: PrivadaEpisodiosComponent
+  },
+  {
+    path: 'publica',
+    component: PublicaEpisodiosComponent
+  }
+
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
