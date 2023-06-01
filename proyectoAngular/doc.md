@@ -164,6 +164,7 @@ JSON
             }                 
 
 - Punto y coma al final de cada linea
+- Comillas dobles
 
 
 ## ENLACES DE INTERES ##

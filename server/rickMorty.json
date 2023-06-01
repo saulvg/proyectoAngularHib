@@ -1,0 +1,80 @@
+{
+    "personajes": [
+        {
+            "id": 1,
+            "nombre": "Rick Sanchez",
+            "estado": "Alive",
+            "especie": "Human",
+            "img": "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
+            "tipo": "",
+            "genero": "Male",
+            "origen": "Bepis 9",
+            "descripcion": "Bienvenido al Chiquito Ipsum, el generador de texto de relleno para tus diseños de antes de los dolores. Dale a Fistrum para que te salga ese pedaso de texto Chiquito en estado puro. Si te crees muy moderno dale a Latin que te lo pongo con cuarto y mitad de romanooo... Jarl!!"
+        },
+        {
+            "id": 2,
+            "nombre": "Morty Smith",
+            "estado": "Alive",
+            "especie": "Human",
+            "img": "https://rickandmortyapi.com/api/character/avatar/2.jpeg",
+            "tipo": "",
+            "genero": "Male",
+            "origen": "Bepis 9",
+            "descripcion": "Bienvenido al Chiquito Ipsum, el generador de texto de relleno para tus diseños de antes de los dolores. Dale a Fistrum para que te salga ese pedaso de texto Chiquito en estado puro. Si te crees muy moderno dale a Latin que te lo pongo con cuarto y mitad de romanooo... Jarl!!"
+        },
+        {
+            "id": 35,
+            "nombre": "Bepisian",
+            "estado": "Alive",
+            "especie": "Alien",
+            "img": "https://rickandmortyapi.com/api/character/avatar/35.jpeg",
+            "tipo": "Bepisian",
+            "genero": "unknown",
+            "origen": "Bepis 9",
+            "descripcion": "Bienvenido al Chiquito Ipsum, el generador de texto de relleno para tus diseños de antes de los dolores. Dale a Fistrum para que te salga ese pedaso de texto Chiquito en estado puro. Si te crees muy moderno dale a Latin que te lo pongo con cuarto y mitad de romanooo... Jarl!!"
+        }
+    ],
+    "planetas": [
+        {
+            "id": 11,
+            "nombre": "Bepis 9",
+            "dimension": "unknown",
+            "descripcion": "Bienvenido al Chiquito Ipsum, el generador de texto de relleno para tus diseños de antes de los dolores. Dale a Fistrum para que te salga ese pedaso de texto Chiquito en estado puro. Si te crees muy moderno dale a Latin que te lo pongo con cuarto y mitad de romanooo... Jarl!!"
+        },
+        {
+            "id": 1,
+            "nombre": "Earth (C-137)",
+            "dimension": "Dimension C-137",
+            "descripcion": "Bienvenido al Chiquito Ipsum, el generador de texto de relleno para tus diseños de antes de los dolores. Dale a Fistrum para que te salga ese pedaso de texto Chiquito en estado puro. Si te crees muy moderno dale a Latin que te lo pongo con cuarto y mitad de romanooo... Jarl!!"
+        },
+        {
+            "id": 67,
+            "nombre": "Blips and Chitz",
+            "dimension": "Replacement Dimension",
+            "descripcion": "Bienvenido al Chiquito Ipsum, el generador de texto de relleno para tus diseños de antes de los dolores. Dale a Fistrum para que te salga ese pedaso de texto Chiquito en estado puro. Si te crees muy moderno dale a Latin que te lo pongo con cuarto y mitad de romanooo... Jarl!!"
+        }
+    ],
+    "episodios": [
+        {
+            "id": 1,
+            "titulo": "Pilot",
+            "fechaEmision": "December 2, 2013",
+            "episodio": "S01E01",
+            "sinopsis": "Bienvenido al Chiquito Ipsum, el generador de texto de relleno para tus diseños de antes de los dolores. Dale a Fistrum para que te salga ese pedaso de texto Chiquito en estado puro. Si te crees muy moderno dale a Latin que te lo pongo con cuarto y mitad de romanooo... Jarl!!"
+        },
+        {
+            "id": 11,
+            "titulo": "Ricksy Business",
+            "fechaEmision": "April 14, 2014",
+            "episodio": "S01E11",
+            "sinopsis": "Bienvenido al Chiquito Ipsum, el generador de texto de relleno para tus diseños de antes de los dolores. Dale a Fistrum para que te salga ese pedaso de texto Chiquito en estado puro. Si te crees muy moderno dale a Latin que te lo pongo con cuarto y mitad de romanooo... Jarl!!"
+        },
+        {
+            "id": 25,
+            "titulo": "Vindicators 3: The Return of Worldender",
+            "fechaEmision": "August 13, 2017",
+            "episodio": "S03E04",
+            "sinopsis": "Bienvenido al Chiquito Ipsum, el generador de texto de relleno para tus diseños de antes de los dolores. Dale a Fistrum para que te salga ese pedaso de texto Chiquito en estado puro. Si te crees muy moderno dale a Latin que te lo pongo con cuarto y mitad de romanooo... Jarl!!"
+        }
+    ]
+}
