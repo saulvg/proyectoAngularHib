@@ -1,0 +1,18 @@
+.card-personajes {
+  max-width: 400px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.personaje-img {
+  object-fit: contain;
+  object-position: center;
+  height: 50%;
+  background-color: rgb(204, 187, 165);
+}
+
+.contenedor-main {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}

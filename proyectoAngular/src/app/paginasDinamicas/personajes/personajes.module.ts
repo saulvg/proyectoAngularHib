@@ -6,6 +6,10 @@ import { PipeVivoMuertoPipe } from './pipes/pipe-vivo-muerto.pipe';
 import { PublicaPersonajesComponent } from './paginas/publica/publica-personajes.component';
 import { PrivadaPersonajesComponent } from './paginas/privada/privada-personajes.component';
 
+// Imports de material
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+
 
 @NgModule({
   declarations: [
@@ -15,7 +19,9 @@ import { PrivadaPersonajesComponent } from './paginas/privada/privada-personajes
   ],
   imports: [
     CommonModule,
-    PersonajesRoutingModule
+    PersonajesRoutingModule,
+    MatCardModule,
+    MatButtonModule
   ]
 })
 export class PersonajesModule { }
