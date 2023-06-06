@@ -1,0 +1,20 @@
+div{
+    display: grid;
+    place-items: center;
+    height:100%;
+}
+img{
+    width: 100%;
+    height: 50%;
+}
+.contenedorPrincipal{
+    /*background-image: url("../../../assets/img/rickYmorty2.png");*/
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.titulo{
+    color:var(--colorPrincipal);
+    text-shadow: 0 0 0.1em var(--colorSecundario), 0 0 0.1em var(--colorSecundario);
+    font-size: 200px;
+}
