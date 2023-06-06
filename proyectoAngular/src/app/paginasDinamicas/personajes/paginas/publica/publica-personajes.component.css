@@ -16,3 +16,9 @@
   justify-content: center;
   gap: 1rem;
 }
+
+.descripcion {
+    overflow: hidden;
+    transition: 2s;
+    margin-top: 10px;
+}

@@ -7,7 +7,12 @@ import { Personajes } from '../../interfaces/personajes';
   styleUrls: ['./publica-personajes.component.css'],
 })
 export class PublicaPersonajesComponent {
+  
   personajes: Personajes[];
+  mostrarDescripcion = false;
+
+  vivo = "../../../../../assets/iconos/heartbeat.png";
+  muerto = "../../../../../assets/iconos/tombstone.png";
 
   constructor() {
     this.personajes = [
@@ -36,7 +41,7 @@ export class PublicaPersonajesComponent {
       {
         id: 35,
         nombre: "Bepisian",
-        estado: "Alive",
+        estado: "Dead",
         especie: "Alien",
         img: "https://rickandmortyapi.com/api/character/avatar/35.jpeg",
         tipo: "Bepisian",
@@ -45,6 +50,25 @@ export class PublicaPersonajesComponent {
         "descripcion": "Bienvenido al Chiquito Ipsum, el generador de texto de relleno para tus diseños de antes de los dolores. Dale a Fistrum para que te salga ese pedaso de texto Chiquito en estado puro. Si te crees muy moderno dale a Latin que te lo pongo con cuarto y mitad de romanooo... Jarl!!"
       }
     ];
+  }
+
+  ngOnInit(){
+    this.personajes.map(personaje => {
+      if (personaje.estado === "Alive"){
+        personaje.estado = this.vivo;
+      } else {
+        personaje.estado = this.muerto;
+      }
+    })
+  }
+
+  mostrar() {
+    if (this.mostrarDescripcion) {
+      this.mostrarDescripcion = false;
+    } else {
+      this.mostrarDescripcion = true;
+    }
+
   }
 
 }

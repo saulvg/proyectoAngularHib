@@ -148,6 +148,7 @@ JSON
 ## Consenso de programacion ##
 - COMENTARIOS NUNCA SOBRAN (aclarar codigo)
 
+- comentarios css separados con -
 - Idioma: Español
 - CamelCase para variabels, carpetas, etc...
 - Funciones normales
