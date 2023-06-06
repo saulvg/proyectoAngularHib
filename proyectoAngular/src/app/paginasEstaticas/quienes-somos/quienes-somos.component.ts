@@ -1,10 +1,71 @@
 import { Component } from '@angular/core';
+import { Equipo } from './interfaces/equipo';
 
 @Component({
   selector: 'app-quienes-somos',
   templateUrl: './quienes-somos.component.html',
   styleUrls: ['./quienes-somos.component.css']
 })
-export class QuienesSomosComponent {
+
+export class QuienesSomosComponent/*  implements Equipo */ {
+
+  public equipo:Equipo[];
+
+  /* nombre="";
+  img="";
+  descripcion= ""; */
+
+  constructor(){
+    this.equipo = [
+      {
+        nombre: 'Adrian Sole',
+        img: "../../../assets/img/imgAdrian.jpeg",
+        alt:"imgAdrian",
+        descripcion:'Descripcion generica para usuario',
+        linkGit:"https://github.com/AdrianSole"
+      },
+      {
+        nombre:'Selene Vila',
+        img: '../../../assets/img/imgSelene.jpeg',
+        alt:"imgAdrian",
+        descripcion:'Descripcion generica para usuario',
+        linkGit:"https://github.com/MSelene"
+      },
+      {
+        nombre:'Saul Vaquero',
+        img: '../../../assets/img/imgSaul.jpeg',
+        alt:"imgAdrian",
+        descripcion:'Descripcion generica para usuario',
+        linkGit:"https://github.com/saulvg"
+      }
+    ]
+   
+  }
+  
+ 
+
 
 }
+
+
+/* 
+
+[
+  {
+    nombre='Adrian Sole';
+    img= '../../../assets/imgAdrian.jpeg';
+    descripcion='Descripcion generica para usuario';
+  },
+  {
+    nombre='Selene Vila';
+    img= '../../../assets/imgSelene.jpeg';
+    descripcion='Descripcion generica para usuario';
+  },
+  {
+    nombre='Saul Vaquero';
+    img= '../../../assets/imgSaul.jpeg';
+    descripcion='Descripcion generica para usuario';
+  }
+]
+
+*/
