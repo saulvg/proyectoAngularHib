@@ -10,6 +10,20 @@ import { NotFoundComponent } from './paginasEstaticas/not-found/not-found.compon
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from './layout/layout.module';
 
+import { ReactiveFormsModule } from '@angular/forms';
+
+// Imports de material
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatRippleModule } from '@angular/material/core';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +36,16 @@ import { LayoutModule } from './layout/layout.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    LayoutModule
+    LayoutModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatIconModule,
+    MatRippleModule,
+    MatCardModule,
+    MatRadioModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
