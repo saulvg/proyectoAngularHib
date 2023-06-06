@@ -1,0 +1,35 @@
+
+
+.quienes-somos ul {
+    list-style: none;
+}
+
+.quienes-somos li>div{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    border: 2px solid rgb(47, 47, 47);
+    border-radius: 10px;
+    margin: 2rem 2rem 0;
+}
+
+.quienes-somos figure > div {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.quienes-somos figure img {
+    border-radius: 10px;
+}
+
+.icon-git{
+    height: 2rem;
+    width: 2rem;
+    background-image: url('../../../assets/img/iconGit.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+
