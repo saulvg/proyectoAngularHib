@@ -130,7 +130,7 @@ APP
 |
 |---Autentificacion-----|
                         |-Pagina login
-                        |-Autenticacion (interceptores para ahadir el token en cada peticion)
+                        |-Autenticacion (interceptores para añadir el token en cada peticion)
 
  
  
@@ -141,11 +141,14 @@ JSON
 |
 |--|rickandmortyDB.json
 
+## Diseño ##
+[Enlace figma](https://www.figma.com/file/U0QEhPH95rcm2SiPHhQdjh/Untitled?type=design&node-id=0%3A1&t=ynLZXoEhnGY5UxOV-1)
+
 
 ## Consenso de programacion ##
 - COMENTARIOS NUNCA SOBRAN (aclarar codigo)
 
-- Idioma: Espahol
+- Idioma: Español
 - CamelCase para variabels, carpetas, etc...
 - Funciones normales
 - Declaramos variables encima del constructor y la inicializamos dentro de el
@@ -170,7 +173,7 @@ JSON
 ## ENLACES DE INTERES ##
 - Figma desing -> https://www.figma.com/file/U0QEhPH95rcm2SiPHhQdjh/Untitled?type=design&node-id=0-1&t=jp3umXEFzWUt8gpG-0
 ## TODO ##
-- descargar y ahadir -> funte: Get Schwifty
+- descargar y añadir -> funte: Get Schwifty
 ## DUDAS ##
 - Deben poder registrarse los usuarios ?
 - Si es asi debe haber pagina de register ?
