@@ -10,7 +10,10 @@ body {
     box-sizing: border-box;
 
     --colorPrincipal: hex(00B0C8);
+}
 
+.contenido-body {
+    height: 100vh;
 }
 
 
