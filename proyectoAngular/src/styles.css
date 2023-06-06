@@ -9,9 +9,11 @@ body {
     padding: 0;
     box-sizing: border-box;
 
-    --colorPrincipal: hex(00B0C8);
-}
 
+    --colorPrincipal: RGB(0, 176, 200);
+    --colorSecundario: RGB(139, 252, 115);
+
+}
 .contenido-body {
     height: 100vh;
 }
