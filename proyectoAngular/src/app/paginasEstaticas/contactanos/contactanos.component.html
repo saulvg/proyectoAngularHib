@@ -1,1 +1,62 @@
-<p>contactanos works!</p>
+<section class="contenido-body">
+    <header>
+    </header>
+    <main>
+        <div>
+            <form [formGroup]="formulario" class="contenedor-formulario" (ngSubmit)="enviarForm()">
+                <mat-card>
+                    <mat-card-header class="cabecera">
+                        <mat-card-title>Contacta con nosotros</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <mat-form-field class="ancho-maximo">
+                                    <label>Nombre: </label>
+                                    <input formControlName="nombre" matInput placeholder="Tu nombre">
+                                    <mat-error *ngIf="formulario.get('nombre')!.invalid && formulario.get('nombre')!.touched">
+                                        Introduce un nombre valido 
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6">
+                                <mat-form-field class="ancho-maximo">
+                                    <label>Correo: </label>
+                                    <input formControlName="correo" matInput placeholder="Tu correo">
+                                </mat-form-field>
+                                <mat-error *ngIf="formulario.get('correo')!.invalid && formulario.get('correo')!.touched">
+                                    Introduce un correo electronico valido
+                                </mat-error>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <mat-form-field class="ancho-maximo">
+                                    <label>Consulta: </label>
+                                    <textarea formControlName="consulta" matInput
+                                        placeholder="Cuentanos lo que quieras!!!"></textarea>
+                                </mat-form-field>
+                                <mat-error *ngIf="formulario.get('consulta')!.invalid && formulario.get('consulta')!.touched">
+                                    Introduce una consulta valida
+                                </mat-error>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label>Genero: </label>
+                                <mat-radio-group formControlName="genero" class="margin-left">
+                                    <mat-radio-button value="hombre"> Hombre </mat-radio-button>
+                                    <mat-radio-button value="mujer"> Mujer </mat-radio-button>
+                                    <mat-radio-button value="noBinario"> No binario</mat-radio-button>
+                                </mat-radio-group>
+                            </div>
+                        </div>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <button mat-raised-button color="primary" [disabled]="formulario.invalid">Enviar</button>
+                    </mat-card-actions>
+                </mat-card>
+            </form>
+        </div>
+    </main>
+</section>
