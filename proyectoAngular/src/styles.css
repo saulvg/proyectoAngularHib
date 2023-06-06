@@ -9,9 +9,13 @@ body {
     padding: 0;
     box-sizing: border-box;
 
+
     --colorPrincipal: RGB(0, 176, 200);
     --colorSecundario: RGB(139, 252, 115);
 
+
+.contenido-body {
+    height: 100vh;
 }
 
 
