@@ -17,6 +17,9 @@ import { ImgRotaDirective } from './img-rota.directive';
   ],
   imports: [
     CommonModule
+  ],
+  exports: [
+    ImgRotaDirective
   ]
 })
 export class DirectivasModule { }

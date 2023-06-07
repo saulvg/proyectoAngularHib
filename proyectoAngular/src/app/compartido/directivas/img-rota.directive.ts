@@ -7,9 +7,9 @@ export class ImgRotaDirective {
 
   constructor(private elementRef: ElementRef) { }
 
-  @Input() img: string = ''
+  @Input('appImgRota') img: string = ''
 
-  @HostListener('error') handleError(): void {
+  handleError(): void {
     const natElement = this.elementRef.nativeElement
 
     if (this.img) {
@@ -19,6 +19,10 @@ export class ImgRotaDirective {
     }
 
 
+  }
+
+  ngOnInit() {
+    this.handleError()
   }
 
 }
