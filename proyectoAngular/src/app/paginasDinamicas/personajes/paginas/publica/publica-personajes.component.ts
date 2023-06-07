@@ -13,6 +13,9 @@ export class PublicaPersonajesComponent {
 
   vivo = "../../../../../assets/iconos/heartbeat.png";
   muerto = "../../../../../assets/iconos/tombstone.png";
+  hombre = "../../../../../assets/iconos/male-gender.png";
+  mujer = "../../../../../assets/iconos/female-gender.png";
+  desconocido = "../../../../../assets/iconos/unknown.png";
 
   constructor() {
     this.personajes = [
@@ -58,6 +61,15 @@ export class PublicaPersonajesComponent {
         personaje.estado = this.vivo;
       } else {
         personaje.estado = this.muerto;
+      }
+
+      //
+      if (personaje.genero === "Male"){
+        personaje.genero = this.hombre;
+      } else if(personaje.genero === "Female") {
+        personaje.genero = this.mujer;
+      } else {
+        personaje.genero = this.desconocido;
       }
     })
   }

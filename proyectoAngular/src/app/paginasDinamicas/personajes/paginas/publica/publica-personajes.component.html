@@ -10,12 +10,11 @@
                 <mat-card-title>{{ personaje.nombre }}</mat-card-title>
                 <mat-card-subtitle>{{ personaje.especie }}</mat-card-subtitle>
             </mat-card-header>
-            <img mat-card-image src="{{personaje.img}}" alt="Photo of a Shiba Inu" class="personaje-img" />
+            <img mat-card-image src="{{personaje.img}}" alt="imgPersonaje" class="personaje-img" />
             <mat-card-content>
-                <ul class="lista-personaje">
-                    <li class="vivo-muerto"><img src="{{personaje.estado}}" alt=""></li>
-                    <li><b>Tipo:</b> {{personaje.tipo}}</li>
-                    <li><b>Genero:</b> {{personaje.genero}}</li>
+                <ul class="lista-personajes">
+                    <li class="liIcono"><img class="iconos" src="{{personaje.estado}}" alt="estado"></li>
+                    <li class="liIcono"><img class="iconos" src="{{personaje.genero}}" alt="genero"></li>
                     <li class="descripcion" *ngIf="mostrarDescripcion"><b>Descripción:</b> {{ personaje.descripcion }}</li>
                 </ul>
             </mat-card-content>

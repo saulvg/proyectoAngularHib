@@ -8,17 +8,32 @@
   object-fit: contain;
   object-position: center;
   height: 50%;
-  background-color: rgb(204, 187, 165);
+  background-color: rgb(224, 216, 205);
 }
 
 .contenedor-main {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 1rem;
 }
 
 .descripcion {
-    overflow: hidden;
-    transition: 2s;
-    margin-top: 10px;
+  overflow: hidden;
+  transition: 2s;
+  margin-top: 10px;
+}
+
+.lista-personajes {
+  list-style-type: none;
+}
+
+.lista-personajes .liIcono {
+  display: inline;
+}
+
+.iconos {
+  height: 50px;
+  width: 50px;
+  margin: 5px;
 }
