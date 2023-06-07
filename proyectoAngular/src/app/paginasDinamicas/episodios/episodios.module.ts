@@ -8,12 +8,11 @@ import { PrivadaEpisodiosComponent } from './paginas/privada/privada-episodios.c
 
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
-import {MatButtonModule} from '@angular/material/button';
-import { TemporadasDirective } from './directivas/temporadas.directive';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatButtonModule } from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
 import { ServicioEpisodioService } from './servicios/servicio-episodio.service';
-import { FormatearFechaDirective } from './directivas/formatear-fecha.directive';
+import { FormatoTemporadaPipe } from './pipes/pipe-formato-temporada.pipe';
 
 
 @NgModule({
@@ -21,8 +20,7 @@ import { FormatearFechaDirective } from './directivas/formatear-fecha.directive'
     PipeFormatoFechaPipe,
     PublicaEpisodiosComponent,
     PrivadaEpisodiosComponent,
-    TemporadasDirective,
-    FormatearFechaDirective,
+    FormatoTemporadaPipe,
   ],
   imports: [
     CommonModule,
@@ -33,7 +31,7 @@ import { FormatearFechaDirective } from './directivas/formatear-fecha.directive'
     MatButtonModule,
     HttpClientModule
   ],
-  providers:[
+  providers: [
     ServicioEpisodioService
   ]
 })
