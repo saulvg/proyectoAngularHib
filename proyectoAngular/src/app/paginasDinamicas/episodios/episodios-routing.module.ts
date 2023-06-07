@@ -5,12 +5,12 @@ import { PublicaEpisodiosComponent } from './paginas/publica/publica-episodios.c
 
 const routes: Routes = [
   {
-    path: 'privada',
-    component: PrivadaEpisodiosComponent
+    path: '',
+    component: PublicaEpisodiosComponent
   },
   {
-    path: 'publica',
-    component: PublicaEpisodiosComponent
+    path: 'privada',
+    component: PrivadaEpisodiosComponent
   }
 
 ];

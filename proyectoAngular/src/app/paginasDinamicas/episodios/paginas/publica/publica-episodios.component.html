@@ -9,7 +9,7 @@
     </mat-card-header>
     <mat-card-content>
       <p>{{episodio.sinopsis}}</p>
-      <mat-card-subtitle [appFormatearFecha]="episodio.fechaEmision"></mat-card-subtitle>
+      <mat-card-subtitle>{{episodio.fechaEmision | pipeFormatoFecha}}</mat-card-subtitle>
       <!-- <p>{{ longText }}</p> -->
       <mat-divider></mat-divider>
     </mat-card-content>
