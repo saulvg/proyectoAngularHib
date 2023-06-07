@@ -9,7 +9,7 @@ const routes: Routes = [
     component: PrivadaPlanetasComponent
   },
   {
-    path: 'publica',
+    path: '',
     component: PublicaPlanetasComponent
   }
 ];
