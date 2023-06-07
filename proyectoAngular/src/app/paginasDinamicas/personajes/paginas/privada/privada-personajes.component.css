@@ -1,0 +1,47 @@
+.card-personajes {
+  max-width: 400px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.personaje-img {
+  object-fit: contain;
+  object-position: center;
+  height: 50%;
+  background-color: rgb(224, 216, 205);
+}
+
+.contenedor-main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.descripcion {
+  overflow: hidden;
+  transition: 2s;
+  margin-top: 10px;
+}
+
+.lista-personajes {
+  list-style-type: none;
+}
+
+.lista-personajes .liIcono {
+  display: inline;
+}
+
+.vivoMuertoIcono {
+  width: 50px;
+  margin: 5px;
+}
+/**/
+.crudIcono {
+  width: 40px;
+  margin: 5px;
+}
+
+.crudIcono:hover {
+  opacity: 0.8;
+}

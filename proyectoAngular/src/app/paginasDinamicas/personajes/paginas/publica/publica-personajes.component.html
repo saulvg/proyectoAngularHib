@@ -1,33 +1,24 @@
-<section class="contenido-body">
-    <header>
-        <h1 class="titulo">
-            Personajes
-        </h1>
-    </header>
-    <main class="contenedor-main">
-        <mat-card class="card-personajes" *ngFor="let personaje of personajes">
-            <mat-card-header>
-                <mat-card-title>{{ personaje.nombre }}</mat-card-title>
-                <mat-card-subtitle>{{ personaje.especie }}</mat-card-subtitle>
-            </mat-card-header>
-            <img mat-card-image src="{{personaje.img}}" alt="imgPersonaje" class="personaje-img" />
-            <mat-card-content>
-                <ul class="lista-personajes">
-                    <!-- <li class="liIcono"><img class="iconos" src="{{personaje.estado}}" alt="estado"></li>
-                    <li class="liIcono"><img class="iconos" src="{{personaje.genero}}" alt="genero"></li> -->
-                    <li class="liIcono"><img class="vivoMuertoIcono" alt="iconoVivoMuerto" height="50px"
-                            [appVivoMuerto]="personaje.estado"></li>
-                    <li class="liIcono"><img class="generoIcono" alt="iconoGenero" height="50px"
-                            [appMostrarIconosGenero]="personaje.genero"></li>
-                    <li class="descripcion"><b>Descripción:</b> {{ personaje.mostrarDescripcion ? personaje.descripcion
-                        : (personaje.descripcion | pipeDescripcion) }}</li>
-                </ul>
-            </mat-card-content>
-            <mat-card-actions>
-                <button mat-button (click)="muestraDescripcion(personaje)">
-                    {{ personaje.mostrarDescripcion ? 'Leer menos' : 'Leer más' }}
-                </button>
-            </mat-card-actions>
-        </mat-card>
-    </main>
-</section>
+<div class="contenedor-main">
+    <mat-card class="card-personajes" *ngFor="let personaje of personajes">
+        <mat-card-header>
+            <mat-card-title>{{ personaje.nombre }}</mat-card-title>
+            <mat-card-subtitle>{{ personaje.especie }}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="{{personaje.img}}" alt="imgPersonaje" class="personaje-img" />
+        <mat-card-content>
+            <ul class="lista-personajes">
+                <li class="liIcono"><img class="vivoMuertoIcono" alt="iconoVivoMuerto" height="50px"
+                        [appVivoMuerto]="personaje.estado"></li>
+                <li class="liIcono"><img class="generoIcono" alt="iconoGenero" height="50px"
+                        [appMostrarIconosGenero]="personaje.genero"></li>
+                <li class="descripcion"><b>Descripción:</b> {{ personaje.mostrarDescripcion ? personaje.descripcion
+                    : (personaje.descripcion | pipeDescripcion) }}</li>
+            </ul>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-button (click)="muestraDescripcion(personaje)">
+                {{ personaje.mostrarDescripcion ? 'Leer menos' : 'Leer más' }}
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</div>

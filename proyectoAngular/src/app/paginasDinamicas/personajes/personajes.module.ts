@@ -16,6 +16,9 @@ import { ServicioPersonajesService } from './servicios/servicio-personajes.servi
 import { VivoMuertoDirective } from './directivas/mostrar-icono-vivoMuerto.directive';
 import { MostrarIconosGeneroDirective } from './directivas/mostrar-iconos-genero.directive';
 import { PipeDescripcionPipe } from './pipes/pipe-descripcion.pipe';
+import { VistaPersonajesComponent } from './vista-personajes.component';
+
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -24,14 +27,16 @@ import { PipeDescripcionPipe } from './pipes/pipe-descripcion.pipe';
     PrivadaPersonajesComponent,
     VivoMuertoDirective,
     MostrarIconosGeneroDirective,
-    PipeDescripcionPipe
+    PipeDescripcionPipe,
+    VistaPersonajesComponent
   ],
   imports: [
     CommonModule,
     PersonajesRoutingModule,
     MatCardModule,
     MatButtonModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule
   ],
   providers: [
     ServicioPersonajesService
