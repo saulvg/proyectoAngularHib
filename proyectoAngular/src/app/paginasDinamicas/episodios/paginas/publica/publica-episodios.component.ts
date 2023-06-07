@@ -13,6 +13,10 @@ export class PublicaEpisodiosComponent {
 
   constructor(private srvEpisodios: ServicioEpisodioService) { }
 
+  ngOnInit() {
+    this.obtenrEpisodios();
+  };
+
   obtenrEpisodios() {
     this.srvEpisodios.getEpisodios().subscribe(
       (res: Episodios[]) => {
@@ -21,9 +25,5 @@ export class PublicaEpisodiosComponent {
     );
   };
 
-  ngOnInit() {
-    this.obtenrEpisodios();
 
-
-  };
 };

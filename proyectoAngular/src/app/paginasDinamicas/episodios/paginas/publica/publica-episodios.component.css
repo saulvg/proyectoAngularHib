@@ -1,10 +1,10 @@
 .card-episodios {
-   /*  max-width: 400px; */
-   padding: 0 1rem;
-    width: 70%;
+  /*  max-width: 400px; */
+  padding: 0 1rem;
+  width: 70%;
 }
 
-.section-episodios{
+.section-episodios {
   display: flex;
   flex-direction: column;
   align-items: center;
