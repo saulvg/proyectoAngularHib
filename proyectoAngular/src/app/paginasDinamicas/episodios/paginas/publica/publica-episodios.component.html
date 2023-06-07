@@ -5,11 +5,11 @@
   <mat-card class="card-episodios" *ngFor="let episodio of episodios">
     <mat-card-header>
       <mat-card-title>{{episodio.titulo}}</mat-card-title>
-      <mat-card-subtitle>{{episodio.episodio}}</mat-card-subtitle>
+      <mat-card-subtitle [appTemporadas]="episodio.episodio"></mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
       <p>{{episodio.sinopsis}}</p>
-      <mat-card-subtitle>{{episodio.fechaEmision}}</mat-card-subtitle>
+      <mat-card-subtitle [appFormatearFecha]="episodio.fechaEmision"></mat-card-subtitle>
       <!-- <p>{{ longText }}</p> -->
       <mat-divider></mat-divider>
     </mat-card-content>

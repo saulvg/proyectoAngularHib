@@ -13,6 +13,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { TemporadasDirective } from './directivas/temporadas.directive';
 import { HttpClientModule } from '@angular/common/http';
 import { ServicioEpisodioService } from './servicios/servicio-episodio.service';
+import { FormatearFechaDirective } from './directivas/formatear-fecha.directive';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { ServicioEpisodioService } from './servicios/servicio-episodio.service';
     PublicaEpisodiosComponent,
     PrivadaEpisodiosComponent,
     TemporadasDirective,
+    FormatearFechaDirective,
   ],
   imports: [
     CommonModule,
