@@ -15,3 +15,41 @@
   top: 0;
   z-index: 1;
 }
+
+.cabecera-nav-material {
+  /* background-color: var(--colorPrincipal); */
+  border: 2px solid var(--colorPrincipal);
+}
+
+.barar-nav-material {
+  border: 3px solid var(--colorPrincipal);
+
+}
+
+.opciones-nav {
+  padding: 2.5rem 16px;
+
+}
+
+.opciones-nav:hover {
+  background-color: rgba(140, 252, 115, 0.521);
+}
+
+#login-nav {
+  margin-left: 1rem;
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 3rem;
+  padding: 1rem;
+  color: rgb(41, 41, 41);
+  text-decoration: none;
+  border: 2px solid var(--colorSecundario);
+  border-radius: 10px;
+  background-color: rgba(140, 252, 115, 0.521);
+
+}
+
+#login-nav:hover {
+  background-color: var(--colorSecundario);
+
+}

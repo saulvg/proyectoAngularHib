@@ -1,20 +1,34 @@
-div{
+.titulo {
+    color: var(--colorPrincipal);
+    text-shadow: 0 0 0.1em var(--colorSecundario), 0 0 0.1em var(--colorSecundario);
+
+}
+
+
+.header-section {
     display: grid;
     place-items: center;
-    height:100%;
-}
-img{
-    width: 100%;
-    height: 50%;
-}
-.contenedorPrincipal{
-    /*background-image: url("../../../assets/img/rickYmorty2.png");*/
+    background-image: url(../../../assets/img/fondoHome.png);
     background-position: center;
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
 }
-.titulo{
-    color:var(--colorPrincipal);
-    text-shadow: 0 0 0.1em var(--colorSecundario), 0 0 0.1em var(--colorSecundario);
-    font-size: 200px;
+
+.op {
+    background-color: rgba(255, 255, 255, 0.438);
+    height: 100%;
+    width: 100%;
+}
+
+.header-section div {
+    height: max-content;
+    position: absolute;
+
+
+}
+
+.header-section div h1 {
+    font-size: 10rem;
+    line-height: 10rem;
+    text-align: center;
 }
