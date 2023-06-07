@@ -13,6 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
 import { ServicioEpisodioService } from './servicios/servicio-episodio.service';
 import { FormatoTemporadaPipe } from './pipes/pipe-formato-temporada.pipe';
+import { VistaComponent } from './vista.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { FormatoTemporadaPipe } from './pipes/pipe-formato-temporada.pipe';
     PublicaEpisodiosComponent,
     PrivadaEpisodiosComponent,
     FormatoTemporadaPipe,
+    VistaComponent,
   ],
   imports: [
     CommonModule,

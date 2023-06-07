@@ -2,11 +2,16 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PrivadaEpisodiosComponent } from './paginas/privada/privada-episodios.component';
 import { PublicaEpisodiosComponent } from './paginas/publica/publica-episodios.component';
+import { VistaComponent } from './vista.component';
 
 const routes: Routes = [
-  {
+  /* {
     path: '',
     component: PublicaEpisodiosComponent
+  }, */
+  {
+    path: '',
+    component: VistaComponent
   },
   {
     path: 'privada',
