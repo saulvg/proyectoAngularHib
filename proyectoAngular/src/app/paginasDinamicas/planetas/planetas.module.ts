@@ -9,6 +9,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { ServicioPlanetasService } from './servicios/servicio-planetas.service';
 import { HttpClientModule } from '@angular/common/http';
+import { DirectivasModule } from 'src/app/compartido/directivas/directivas.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,9 @@ import { HttpClientModule } from '@angular/common/http';
     PlanetasRoutingModule,
     MatCardModule,
     MatButtonModule,
-    HttpClientModule
+    HttpClientModule,
+    DirectivasModule
+
   ],
   providers: [
     ServicioPlanetasService
