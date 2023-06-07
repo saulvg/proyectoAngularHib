@@ -10,17 +10,23 @@
                 <mat-card-title>{{ personaje.nombre }}</mat-card-title>
                 <mat-card-subtitle>{{ personaje.especie }}</mat-card-subtitle>
             </mat-card-header>
-            <img mat-card-image src="{{personaje.img}}" alt="Photo of a Shiba Inu" class="personaje-img" />
+            <img mat-card-image src="{{personaje.img}}" alt="imgPersonaje" class="personaje-img" />
             <mat-card-content>
-                <p>
-                    The Shiba Inu is the smallest of the six original and distinct spitz
-                    breeds of dog from Japan. A small, agile dog that copes very well with
-                    mountainous terrain, the Shiba Inu was originally bred for hunting.
-                </p>
+                <ul class="lista-personajes">
+                    <!-- <li class="liIcono"><img class="iconos" src="{{personaje.estado}}" alt="estado"></li>
+                    <li class="liIcono"><img class="iconos" src="{{personaje.genero}}" alt="genero"></li> -->
+                    <li class="liIcono"><img class="vivoMuertoIcono" alt="iconoVivoMuerto" height="50px"
+                            [appVivoMuerto]="personaje.estado"></li>
+                    <li class="liIcono"><img class="generoIcono" alt="iconoGenero" height="50px"
+                            [appMostrarIconosGenero]="personaje.genero"></li>
+                    <li class="descripcion"><b>Descripción:</b> {{ personaje.mostrarDescripcion ? personaje.descripcion
+                        : (personaje.descripcion | pipeDescripcion) }}</li>
+                </ul>
             </mat-card-content>
             <mat-card-actions>
-                <button mat-button>LIKE</button>
-                <button mat-button>SHARE</button>
+                <button mat-button (click)="muestraDescripcion(personaje)">
+                    {{ personaje.mostrarDescripcion ? 'Leer menos' : 'Leer más' }}
+                </button>
             </mat-card-actions>
         </mat-card>
     </main>

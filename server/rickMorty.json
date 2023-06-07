@@ -25,7 +25,7 @@
         {
             "id": 35,
             "nombre": "Bepisian",
-            "estado": "Alive",
+            "estado": "Dead",
             "especie": "Alien",
             "img": "https://rickandmortyapi.com/api/character/avatar/35.jpeg",
             "tipo": "Bepisian",

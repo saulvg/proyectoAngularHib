@@ -10,18 +10,31 @@ import { PrivadaPersonajesComponent } from './paginas/privada/privada-personajes
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 
+//
+import { HttpClientModule } from '@angular/common/http';
+import { ServicioPersonajesService } from './servicios/servicio-personajes.service';
+import { VivoMuertoDirective } from './directivas/mostrar-icono-vivoMuerto.directive';
+import { MostrarIconosGeneroDirective } from './directivas/mostrar-iconos-genero.directive';
+import { PipeDescripcionPipe } from './pipes/pipe-descripcion.pipe';
 
 @NgModule({
   declarations: [
     PipeVivoMuertoPipe,
     PublicaPersonajesComponent,
-    PrivadaPersonajesComponent
+    PrivadaPersonajesComponent,
+    VivoMuertoDirective,
+    MostrarIconosGeneroDirective,
+    PipeDescripcionPipe
   ],
   imports: [
     CommonModule,
     PersonajesRoutingModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    HttpClientModule
+  ],
+  providers: [
+    ServicioPersonajesService
   ]
 })
 export class PersonajesModule { }
