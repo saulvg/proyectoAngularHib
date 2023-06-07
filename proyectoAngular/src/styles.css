@@ -26,13 +26,23 @@ body {
     --colorPrincipal: RGB(0, 176, 200);
     --colorSecundario: RGB(139, 252, 115);
 
+
 }
 
 h1 {
-    font-family: Get Schwifty !important
+    font-family: Get Schwifty !important;
+    color: var(--colorPrincipal);
+    text-shadow: 0 0 0.1em var(--colorSecundario), 0 0 0.1em var(--colorSecundario);
+}
+
+.titulo {
+
+    padding: 3rem 0 1rem 3rem;
+    font-size: 2.5rem !important;
 }
 
 
 .contenido-body {
     height: 90vh;
+    margin-bottom: 8rem;
 }
