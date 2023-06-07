@@ -9,7 +9,7 @@ import { Equipo } from './interfaces/equipo';
 
 export class QuienesSomosComponent/*  implements Equipo */ {
 
-  public equipo:Equipo[];
+  equipo:Equipo[];
 
   /* nombre="";
   img="";
@@ -42,30 +42,4 @@ export class QuienesSomosComponent/*  implements Equipo */ {
    
   }
   
- 
-
-
 }
-
-
-/* 
-
-[
-  {
-    nombre='Adrian Sole';
-    img= '../../../assets/imgAdrian.jpeg';
-    descripcion='Descripcion generica para usuario';
-  },
-  {
-    nombre='Selene Vila';
-    img= '../../../assets/imgSelene.jpeg';
-    descripcion='Descripcion generica para usuario';
-  },
-  {
-    nombre='Saul Vaquero';
-    img= '../../../assets/imgSaul.jpeg';
-    descripcion='Descripcion generica para usuario';
-  }
-]
-
-*/
