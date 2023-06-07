@@ -15,46 +15,17 @@ export class VivoMuertoDirective {
 
   }
 
-  comprobar(): void {
-    const imgElement = this.renderer.createElement('img');
+  comprobarVivoMuerto(): void {
+    // const imgElement = this.renderer.createElement('img');
     if (this.vivoMuerto === 'Alive') {
-      this.renderer.setAttribute(imgElement, 'src', this.vivo);
+      this.renderer.setAttribute(this.elemRef.nativeElement, 'src', this.vivo);
     } else {
-      this.renderer.setAttribute(imgElement, 'src', this.muerto);
+      this.renderer.setAttribute(this.elemRef.nativeElement, 'src', this.muerto);
 
     }
-    this.renderer.appendChild(this.elemRef.nativeElement, imgElement);
   }
 
   ngOnInit() {
-    this.comprobar();
+    this.comprobarVivoMuerto();
   }
-
-  // hombre = "../../../../assets/iconos/male-gender.png";
-  // mujer = "../../../../assets/iconos/female-gender.png";
-  // desconocido = "../../../../assets/iconos/unknown.png";
-
-  // constructor(private elementRef: ElementRef) { }
-
-  // ngAfterViewInit() {
-  //   this.mostrarIconos();
-  // }
-
-  // mostrarIconos() {
-  //   this.personajes.map(valor => {
-  //     if (valor.estado === "Alive") {
-  //       valor.estado = this.vivo;
-  //     } else {
-  //       valor.estado = this.muerto;
-  //     }
-
-  //     if (valor.genero === "Male") {
-  //       valor.genero = this.hombre;
-  //     } else if (valor.genero === "Female") {
-  //       valor.genero = this.mujer;
-  //     } else {
-  //       valor.genero = this.desconocido;
-  //     }
-  //   });
-  // }
 }

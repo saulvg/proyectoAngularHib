@@ -11,7 +11,7 @@ import { VivoMuertoDirective } from '../../directivas/mostrar-icono-vivoMuerto.d
 export class PublicaPersonajesComponent {
 
   personajes: Personajes[] = [];
-  mostrarDescripcion = false;
+  mostrar = false;
 
   constructor(private servPersonajes: ServicioPersonajesService) { }
 
@@ -28,10 +28,10 @@ export class PublicaPersonajesComponent {
   }
 
   muestraDescripcion() {
-    if (this.mostrarDescripcion) {
-      this.mostrarDescripcion = false;
+    if (this.mostrar) {
+      this.mostrar = false;
     } else {
-      this.mostrarDescripcion = true;
+      this.mostrar = true;
     }
 
   }

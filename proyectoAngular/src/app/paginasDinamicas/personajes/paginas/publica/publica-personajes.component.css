@@ -32,8 +32,7 @@
   display: inline;
 }
 
-.lista-personajes li img {
-  height: 50px;
+.vivoMuertoIcono {
   width: 50px;
   margin: 5px;
 }
