@@ -10,10 +10,10 @@ export class ServicioEpisodioService {
 
   private urlApi = "http://localhost:3000/";
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  getEpisodios():Observable<any>{
+  getEpisodios(): Observable<any> {
     const url = "episodios";
-    return this.http.get<any>(this.urlApi+url)
+    return this.http.get(this.urlApi + url)
   }
 }
