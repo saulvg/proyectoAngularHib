@@ -27,13 +27,8 @@ export class PublicaPersonajesComponent {
     this.obtenerPersonajes();
   }
 
-  muestraDescripcion() {
-    if (this.mostrar) {
-      this.mostrar = false;
-    } else {
-      this.mostrar = true;
-    }
-
+  muestraDescripcion(personaje: Personajes) {
+    personaje.mostrarDescripcion = !personaje.mostrarDescripcion;
   }
 
 }

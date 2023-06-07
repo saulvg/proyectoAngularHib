@@ -15,15 +15,17 @@
                 <ul class="lista-personajes">
                     <!-- <li class="liIcono"><img class="iconos" src="{{personaje.estado}}" alt="estado"></li>
                     <li class="liIcono"><img class="iconos" src="{{personaje.genero}}" alt="genero"></li> -->
-                    <li class="liIcono"><img class="vivoMuertoIcono" alt="iconoVivoMuerto" height="50px" [appVivoMuerto]="personaje.estado"></li>
-                    <li class="liIcono"><img class="generoIcono" alt="iconoGenero" height="50px" [appMostrarIconosGenero]="personaje.genero"></li>
-                    <li class="descripcion"><b>Descripción:</b> {{ mostrar ? personaje.descripcion : (personaje.descripcion | pipeDescripcion) }}</li>
-
+                    <li class="liIcono"><img class="vivoMuertoIcono" alt="iconoVivoMuerto" height="50px"
+                            [appVivoMuerto]="personaje.estado"></li>
+                    <li class="liIcono"><img class="generoIcono" alt="iconoGenero" height="50px"
+                            [appMostrarIconosGenero]="personaje.genero"></li>
+                    <li class="descripcion"><b>Descripción:</b> {{ personaje.mostrarDescripcion ? personaje.descripcion
+                        : (personaje.descripcion | pipeDescripcion) }}</li>
                 </ul>
             </mat-card-content>
             <mat-card-actions>
-                <button mat-button (click)="muestraDescripcion()">
-                    {{ mostrar ? 'Leer menos' : 'Leer más' }}
+                <button mat-button (click)="muestraDescripcion(personaje)">
+                    {{ personaje.mostrarDescripcion ? 'Leer menos' : 'Leer más' }}
                 </button>
             </mat-card-actions>
         </mat-card>
