@@ -5,11 +5,11 @@ import { PrivadaPlanetasComponent } from './paginas/privada/privada-planetas.com
 
 const routes: Routes = [
   {
-    path: 'privado',
+    path: 'privada',
     component: PrivadaPlanetasComponent
   },
   {
-    path: 'publico',
+    path: 'publica',
     component: PublicaPlanetasComponent
   }
 ];

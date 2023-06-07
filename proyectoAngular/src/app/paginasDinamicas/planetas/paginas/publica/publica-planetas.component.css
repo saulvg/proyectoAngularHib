@@ -1,0 +1,27 @@
+.card-planetas {
+    max-width: 400px;
+    display: flex;   
+    
+    justify-content: space-around;
+}
+
+.planeta-img {
+    object-fit: contain;   
+    object-position: center;   
+    height: 40%;   
+    background-color: rgb(204, 187, 165);
+}
+
+.contenedor-main {
+    display: flex;   
+    justify-content: center;   
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.descripcion {
+    overflow-y:scroll;
+    height: 100px;
+}
+  
+ 
