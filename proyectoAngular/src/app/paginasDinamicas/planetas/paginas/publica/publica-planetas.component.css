@@ -18,5 +18,10 @@
     gap: 1rem;
     flex-wrap: wrap;
 }
+
+.descripcion {
+    overflow-y:scroll;
+    height: 100px;
+}
   
  

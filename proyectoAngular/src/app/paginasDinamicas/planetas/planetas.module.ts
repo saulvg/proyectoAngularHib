@@ -7,6 +7,8 @@ import { PrivadaPlanetasComponent } from './paginas/privada/privada-planetas.com
 import { PublicaPlanetasComponent } from './paginas/publica/publica-planetas.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { ServicioPlanetasService } from './servicios/servicio-planetas.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,11 @@ import { MatButtonModule } from '@angular/material/button';
     CommonModule,
     PlanetasRoutingModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    HttpClientModule
+  ],
+  providers: [
+    ServicioPlanetasService
   ]
 })
 export class PlanetasModule { }

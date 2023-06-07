@@ -2,21 +2,26 @@ import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { Planetas } from '../../interfaces/planetas';
+import { ServicioPlanetasService } from '../../servicios/servicio-planetas.service';
 
 @Component({
   selector: 'app-publica-planetas',
   templateUrl: './publica-planetas.component.html',
   styleUrls: ['./publica-planetas.component.css']
 })
-export class PublicaPlanetasComponent implements Planetas{
-  public planetas:Planetas[];
+export class PublicaPlanetasComponent /*implements Planetas*/{
+  public planetas: Planetas[] = [];
+
+  /*
   id!: number;
   nombre!: string;
   img!: string;
   dimension!: string;
-  descripcion!: string;
+  descripcion!: string;*/
 
-  constructor(){
+  constructor(private srvPlanetas: ServicioPlanetasService){
+
+    /*
     this.planetas=[
       {
         id: 3,
@@ -39,9 +44,21 @@ export class PublicaPlanetasComponent implements Planetas{
           dimension: "Replacement Dimension",
           descripcion: "Bienvenido al Chiquito Ipsum, el generador de texto de relleno para tus diseños de antes de los dolores. Dale a Fistrum para que te salga ese pedaso de texto Chiquito en estado puro. Si te crees muy moderno dale a Latin que te lo pongo con cuarto y mitad de romanooo... Jarl!!"
       }
-    ]
+    ]*/
       
     
     
+  }
+
+  obtenerPlaneta(){
+    this.srvPlanetas.getPlanetas().subscribe(
+      (res: Planetas[]) => {
+        this.planetas = res;
+      }
+    );
+  };
+
+  ngOnInit() {
+    this.obtenerPlaneta();
   }
 }
