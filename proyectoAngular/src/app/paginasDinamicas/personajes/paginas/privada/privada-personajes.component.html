@@ -1,4 +1,11 @@
 <div class="contenedor-main">
+    <mat-expansion-panel class="panel-edicion" hideToggle>
+        <mat-expansion-panel-header>
+            <mat-panel-title (click)="crearPersonaje()">
+                <img class="crudIcono" src="{{crear}}" alt="crear" height="40px">
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+    </mat-expansion-panel>
     <!-- Formulario de edición -->
     <form [formGroup]="formPersonajes" class="form-edicion" (ngSubmit)="enviarDatos()" *ngIf="selectedPersonaje">
         <mat-form-field>

@@ -44,6 +44,7 @@
 
 .crudIcono:hover {
   opacity: 0.8;
+  cursor: pointer;
 }
 
 .form-edicion {
@@ -51,3 +52,4 @@
   max-width: 500px;
   margin-bottom: 20px;
 }
+

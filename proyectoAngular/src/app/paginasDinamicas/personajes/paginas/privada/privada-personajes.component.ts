@@ -9,10 +9,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./privada-personajes.component.css']
 })
 export class PrivadaPersonajesComponent {
-  @Input() personajes: Personajes[] = []
+  @Input() personajes: Personajes[] = [];
 
-  borrar = "../../../../../assets/iconos/blackhole.png"
-  editar = "../../../../../assets/iconos/portal-gun.png"
+  crear = "../../../../../assets/iconos/create.png";
+  borrar = "../../../../../assets/iconos/blackhole.png";
+  editar = "../../../../../assets/iconos/portal-gun.png";
 
   formPersonajes: FormGroup;
   selectedPersonaje: any;
@@ -30,11 +31,11 @@ export class PrivadaPersonajesComponent {
 
   crearFormulario() {
     this.formPersonajes = this.formBuilder.group({
-      id: [''],
+      id: ['', [Validators.required]],
       nombre: ['', [Validators.required]],
       estado: ['', [Validators.required]],
       especie: ['', [Validators.required]],
-      img: [''],
+      img: ['', [Validators.required]],
       tipo: [''],
       genero: [''],
       origen: [''],
@@ -57,24 +58,50 @@ export class PrivadaPersonajesComponent {
     });
   }
 
+  crearPersonaje() {
+    let nuevoPersonaje: Personajes = {
+      id: 0, // Asigna un valor válido para el ID del nuevo personaje
+      nombre: '', // Asigna un valor válido para el nombre del nuevo personaje
+      estado: '', // Asigna un valor válido para el estado del nuevo personaje
+      especie: '', // Asigna un valor válido para la especie del nuevo personaje
+      img: '', // Asigna un valor válido para la URL de la imagen del nuevo personaje
+      tipo: '',
+      genero: '',
+      origen: '',
+      descripcion: '',
+      mostrarDescripcion: false
+    };
+    this.miFuncion(nuevoPersonaje);
+    this.formPersonajes.patchValue({
+      id: nuevoPersonaje.id,
+      nombre: nuevoPersonaje.nombre,
+      estado: nuevoPersonaje.estado,
+      especie: nuevoPersonaje.especie,
+      img: nuevoPersonaje.img,
+      tipo: nuevoPersonaje.tipo,
+      genero: nuevoPersonaje.genero,
+      origen: nuevoPersonaje.origen,
+      descripcion: nuevoPersonaje.descripcion
+    });
+  }
+
   enviarDatos() {
     if (this.formPersonajes.valid) {
       const datos = this.formPersonajes.value;
-      console.log(this.formPersonajes.value)
-      this.servPersonajes.editarPersonaje(datos).subscribe(
+      console.log(this.formPersonajes.value);
+      this.servPersonajes.crearPersonaje(datos).subscribe(
         res => {
-          console.log('Exito', res);
+          console.log('Éxito', res);
           this.obtenerPersonajes();
         },
-        (err) => {
+        err => {
           console.error(err);
         }
-      )
+      );
     } else {
-      console.error("Formulario invalido");
+      console.error("Formulario inválido");
     }
   }
-
 
   miFuncion(personaje: Personajes) {
     this.selectedPersonaje = personaje;
@@ -89,14 +116,12 @@ export class PrivadaPersonajesComponent {
     );
   }
 
-  //
   obtenerPersonajes() {
     this.servPersonajes.getPersonajes().subscribe(
       (res: Personajes[]) => {
         this.personajes = res;
         console.log(res);
       }
-    )
+    );
   }
-
 }
