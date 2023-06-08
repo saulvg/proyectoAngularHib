@@ -243,7 +243,7 @@ app.post("/personajes", (req, res) => {
   const nuevoPersonaje = req.body; // Suponemos que los datos del nuevo episodio se envían en el cuerpo de la solicitud
 
   // Ejemplo de guardado en un array en memoria
-  personajes.push(nuevoPersonaje);
+  personajes.unshift(nuevoPersonaje);
 
   res.status(201).json({
     message: "Personaje creado correctamente",

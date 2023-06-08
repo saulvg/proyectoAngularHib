@@ -15,6 +15,7 @@ export class PrivadaPersonajesComponent {
   editar = "../../../../../assets/iconos/portal-gun.png"
 
   formPersonajes: FormGroup;
+  selectedPersonaje: any;
 
   @Output() muestraDescripcion: EventEmitter<Personajes> = new EventEmitter<Personajes>();
 
@@ -66,8 +67,9 @@ export class PrivadaPersonajesComponent {
     }
   }
 
-  miFuncion(personaje: Personajes): void {
-    this.muestraDescripcion.emit(personaje);
+
+  miFuncion(personaje: Personajes) {
+    this.selectedPersonaje = personaje;
   }
 
   borrarPersonaje(personaje: Personajes) {

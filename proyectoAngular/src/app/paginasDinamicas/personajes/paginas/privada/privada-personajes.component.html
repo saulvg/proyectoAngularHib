@@ -1,4 +1,23 @@
 <div class="contenedor-main">
+    <!-- Formulario de edición -->
+    <form [formGroup]="formPersonajes" class="form-edicion" (ngSubmit)="enviarDatos()" *ngIf="selectedPersonaje">
+        <mat-form-field>
+            <mat-label>Nombre</mat-label>
+            <input matInput type="text" formControlName="nombre" [(ngModel)]="selectedPersonaje.nombre">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Estado</mat-label>
+            <input matInput type="text" formControlName="estado" [(ngModel)]="selectedPersonaje.estado">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Especie</mat-label>
+            <input matInput type="text" formControlName="especie" [(ngModel)]="selectedPersonaje.especie">
+        </mat-form-field>
+        <!-- Resto de los campos del formulario -->
+        <button mat-button type="button">Guardar</button>
+    </form>
+
+    <!-- Tarjetas de personajes -->
     <mat-card class="card-personajes" *ngFor="let personaje of personajes">
         <mat-card-header>
             <mat-card-title>{{ personaje.nombre }}</mat-card-title>
@@ -11,8 +30,10 @@
                         [appVivoMuerto]="personaje.estado"></li>
                 <li class="liIcono"><img class="generoIcono" alt="iconoGenero" height="50px"
                         [appMostrarIconosGenero]="personaje.genero"></li>
-                <li class="descripcion"><b>Descripción:</b> {{ personaje.mostrarDescripcion ? personaje.descripcion
-                    : (personaje.descripcion | pipeDescripcion) }}</li>
+                <li class="descripcion"><b>Descripción:</b>
+                    {{ personaje.mostrarDescripcion ? personaje.descripcion : (personaje.descripcion | pipeDescripcion)
+                    }}
+                </li>
             </ul>
         </mat-card-content>
         <mat-card-actions>
@@ -24,49 +45,10 @@
             <!-- Panel de edicion -->
             <mat-expansion-panel class="panel-edicion" hideToggle>
                 <mat-expansion-panel-header>
-                    <mat-panel-title (click)="editarPersonaje(personaje)">
+                    <mat-panel-title (click)="miFuncion(personaje)">
                         <img class="crudIcono" src="{{editar}}" alt="editar" height="40px">
                     </mat-panel-title>
                 </mat-expansion-panel-header>
-                <form [formGroup]="formPersonajes" class="form-edicion" (ngSubmit)="enviarDatos()">
-                    <pre>
-                      {{ personaje | json }}
-                    </pre>
-                    <mat-form-field>
-                        <mat-label>Nombre</mat-label>
-                        <input matInput type="text" formControlName="nombre">
-                    </mat-form-field>
-                    <mat-form-field>
-                        <mat-label>Estado</mat-label>
-                        <input matInput type="text" formControlName="estado">
-                    </mat-form-field>
-                    <mat-form-field>
-                        <mat-label>Especie</mat-label>
-                        <input matInput type="text" formControlName="especie">
-                    </mat-form-field>
-                    <mat-form-field>
-                        <mat-label>Ruta imagen</mat-label>
-                        <input matInput type="text" formControlName="img">
-                    </mat-form-field>
-                    <mat-form-field>
-                        <mat-label>Tipo</mat-label>
-                        <input matInput type="text" formControlName="tipo">
-                    </mat-form-field>
-                    <mat-form-field>
-                        <mat-label>Género</mat-label>
-                        <input matInput type="text" formControlName="genero">
-                    </mat-form-field>
-                    <mat-form-field>
-                        <mat-label>Origen</mat-label>
-                        <input matInput type="text" formControlName="origen">
-                    </mat-form-field>
-                    <mat-form-field>
-                        <mat-label>Descripción</mat-label>
-                        <textarea matInput name="descripcion" formControlName="descripcion" cols="20"
-                            rows="10"></textarea>
-                    </mat-form-field>
-                    <button mat-button type="button">Guardar</button>
-                </form>
             </mat-expansion-panel>
         </mat-card-actions>
     </mat-card>
