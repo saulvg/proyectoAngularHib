@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
 import { Episodios } from '../../interfaces/episodios';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -11,9 +11,16 @@ import { ServicioEpisodioService } from '../../servicios/servicio-episodio.servi
   styleUrls: ['./privada-episodios.component.css']
 })
 export class PrivadaEpisodiosComponent {
-  @Input() episodios: Episodios[] = [];
+  /* @Input() episodios: Episodios[] = [];
+  @Output() funcionpa = new EventEmitter(); */
+  episodios: Episodios[] = []
 
   formularioEpisodios: FormGroup
+  panelOpenState = false;
+
+
+
+
 
 
   constructor(private formBuilder: FormBuilder, private srvEpisodios: ServicioEpisodioService) {
@@ -22,6 +29,7 @@ export class PrivadaEpisodiosComponent {
 
   ngOnInit() {
     this.crearFormulario();
+    this.obtenrEpisodios();
   }
 
   crearFormulario() {
@@ -46,6 +54,8 @@ export class PrivadaEpisodiosComponent {
   }
 
   enviarDatos() {
+    /* console.log('clcik guardar REPINTATE');
+    this.funcionpa.emit(); */
 
     if (this.formularioEpisodios.valid) {
       const datos = this.formularioEpisodios.value
@@ -53,6 +63,7 @@ export class PrivadaEpisodiosComponent {
       this.srvEpisodios.actualizarDatos(datos).subscribe(
         res => {
           console.log('Exito', res);
+          this.obtenrEpisodios()
 
         },
         (err) => {
@@ -65,5 +76,16 @@ export class PrivadaEpisodiosComponent {
     }
 
   }
+
+  obtenrEpisodios() {
+
+    this.srvEpisodios.getEpisodios().subscribe(
+      (res: Episodios[]) => {
+        this.episodios = res
+        console.log(res);
+
+      }
+    );
+  };
 
 }

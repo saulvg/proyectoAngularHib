@@ -8,6 +8,26 @@ import { ServicioEpisodioService } from '../../servicios/servicio-episodio.servi
   styleUrls: ['./publica-episodios.component.css']
 })
 export class PublicaEpisodiosComponent {
-  @Input() episodios: Episodios[] = []
+  //@Input() episodios: Episodios[] = []
+  episodios: Episodios[] = []
+
+  constructor(private srvEpisodios: ServicioEpisodioService) {
+  }
+
+  ngOnInit() {
+    this.obtenrEpisodios();
+  }
+
+  obtenrEpisodios() {
+
+    this.srvEpisodios.getEpisodios().subscribe(
+      (res: Episodios[]) => {
+        this.episodios = res
+        console.log(res);
+
+      }
+    );
+  };
+
 
 };

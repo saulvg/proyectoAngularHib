@@ -4,11 +4,14 @@
     </header>
     <button (click)="cli()">cambia</button>
     <ng-container *ngIf="prueba;else privada">
-        <app-publica-episodios [episodios]="episodios"></app-publica-episodios>
+        <!-- <app-publica-episodios [episodios]="episodios"></app-publica-episodios> -->
+        <app-publica-episodios></app-publica-episodios>
     </ng-container>
 </section>
 
 <ng-template #privada>
     <h2>PRIVADO</h2>
-    <app-privada-episodios [episodios]="episodios"></app-privada-episodios>
+    <!--     <app-privada-episodios [episodios]="episodios" (funcionpa)="funcionpa()"></app-privada-episodios>
+ -->
+    <app-privada-episodios></app-privada-episodios>
 </ng-template>

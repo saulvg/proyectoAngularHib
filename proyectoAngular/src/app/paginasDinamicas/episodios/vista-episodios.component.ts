@@ -11,21 +11,33 @@ export class VistaComponentEpisodios {
   episodios: Episodios[] = [];
   prueba: boolean = true
 
-  param: any = ''
-
   constructor(private srvEpisodios: ServicioEpisodioService) { }
 
-  ngOnInit() {
+  /* ngOnInit() {
     this.obtenrEpisodios();
-  };
+  }; */
+  /*  funcionpa() {
+     console.log('soy pa');
+     this.srvEpisodios.getEpisodios().subscribe(
+       (res: Episodios[]) => {
+         this.episodios = res
+         console.log(res);
+ 
+       }
+     );
+ 
+   } */
 
-  obtenrEpisodios() {
-    this.srvEpisodios.getEpisodios().subscribe(
-      (res: Episodios[]) => {
-        this.episodios = res
-      }
-    );
-  };
+  /*  obtenrEpisodios() {
+ 
+     this.srvEpisodios.getEpisodios().subscribe(
+       (res: Episodios[]) => {
+         this.episodios = res
+         console.log(res);
+ 
+       }
+     );
+   }; */
 
   cli() {
     this.prueba = !this.prueba
