@@ -19,8 +19,55 @@
             <button mat-button (click)="miFuncion(personaje)">
                 {{ personaje.mostrarDescripcion ? 'Leer menos' : 'Leer más' }}
             </button>
-            <img class="crudIcono" src="{{borrar}}" alt="borrar" height="40px" (click)="borrarPersonaje(personaje)" >
-            <img class="crudIcono" src="{{editar}}" alt="editar" height="40px" (click)="editarPersonaje()" >
+            <img class="crudIcono" src="{{borrar}}" alt="borrar" height="40px" (click)="borrarPersonaje(personaje)">
+
+            <!-- Panel de edicion -->
+            <mat-expansion-panel class="panel-edicion" hideToggle>
+                <mat-expansion-panel-header>
+                    <mat-panel-title (click)="editarPersonaje(personaje)">
+                        <img class="crudIcono" src="{{editar}}" alt="editar" height="40px">
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <form [formGroup]="formPersonajes" class="form-edicion" (ngSubmit)="enviarDatos()">
+                    <pre>
+                      {{ personaje | json }}
+                    </pre>
+                    <mat-form-field>
+                        <mat-label>Nombre</mat-label>
+                        <input matInput type="text" formControlName="nombre">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Estado</mat-label>
+                        <input matInput type="text" formControlName="estado">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Especie</mat-label>
+                        <input matInput type="text" formControlName="especie">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Ruta imagen</mat-label>
+                        <input matInput type="text" formControlName="img">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Tipo</mat-label>
+                        <input matInput type="text" formControlName="tipo">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Género</mat-label>
+                        <input matInput type="text" formControlName="genero">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Origen</mat-label>
+                        <input matInput type="text" formControlName="origen">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Descripción</mat-label>
+                        <textarea matInput name="descripcion" formControlName="descripcion" cols="20"
+                            rows="10"></textarea>
+                    </mat-form-field>
+                    <button mat-button type="button">Guardar</button>
+                </form>
+            </mat-expansion-panel>
         </mat-card-actions>
     </mat-card>
 </div>

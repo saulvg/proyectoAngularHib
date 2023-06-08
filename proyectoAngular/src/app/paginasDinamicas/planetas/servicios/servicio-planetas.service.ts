@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ServicioPlanetasService {
 
-  private urlApi = "http://localhost:3000/";
+  private urlApi = "http://localhost:3002/";
 
   constructor(private http: HttpClient) { }
 

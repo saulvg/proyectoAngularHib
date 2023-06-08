@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -19,12 +19,18 @@ export class ServicioPersonajesService {
     return this.http.post(this.urlApi, personaje);
   }
 
-  editarPersonaje(id: number, personaje: any): Observable<any> {
-    const url = `${this.urlApi}/${id}`;
-    return this.http.put(url, personaje);
+  editarPersonaje(datos: any): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-type': 'application/json'
+      })
+    }
+    const url = "personajes";
+    return this.http.put(this.urlApi + url, datos, httpOptions);
   }
 
   eliminarPersonaje(id: number): Observable<any> {
+    console.log(id);
     const url = `${this.urlApi}/${id}`;
     return this.http.delete(url);
   }
