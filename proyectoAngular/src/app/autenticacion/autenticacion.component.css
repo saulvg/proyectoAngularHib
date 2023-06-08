@@ -1,0 +1,32 @@
+.contenedor-formulario {
+    margin: 5%;
+}
+
+.cabecera {
+    margin-bottom: 10px;
+}
+
+.ancho-maximo {
+    width: 100%;
+}
+
+.top-padding {
+    padding-top: 3px;
+}
+
+.example-container mat-form-field + mat-form-field {
+    margin-left: 8px;
+}
+  
+.example-right-align {
+    text-align: right;
+}
+  
+input.example-right-align::-webkit-outer-spin-button,
+input.example-right-align::-webkit-inner-spin-button {
+    display: none;
+}
+  
+input.example-right-align {
+    -moz-appearance: textfield;
+}
