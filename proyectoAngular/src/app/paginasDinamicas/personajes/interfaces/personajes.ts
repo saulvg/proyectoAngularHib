@@ -8,4 +8,6 @@ export interface Personajes {
     genero: string;
     origen: string;
     descripcion: string;
+    
+    mostrarDescripcion: boolean;
 }

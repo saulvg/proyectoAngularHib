@@ -1,7 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+@font-face {
+    font-family: 'Get Schwifty';
+    src: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/3089507/get-schwifty.woff') format('woff');
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 
 body {
@@ -13,9 +26,23 @@ body {
     --colorPrincipal: RGB(0, 176, 200);
     --colorSecundario: RGB(139, 252, 115);
 
+
 }
+
+h1 {
+    font-family: Get Schwifty !important;
+    color: var(--colorPrincipal);
+    text-shadow: 0 0 0.1em var(--colorSecundario), 0 0 0.1em var(--colorSecundario);
+}
+
+.titulo {
+
+    padding: 3rem 0 1rem 3rem;
+    font-size: 2.5rem !important;
+}
+
+
 .contenido-body {
-    height: 100vh;
+    height: 90vh;
+    margin-bottom: 8rem;
 }
-
-

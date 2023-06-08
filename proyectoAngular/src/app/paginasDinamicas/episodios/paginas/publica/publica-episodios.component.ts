@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Episodios } from '../../interfaces/episodios';
+import { ServicioEpisodioService } from '../../servicios/servicio-episodio.service';
 
 @Component({
   selector: 'app-publica-episodios',
@@ -7,4 +9,21 @@ import { Component } from '@angular/core';
 })
 export class PublicaEpisodiosComponent {
 
-}
+  episodios: Episodios[] = [];
+
+  constructor(private srvEpisodios: ServicioEpisodioService) { }
+
+  ngOnInit() {
+    this.obtenrEpisodios();
+  };
+
+  obtenrEpisodios() {
+    this.srvEpisodios.getEpisodios().subscribe(
+      (res: Episodios[]) => {
+        this.episodios = res
+      }
+    );
+  };
+
+
+};

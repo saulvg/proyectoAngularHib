@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MostrarCrudDirective } from './mostrar-crud.directive';
 import { ListadoDirective } from './listado.directive';
 import { LeerMasDirective } from './leer-mas.directive';
+import { ImgRotaDirective } from './img-rota.directive';
 
 
 
@@ -11,10 +12,14 @@ import { LeerMasDirective } from './leer-mas.directive';
     MostrarCrudDirective,
     ListadoDirective,
     LeerMasDirective,
+    ImgRotaDirective,
 
   ],
   imports: [
     CommonModule
+  ],
+  exports: [
+    ImgRotaDirective
   ]
 })
 export class DirectivasModule { }

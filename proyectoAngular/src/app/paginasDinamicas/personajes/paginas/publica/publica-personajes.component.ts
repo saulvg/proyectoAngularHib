@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Personajes } from '../../interfaces/personajes';
+import { ServicioPersonajesService } from '../../servicios/servicio-personajes.service';
+import { VivoMuertoDirective } from '../../directivas/mostrar-icono-vivoMuerto.directive';
 
 @Component({
   selector: 'app-publica-personajes',
@@ -7,44 +9,26 @@ import { Personajes } from '../../interfaces/personajes';
   styleUrls: ['./publica-personajes.component.css'],
 })
 export class PublicaPersonajesComponent {
-  personajes: Personajes[];
 
-  constructor() {
-    this.personajes = [
-      {
-        id: 1,
-        nombre: "Rick Sanchez",
-        estado: "Alive",
-        especie: "Human",
-        img: "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
-        tipo: "",
-        genero: "Male",
-        origen: "Bepis 9",
-        descripcion: "Bienvenido al Chiquito Ipsum, el generador de texto de relleno para tus diseños de antes de los dolores. Dale a Fistrum para que te salga ese pedaso de texto Chiquito en estado puro. Si te crees muy moderno dale a Latin que te lo pongo con cuarto y mitad de romanooo... Jarl!!"
-      },
-      {
-        id: 2,
-        nombre: "Morty Smith",
-        estado: "Alive",
-        especie: "Human",
-        img: "https://rickandmortyapi.com/api/character/avatar/2.jpeg",
-        tipo: "",
-        genero: "Male",
-        origen: "Bepis 9",
-        descripcion: "Bienvenido al Chiquito Ipsum, el generador de texto de relleno para tus diseños de antes de los dolores. Dale a Fistrum para que te salga ese pedaso de texto Chiquito en estado puro. Si te crees muy moderno dale a Latin que te lo pongo con cuarto y mitad de romanooo... Jarl!!"
-      },
-      {
-        id: 35,
-        nombre: "Bepisian",
-        estado: "Alive",
-        especie: "Alien",
-        img: "https://rickandmortyapi.com/api/character/avatar/35.jpeg",
-        tipo: "Bepisian",
-        genero: "unknown",
-        "origen": "Bepis 9",
-        "descripcion": "Bienvenido al Chiquito Ipsum, el generador de texto de relleno para tus diseños de antes de los dolores. Dale a Fistrum para que te salga ese pedaso de texto Chiquito en estado puro. Si te crees muy moderno dale a Latin que te lo pongo con cuarto y mitad de romanooo... Jarl!!"
+  personajes: Personajes[] = [];
+  mostrar = false;
+
+  constructor(private servPersonajes: ServicioPersonajesService) { }
+
+  obtenerPersonajes() {
+    this.servPersonajes.getPersonajes().subscribe(
+      (res: Personajes[]) => {
+        this.personajes = res;
       }
-    ];
+    )
+  }
+
+  ngOnInit() {
+    this.obtenerPersonajes();
+  }
+
+  muestraDescripcion(personaje: Personajes) {
+    personaje.mostrarDescripcion = !personaje.mostrarDescripcion;
   }
 
 }

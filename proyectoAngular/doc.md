@@ -148,6 +148,7 @@ JSON
 ## Consenso de programacion ##
 - COMENTARIOS NUNCA SOBRAN (aclarar codigo)
 
+- comentarios css separados con -
 - Idioma: Español
 - CamelCase para variabels, carpetas, etc...
 - Funciones normales
@@ -174,6 +175,7 @@ JSON
 - Figma desing -> https://www.figma.com/file/U0QEhPH95rcm2SiPHhQdjh/Untitled?type=design&node-id=0-1&t=jp3umXEFzWUt8gpG-0
 ## TODO ##
 - descargar y añadir -> funte: Get Schwifty
+- ahadir directiva de imgRota a todas las img, ejemplo en planetas html (no te olvides de importar la directiva en los modulos)
 ## DUDAS ##
 - Deben poder registrarse los usuarios ?
 - Si es asi debe haber pagina de register ?

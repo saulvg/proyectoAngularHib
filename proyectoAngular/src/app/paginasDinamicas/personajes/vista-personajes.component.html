@@ -1,0 +1,15 @@
+<section class="contenido-body ">
+    <header>
+        <h1 class="titulo">Personajes</h1>
+    </header>
+    <button (click)="cli()">Privado</button>
+    <ng-container *ngIf="prueba;else privada">
+        <app-publica-personajes></app-publica-personajes>
+    </ng-container>
+</section>
+
+<ng-template #privada>
+    <h2>Privada</h2>
+    <app-privada-personajes [personajes]="personajes"
+        (muestraDescripcion)="muestraDescripcion($event)"></app-privada-personajes>
+</ng-template>
