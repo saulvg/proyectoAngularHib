@@ -15,11 +15,19 @@ export class PrivadaPersonajesComponent {
 
   @Output() muestraDescripcion: EventEmitter<Personajes> = new EventEmitter<Personajes>();
 
+  constructor(private servPersonajes: ServicioPersonajesService) { }
+
   miFuncion(personaje: Personajes): void {
     this.muestraDescripcion.emit(personaje);
   }
 
-  borrarPersonaje(){}
+  borrarPersonaje(personaje: Personajes){
+    this.servPersonajes.eliminarPersonaje(personaje.id).subscribe(
+      (res: Personajes[]) => {
+        this.personajes = res;
+      }
+    );
+  }
 
   editarPersonaje(){}
 }

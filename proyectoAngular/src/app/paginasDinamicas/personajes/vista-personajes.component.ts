@@ -10,7 +10,7 @@ import { ServicioPersonajesService } from './servicios/servicio-personajes.servi
 export class VistaPersonajesComponent {
   personajes: Personajes[] = [];
   mostrar = false;
-  prueba:boolean = true;
+  prueba: boolean = true;
 
   constructor(private servPersonajes: ServicioPersonajesService) { }
 
@@ -19,7 +19,7 @@ export class VistaPersonajesComponent {
       (res: Personajes[]) => {
         this.personajes = res;
       }
-    )
+    );
   }
 
   cli() {

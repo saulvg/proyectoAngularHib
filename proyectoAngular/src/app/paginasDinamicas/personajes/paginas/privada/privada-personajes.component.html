@@ -19,7 +19,7 @@
             <button mat-button (click)="miFuncion(personaje)">
                 {{ personaje.mostrarDescripcion ? 'Leer menos' : 'Leer más' }}
             </button>
-            <img class="crudIcono" src="{{borrar}}" alt="borrar" height="40px" (click)="borrarPersonaje()" >
+            <img class="crudIcono" src="{{borrar}}" alt="borrar" height="40px" (click)="borrarPersonaje(personaje)" >
             <img class="crudIcono" src="{{editar}}" alt="editar" height="40px" (click)="editarPersonaje()" >
         </mat-card-actions>
     </mat-card>
