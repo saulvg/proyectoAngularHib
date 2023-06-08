@@ -14,20 +14,8 @@ export class VistaPersonajesComponent {
 
   constructor(private servPersonajes: ServicioPersonajesService) { }
 
-  obtenerPersonajes() {
-    this.servPersonajes.getPersonajes().subscribe(
-      (res: Personajes[]) => {
-        this.personajes = res;
-      }
-    );
-  }
-
   cli() {
     this.prueba = !this.prueba;
-  }
-
-  ngOnInit() {
-    this.obtenerPersonajes();
   }
 
   muestraDescripcion(personaje: Personajes) {

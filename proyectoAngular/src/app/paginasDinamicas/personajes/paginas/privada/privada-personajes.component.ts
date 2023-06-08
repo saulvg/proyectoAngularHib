@@ -25,6 +25,7 @@ export class PrivadaPersonajesComponent {
 
   ngOnInit() {
     this.crearFormulario();
+    this.obtenerPersonajes();
   }
 
   crearFormulario() {
@@ -76,10 +77,19 @@ export class PrivadaPersonajesComponent {
     this.servPersonajes.eliminarPersonaje(personaje.id).subscribe(
       (res: Personajes[]) => {
         this.personajes = res;
-        location.reload(); // Recarga la pagina tras borrar
+        this.obtenerPersonajes();
       }
     );
   }
 
+  //
+  obtenerPersonajes() {
+    this.servPersonajes.getPersonajes().subscribe(
+      (res: Personajes[]) => {
+        this.personajes = res;
+        console.log(res);
+      } 
+    )
+  }
 
 }
