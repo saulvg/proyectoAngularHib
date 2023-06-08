@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { Planetas } from '../../interfaces/planetas';
@@ -10,8 +10,8 @@ import { ServicioPlanetasService } from '../../servicios/servicio-planetas.servi
   styleUrls: ['./publica-planetas.component.css']
 })
 export class PublicaPlanetasComponent /*implements Planetas*/{
-  public planetas: Planetas[] = [];
-
+ // public planetas: Planetas[] = [];
+  @Input () planetas: Planetas[] = [];
   /*
   id!: number;
   nombre!: string;

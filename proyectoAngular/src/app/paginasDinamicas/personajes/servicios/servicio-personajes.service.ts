@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ServicioPersonajesService {
 
-  private urlApi = 'http://localhost:3000/personajes';
+  private urlApi = 'http://localhost:3002/personajes';
 
   constructor(private http: HttpClient) { }
 

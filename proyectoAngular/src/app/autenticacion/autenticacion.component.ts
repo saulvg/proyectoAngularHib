@@ -3,7 +3,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Usuarios } from './interfaces/usuarios';
 import { ServcicioAutenticacionService } from './servicios/servcicio-autenticacion.service';
-
+/*
+@Component({
+  selector: 'app-autenticacion',
+  templateUrl: './autenticacion.component.html',
+  styleUrls: ['./autenticacion.component.css']
+})*/
 @Component({
   selector: 'app-autenticacion',
   templateUrl: './autenticacion.component.html',

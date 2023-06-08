@@ -1,1 +1,98 @@
-<p>privada-planetas works!</p>
+<div class="contenedor-main">
+    <mat-expansion-panel class="panel-edicion" hideToggle>
+        <mat-expansion-panel-header>
+            <mat-panel-title (click)="crearPlaneta()">
+                <img class="crudIcono" src="" alt="crear" height="40px">
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+    </mat-expansion-panel>
+    <!-- Formulario de edición -->
+    <form [formGroup]="formularioPlanetas" class="form-edicion" (ngSubmit)="enviarDatos()" *ngIf="selectedPlaneta">
+        <mat-form-field>
+            <mat-label>Nombre</mat-label>
+            <input matInput type="text" formControlName="nombre">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Dimension</mat-label>
+            <input matInput type="text" formControlName="dimension">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Descripcion</mat-label>
+            <textarea matInput name="descripcion" type="text" formControlName="descripcion"></textarea>
+        </mat-form-field>
+        <button mat-button type="submit">Guardar</button>
+    </form>
+
+    <mat-card class="card-planetas" *ngFor="let planeta of planetas">
+        <mat-card-header>
+            <mat-card-title>{{ planeta.nombre }}</mat-card-title>
+            <mat-card-subtitle>{{ planeta.dimension }}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image [src]="planeta.img" alt="Imagen del planeta" class="planeta-img"
+            [appImgRota]="planeta.img">
+        <mat-card-content>
+            <p class="descripcion">
+                {{ planeta.descripcion }}
+            </p>
+        </mat-card-content>
+        <mat-card-actions>
+            <img class="crudIcono" src="{{borrar}}" alt="borrar" height="40px" (click)="borrarPlaneta(planeta)">
+            
+            <mat-expansion-panel class="panel-edicion" hideToggle>
+                <mat-expansion-panel-header>
+                    <mat-panel-title (click)="editarPlaneta(planeta)">
+                        <img class="crudIcono" src="{{ editar }}" alt="editar" height="40px">
+
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+            </mat-expansion-panel>
+        </mat-card-actions>
+    </mat-card>
+
+    <!--
+    <mat-card class="card-planetas" *ngFor="let planeta of planetas">
+        <mat-card-header>
+            <mat-card-title>{{planeta.nombre}}</mat-card-title>
+            <mat-card-subtitle>{{planeta.dimension}}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image [src]="planeta.img" alt="Imagen del planeta" class="planeta-img"
+            [appImgRota]="planeta.img">
+        <mat-card-content>
+            <p class="descripcion">
+                {{planeta.descripcion}}
+            </p>
+        </mat-card-content>
+        <mat-card-actions>
+            <img class="crudIcono" src="{{borrar}}" alt="borrar" height="40px" (click)="borrarPlaneta(planeta)">
+            
+            
+            
+            <mat-expansion-panel class="panel-edicion" hideToggle>
+                <mat-expansion-panel-header>
+                    <mat-panel-title (click)="editarPlaneta(planeta)">
+                        <img class="crudIcono" src="{{editar}}" alt="editar" height="40px" (click)="editarPlaneta(planeta)">
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <form [formGroup]="formularioPlanetas" class="form-edicion" (ngSubmit)="enviarDatos()" *ngIf="selectedPlaneta">
+                    <pre>
+                        {{planeta | json}}
+                    </pre>
+                    <mat-form-field>
+                        <mat-label>Nombre</mat-label>
+                        <input matInput type="text" formControlName="nombre">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Dimension</mat-label>
+                        <input matInput type="text" formControlName="dimension">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Descripcion</mat-label>
+                        <textarea matInput name="descripcion" type="text" formControlName="descripcion"></textarea>
+                    </mat-form-field>
+                    <button mat-button type="button">Guardar</button>
+                </form>
+            </mat-expansion-panel>
+             
+        </mat-card-actions>
+    </mat-card>-->
+</div>

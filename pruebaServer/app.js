@@ -54,8 +54,8 @@ app.put('/episodios', (req, res) => {
   if (episodioExistente) {
     episodioExistente.titulo = episodioActualizado.titulo;
     episodioExistente.sinopsis = episodioActualizado.sinopsis;
-episodioExistente.episodio = episodioActualizado.episodio
-episodioExistente.fechaEmision = episodioActualizado.fechaEmision
+    episodioExistente.episodio = episodioActualizado.episodio
+    episodioExistente.fechaEmision = episodioActualizado.fechaEmision
 
     res.json({
       message: `Episodio ${episodioActualizado.id} actualizado correctamente`,
@@ -139,7 +139,7 @@ app.get('/planetas',(req, res) => {
     const nuevoPlaneta = req.body; // Suponemos que los datos del nuevo episodio se envían en el cuerpo de la solicitud  
   
     // Ejemplo de guardado en un array en memoria
-    planetas.push(nuevoPlaneta)
+    planetas.unshift(nuevoPlaneta)
     
   
     res.status(201).json({
@@ -156,9 +156,10 @@ app.put('/planetas', (req, res) => {
    const planetaExistente = planetas.find(planeta => planeta.id === parseInt(planetaActualizado.id));
  
    if (planetaExistente) {
-       planetaExistente.titulo = planetaActualizado.titulo;
-     //planetaExistente.fechaEmision = planetaActualizado.fechaEmision;
-     planetaExistente.sinopsis = planetaActualizado.sinopsis;
+       planetaExistente.nombre = planetaActualizado.nombre;
+       planetaExistente.img = planetaActualizado.img;
+       planetaExistente.dimension = planetaActualizado.dimension;
+       planetaExistente.descripcion = planetaActualizado.descripcion;
  
      res.json({
        message: `Planeta ${planetaActualizado.id} actualizado correctamente`,
@@ -173,7 +174,7 @@ app.put('/planetas', (req, res) => {
 
   // Endpoint para eliminar un planetas existente (DELETE)
 app.delete('/planetas', (req, res) => {
-  const planetasId = req.body.id;
+  const planetasId = req.params.id;
 
 
   // Ejemplo de eliminación en un array en memoria
