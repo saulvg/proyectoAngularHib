@@ -25,8 +25,7 @@ export class ServicioPersonajesService {
         'Content-type': 'application/json'
       })
     }
-    const url = "personajes";
-    return this.http.put(this.urlApi + url, datos, httpOptions);
+    return this.http.put(this.urlApi, datos, httpOptions);
   }
 
   eliminarPersonaje(id: number): Observable<any> {

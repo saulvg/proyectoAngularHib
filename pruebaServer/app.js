@@ -261,9 +261,14 @@ app.put("/personajes", (req, res) => {
   );
 
   if (personajeExistente) {
-    personajeExistente.titulo = personajeActualizado.titulo;
-    //personajeExistente.fechaEmision = personajeActualizado.fechaEmision;
-    personajeExistente.sinopsis = personajeActualizado.sinopsis;
+    personajeExistente.nombre = personajeActualizado.nombre;
+    personajeExistente.estado = personajeActualizado.estado;
+    personajeExistente.especie = personajeActualizado.especie;
+    personajeExistente.img = personajeActualizado.img;
+    personajeExistente.tipo = personajeActualizado.tipo;
+    personajeExistente.genero = personajeActualizado.genero;
+    personajeExistente.origen = personajeActualizado.origen;
+    personajeExistente.descripcion = personajeActualizado.descripcion;
 
     res.json({
       message: `Personaje ${personajeActualizado.id} actualizado correctamente`,

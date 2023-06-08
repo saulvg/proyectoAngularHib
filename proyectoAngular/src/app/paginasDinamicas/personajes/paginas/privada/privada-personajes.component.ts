@@ -30,19 +30,20 @@ export class PrivadaPersonajesComponent {
 
   crearFormulario() {
     this.formPersonajes = this.formBuilder.group({
-      id: ['', [Validators.required]],
+      id: [''],
       nombre: ['', [Validators.required]],
       estado: ['', [Validators.required]],
       especie: ['', [Validators.required]],
-      img: ['', [Validators.required]],
-      tipo: ['', [Validators.required]],
-      genero: ['', [Validators.required]],
-      origen: ['', [Validators.required]],
-      descripcion: ['', [Validators.required]]
+      img: [''],
+      tipo: [''],
+      genero: [''],
+      origen: [''],
+      descripcion: ['']
     });
   }
 
   editarPersonaje(personaje: Personajes) {
+    this.miFuncion(personaje);
     this.formPersonajes.patchValue({
       id: personaje.id,
       nombre: personaje.nombre,
@@ -59,9 +60,15 @@ export class PrivadaPersonajesComponent {
   enviarDatos() {
     if (this.formPersonajes.valid) {
       const datos = this.formPersonajes.value;
+      console.log(this.formPersonajes.value)
       this.servPersonajes.editarPersonaje(datos).subscribe(
-        res => { console.log('Exito', res); },
-        (err) => { console.error(err); }
+        res => {
+          console.log('Exito', res);
+          this.obtenerPersonajes();
+        },
+        (err) => {
+          console.error(err);
+        }
       )
     } else {
       console.error("Formulario invalido");
@@ -88,7 +95,7 @@ export class PrivadaPersonajesComponent {
       (res: Personajes[]) => {
         this.personajes = res;
         console.log(res);
-      } 
+      }
     )
   }
 

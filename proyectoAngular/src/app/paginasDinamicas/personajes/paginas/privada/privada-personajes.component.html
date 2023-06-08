@@ -3,21 +3,19 @@
     <form [formGroup]="formPersonajes" class="form-edicion" (ngSubmit)="enviarDatos()" *ngIf="selectedPersonaje">
         <mat-form-field>
             <mat-label>Nombre</mat-label>
-            <input matInput type="text" formControlName="nombre" [(ngModel)]="selectedPersonaje.nombre">
+            <input matInput type="text" formControlName="nombre">
         </mat-form-field>
         <mat-form-field>
             <mat-label>Estado</mat-label>
-            <input matInput type="text" formControlName="estado" [(ngModel)]="selectedPersonaje.estado">
+            <input matInput type="text" formControlName="estado">
         </mat-form-field>
         <mat-form-field>
             <mat-label>Especie</mat-label>
-            <input matInput type="text" formControlName="especie" [(ngModel)]="selectedPersonaje.especie">
+            <input matInput type="text" formControlName="especie">
         </mat-form-field>
-        <!-- Resto de los campos del formulario -->
-        <button mat-button type="button">Guardar</button>
+        <button mat-button type="submit">Guardar</button>
     </form>
 
-    <!-- Tarjetas de personajes -->
     <mat-card class="card-personajes" *ngFor="let personaje of personajes">
         <mat-card-header>
             <mat-card-title>{{ personaje.nombre }}</mat-card-title>
@@ -42,10 +40,9 @@
             </button>
             <img class="crudIcono" src="{{borrar}}" alt="borrar" height="40px" (click)="borrarPersonaje(personaje)">
 
-            <!-- Panel de edicion -->
             <mat-expansion-panel class="panel-edicion" hideToggle>
                 <mat-expansion-panel-header>
-                    <mat-panel-title (click)="miFuncion(personaje)">
+                    <mat-panel-title (click)="editarPersonaje(personaje)">
                         <img class="crudIcono" src="{{editar}}" alt="editar" height="40px">
                     </mat-panel-title>
                 </mat-expansion-panel-header>
