@@ -4,7 +4,6 @@ export interface Episodios {
     fechaEmision: string;
     episodio: string;
     sinopsis: string;
-
 };
 
 
