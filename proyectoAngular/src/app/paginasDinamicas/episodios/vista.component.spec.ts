@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { VistaComponent } from './vista.component';
+import { VistaComponent } from './vista-episodios.component';
 
 describe('VistaComponent', () => {
   let component: VistaComponent;

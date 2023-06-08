@@ -14,8 +14,9 @@
                                 <mat-form-field class="ancho-maximo">
                                     <label>Nombre: </label>
                                     <input formControlName="nombre" matInput placeholder="Tu nombre">
-                                    <mat-error *ngIf="formulario.get('nombre')!.invalid && formulario.get('nombre')!.touched">
-                                        Introduce un nombre valido 
+                                    <mat-error
+                                        *ngIf="formulario.get('nombre')!.invalid && formulario.get('nombre')!.touched">
+                                        Introduce un nombre valido
                                     </mat-error>
                                 </mat-form-field>
                             </div>
@@ -24,7 +25,8 @@
                                     <label>Correo: </label>
                                     <input formControlName="correo" matInput placeholder="Tu correo">
                                 </mat-form-field>
-                                <mat-error *ngIf="formulario.get('correo')!.invalid && formulario.get('correo')!.touched">
+                                <mat-error
+                                    *ngIf="formulario.get('correo')!.invalid && formulario.get('correo')!.touched">
                                     Introduce un correo electronico valido
                                 </mat-error>
                             </div>
@@ -36,7 +38,8 @@
                                     <textarea formControlName="consulta" matInput
                                         placeholder="Cuentanos lo que quieras!!!"></textarea>
                                 </mat-form-field>
-                                <mat-error *ngIf="formulario.get('consulta')!.invalid && formulario.get('consulta')!.touched">
+                                <mat-error
+                                    *ngIf="formulario.get('consulta')!.invalid && formulario.get('consulta')!.touched">
                                     Introduce una consulta valida
                                 </mat-error>
                             </div>

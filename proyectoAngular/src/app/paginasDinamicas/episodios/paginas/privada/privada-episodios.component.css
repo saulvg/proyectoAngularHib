@@ -1,0 +1,11 @@
+.card-episodios {
+    padding: 0 1rem;
+    width: 70%;
+}
+
+.section-episodios {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}

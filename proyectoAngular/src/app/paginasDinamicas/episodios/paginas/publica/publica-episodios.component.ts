@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Episodios } from '../../interfaces/episodios';
 import { ServicioEpisodioService } from '../../servicios/servicio-episodio.service';
 
@@ -8,22 +8,6 @@ import { ServicioEpisodioService } from '../../servicios/servicio-episodio.servi
   styleUrls: ['./publica-episodios.component.css']
 })
 export class PublicaEpisodiosComponent {
-
-  episodios: Episodios[] = [];
-
-  constructor(private srvEpisodios: ServicioEpisodioService) { }
-
-  ngOnInit() {
-    this.obtenrEpisodios();
-  };
-
-  obtenrEpisodios() {
-    this.srvEpisodios.getEpisodios().subscribe(
-      (res: Episodios[]) => {
-        this.episodios = res
-      }
-    );
-  };
-
+  @Input() episodios: Episodios[] = []
 
 };
