@@ -2,6 +2,13 @@
     <header>
         <h1 class="titulo">Episodios</h1>
     </header>
-
-    <app-publica-episodios></app-publica-episodios>
+    <button (click)="cli()">cambia</button>
+    <ng-container *ngIf="prueba;else privada">
+        <app-publica-episodios [episodios]="episodios"></app-publica-episodios>
+    </ng-container>
 </section>
+
+<ng-template #privada>
+    <h2>PRIVADO</h2>
+    <app-privada-episodios [episodios]="episodios"></app-privada-episodios>
+</ng-template>

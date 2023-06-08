@@ -13,7 +13,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
 import { ServicioEpisodioService } from './servicios/servicio-episodio.service';
 import { FormatoTemporadaPipe } from './pipes/pipe-formato-temporada.pipe';
-import { VistaComponent } from './vista.component';
+import { VistaComponentEpisodios } from './vista-episodios.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -22,7 +24,7 @@ import { VistaComponent } from './vista.component';
     PublicaEpisodiosComponent,
     PrivadaEpisodiosComponent,
     FormatoTemporadaPipe,
-    VistaComponent,
+    VistaComponentEpisodios,
   ],
   imports: [
     CommonModule,
@@ -31,7 +33,9 @@ import { VistaComponent } from './vista.component';
     MatDividerModule,
     MatProgressBarModule,
     MatButtonModule,
-    HttpClientModule
+    HttpClientModule,
+    MatExpansionModule,
+    ReactiveFormsModule
   ],
   providers: [
     ServicioEpisodioService
