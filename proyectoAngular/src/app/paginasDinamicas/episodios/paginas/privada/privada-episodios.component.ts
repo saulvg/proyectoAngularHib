@@ -3,6 +3,7 @@ import { Episodios } from '../../interfaces/episodios';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ServicioEpisodioService } from '../../servicios/servicio-episodio.service';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -77,6 +78,18 @@ export class PrivadaEpisodiosComponent {
 
   }
 
+  eliminarEpisodio(episodio: Episodios) {
+    this.srvEpisodios.eliminarEpisodio(episodio.id).subscribe(
+      res => {
+        console.log('Exito', res);
+        this.obtenrEpisodios()
+      },
+      (err) => {
+        console.error(err);
+
+      }
+    )
+  }
   obtenrEpisodios() {
 
     this.srvEpisodios.getEpisodios().subscribe(

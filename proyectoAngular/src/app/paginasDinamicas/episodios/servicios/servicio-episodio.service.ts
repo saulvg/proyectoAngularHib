@@ -26,4 +26,9 @@ export class ServicioEpisodioService {
     const url = "episodios";
     return this.http.put(this.urlApi + url, datos, httpOptions)
   }
+
+  eliminarEpisodio(id: number): Observable<any> {
+    const url = `episodios/${id}`;
+    return this.http.delete(this.urlApi + url)
+  }
 }
