@@ -1,43 +1,43 @@
 <div class="section-episodios">
+
+    <button (click)="mostrarCrearForm = !mostrarCrearForm" (click)="abrirFormularioEpisodios(episodios, true)">
+        MostrarForumulario de crear
+    </button>
+
+    <div class="contenedor-form-episodios" [ngClass]="{'mostrar':!mostrarCrearForm}">
+        <ng-container *ngTemplateOutlet="templateFormEpisodios"></ng-container>
+        <button (click)="crearEpisodio(episodios)">Crear</button>
+    </div>
+
     <mat-card class="card-episodios" *ngFor="let episodio of episodios">
+
         <mat-card-header>
             <mat-card-title>{{episodio.titulo}}</mat-card-title>
             <mat-card-subtitle>{{episodio.episodio | pipeFormatoTemporada}}</mat-card-subtitle>
         </mat-card-header>
+
         <mat-card-content>
             <p>{{episodio.sinopsis}}</p>
             <mat-card-subtitle>{{episodio.fechaEmision | pipeFormatoFecha}}</mat-card-subtitle>
             <mat-divider></mat-divider>
         </mat-card-content>
+
         <mat-card-actions>
-            <!--  -->
             <mat-accordion>
-                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                    <mat-expansion-panel-header (click)="editarEpisodio(episodio)">
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"
+                    (click)="mostrarCrearForm = false">
+                    <mat-expansion-panel-header (click)="abrirFormularioEpisodios(episodio, false)">
                         <mat-panel-title>
                             Editar
                         </mat-panel-title>
-
                     </mat-expansion-panel-header>
-                    <form [formGroup]="formularioEpisodios" (ngSubmit)="enviarDatos()">
-                        <div>
-                            <label for="nombre">Nombre</label>
-                            <input type="text" formControlName="titulo">
-                        </div>
-                        <div>
-                            <label for="temporada">Temporada</label>
-                            <input type="text" formControlName="episodio">
-                        </div>
-                        <div>
-                            <label for="descripcion">Descripcion</label>
-                            <textarea name="descripcion" formControlName="sinopsis" cols="20" rows="10"></textarea>
-                        </div>
-                        <div>
-                            <label for="fecha">Fecha</label>
-                            <input type="date" formControlName="fechaEmision">
-                        </div>
-                        <button type="submit">Guardar</button>
-                    </form>
+
+                    <div>
+                        <ng-container
+                            *ngTemplateOutlet="templateFormEpisodios; context:{episodio:episodio}"></ng-container>
+                        <button (click)="editarEpisodios()">Actualizar</button>
+                    </div>
+
                 </mat-expansion-panel>
             </mat-accordion>
             <button mat-button (click)="eliminarEpisodio(episodio)">Borrar</button>
@@ -45,3 +45,26 @@
         </mat-card-actions>
     </mat-card>
 </div>
+
+
+<!-- TEMPLATES -->
+<ng-template #templateFormEpisodios let-episodio>
+    <form [formGroup]="formularioEpisodios">
+        <div>
+            <label for="nombre">Nombre</label>
+            <input type="text" formControlName="titulo">
+        </div>
+        <div>
+            <label for="temporada">Temporada</label>
+            <input type="text" formControlName="episodio">
+        </div>
+        <div>
+            <label for="descripcion">Descripcion</label>
+            <textarea name="descripcion" formControlName="sinopsis" cols="20" rows="10"></textarea>
+        </div>
+        <div>
+            <label for="fecha">Fecha</label>
+            <input type="date" formControlName="fechaEmision">
+        </div>
+    </form>
+</ng-template>

@@ -9,3 +9,15 @@
     align-items: center;
     gap: 1rem;
 }
+
+
+.contenedor-form-episodios {
+    opacity: 1;
+    height: auto;
+    transition: opacity 0.3s ease, height 0.3s ease;
+}
+
+.mostrar {
+    opacity: 0;
+    height: 0;
+}

@@ -69,8 +69,8 @@ episodioExistente.fechaEmision = episodioActualizado.fechaEmision
 });
 
 // Endpoint para eliminar un episodio existente (DELETE)
-app.delete('/episodios', (req, res) => {
-  const episodioId = req.body.id;
+app.delete('/episodios/:id', (req, res) => {
+  const episodioId = req.params.id;
   
   // Ejemplo de eliminación en un array en memoria
   const episodioIndex = episodios.findIndex(episodio => episodio.id === parseInt(episodioId));
@@ -92,7 +92,7 @@ app.post('/episodios', (req, res) => {
   const nuevoEpisodio = req.body; // Suponemos que los datos del nuevo episodio se envían en el cuerpo de la solicitud  
 
   // Ejemplo de guardado en un array en memoria
-  episodios.push(nuevoEpisodio)
+  episodios.unshift(nuevoEpisodio)
   
 
   res.status(201).json({
