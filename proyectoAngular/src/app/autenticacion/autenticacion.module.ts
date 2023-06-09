@@ -13,7 +13,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ServcicioAutenticacionService } from './servicios/servcicio-autenticacion.service';
-
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -30,7 +30,8 @@ import { ServcicioAutenticacionService } from './servicios/servcicio-autenticaci
     MatRippleModule,
     MatCardModule,
     MatRadioModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     ServcicioAutenticacionService

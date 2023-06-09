@@ -2,8 +2,8 @@
     <header>
         <h1 class="titulo">Episodios</h1>
     </header>
-    <button (click)="cli()">cambia</button>
-    <ng-container *ngIf="prueba;else privada">
+    <!--  <button (click)="cli()">cambia</button> -->
+    <ng-container *ngIf="!exiteToken;else privada">
         <!-- <app-publica-episodios [episodios]="episodios"></app-publica-episodios> -->
         <app-publica-episodios></app-publica-episodios>
     </ng-container>

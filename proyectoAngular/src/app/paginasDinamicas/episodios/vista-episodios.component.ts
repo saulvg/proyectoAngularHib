@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Episodios } from './interfaces/episodios';
 import { ServicioEpisodioService } from './servicios/servicio-episodio.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-vista',
@@ -9,38 +10,21 @@ import { ServicioEpisodioService } from './servicios/servicio-episodio.service';
 })
 export class VistaComponentEpisodios {
   episodios: Episodios[] = [];
-  prueba: boolean = true
 
-  constructor(private srvEpisodios: ServicioEpisodioService) { }
+  exiteToken: boolean = false
 
-  /* ngOnInit() {
-    this.obtenrEpisodios();
-  }; */
-  /*  funcionpa() {
-     console.log('soy pa');
-     this.srvEpisodios.getEpisodios().subscribe(
-       (res: Episodios[]) => {
-         this.episodios = res
-         console.log(res);
- 
-       }
-     );
- 
-   } */
+  constructor(private srvEpisodios: ServicioEpisodioService, private cookies: CookieService) { }
 
-  /*  obtenrEpisodios() {
- 
-     this.srvEpisodios.getEpisodios().subscribe(
-       (res: Episodios[]) => {
-         this.episodios = res
-         console.log(res);
- 
-       }
-     );
-   }; */
+  ngOnInit() {
+    this.obtenerToken()
+  }
 
-  cli() {
-    this.prueba = !this.prueba
+  obtenerToken() {
+    const token = this.cookies.get('token')
+
+    if (token) {
+      this.exiteToken = true
+    }
   }
 
 }

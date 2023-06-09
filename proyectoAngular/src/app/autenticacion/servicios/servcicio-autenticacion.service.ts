@@ -1,18 +1,32 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
+import { Usuarios } from '../interfaces/usuarios';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServcicioAutenticacionService {
 
-  private urlApi = "http://localhost:3000/";
+  private readonly urlApi = "http://localhost:3002/usuarios";
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private cookie: CookieService) { }
 
-  getCuentas(/*usuario: any*/): Observable<any> {
-    const url = "autenticacion";
-    return this.http.get(this.urlApi + url/*, usuario*/);
+  enviarCredenciales(email: string, password: string): Observable<any> {
+    const body: Usuarios = {
+      email,
+      password
+    }
+    return this.http.post(this.urlApi, body).pipe(
+      //Si la respuesta es correcta
+      //Ahadimos un el token (ficticio) que nos devuelve el back a las cookies durante cuatro dias (opcion personal) e indicamos que aplica a toda la app (/)
+      //Para utilizar "cookie" hemos instalado la libreria "npm i ngx-cookie-service --save"
+      tap((res: any) => {
+        this.cookie.set('token', res.token, 4, "/")
+      })
+    )
+
   }
+
 }

@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Usuarios } from './interfaces/usuarios';
 import { ServcicioAutenticacionService } from './servicios/servcicio-autenticacion.service';
+import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-autenticacion',
@@ -10,55 +11,60 @@ import { ServcicioAutenticacionService } from './servicios/servcicio-autenticaci
   styleUrls: ['./autenticacion.component.css']
 })
 export class AutenticacionComponent {
-  hide = true;
-/*
-  correo: string;
-  contrasenya: string;
-  
-  public usuarios: Usuarios[] = [];*/
+  mostrarPassword: boolean = false;
+  hasError: boolean = false;
+  errorMessage: string = ""
+  loginCorrecto: boolean = false;
 
-  constructor (/*private srvUsuarios: ServcicioAutenticacionService*/private formBuilder: FormBuilder, private snackBar: MatSnackBar) {
-    /*this.correo = "";
-    this.contrasenya = "";*/
-   }
+  formularioLogin: FormGroup = new FormGroup({})
 
-  formulario = this.formBuilder.group({
-    correo: ['', [Validators.required, Validators.email]],
-    contrasenya: ['', Validators.required],
-  });
+  constructor(private srvAuth: ServcicioAutenticacionService, private formBuilder: FormBuilder, private router: Router) { }
 
-  iniciarSesion(){
-    if(this.formulario.valid){
-      console.log("Datos del formulario ", this.formulario.value);
-      this.snackBar.open('El formulario es correcto', 'Cerrar', { duration: 3000});
+
+
+  ngOnInit() {
+    this.formularioLogin = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
+    })
+  }
+
+  iniciarSesion() {
+    if (this.formularioLogin.valid) {
+      const { email, password } = this.formularioLogin.value
+      this.srvAuth.enviarCredenciales(email, password).subscribe(
+        res => {
+          console.log("Datos del formulario ", res);
+          //this.snackBar.open('El formulario es correcto', 'Cerrar', { duration: 3000 });
+          this.loginCorrecto = true
+          this.redireccion()
+          this.hasError = false; // Reiniciar el estado de error
+          //this.router.navigate(['/'])
+
+        },
+        err => {
+          console.log('Error', err.error.message);
+          this.errorMessage = err.error.message
+          this.hasError = true; // Mostrar el mensaje de error
+
+        }
+      )
+      //this.snackBar.open('El formulario es correcto', 'Cerrar', { duration: 3000 });
     } else {
       console.log("FORMULARIO INVALIDO :(");
     }
   }
 
-  /*obtenerUsuario(){
-    this.srvUsuarios.getCuentas().subscribe(
-      (res: Usuarios[]) => {
-        this.usuarios = res;
-      }
-    );
+  togglePasswordVisibility() {
+    this.mostrarPassword = !this.mostrarPassword;
+  }
 
-    if(res.correo === this.correo){
+  redireccion() {
+    setTimeout(() => {
+      this.router.navigate(['/'])
+      this.loginCorrecto = false
+    }, 2000)
+  }
 
-    }
-  };*/
-/*
-  login(){
-    const usuario = { correo: this.correo, contrasenya: this.contrasenya};
-    this.srvUsuarios.getCuentas(usuario).subscribe((data) => {
-      console.log("Sesión iniciada");
-    });
 
-  }*/
-/*
-  ngOnInit(){
-    //this.iniciarSesion();
-    //this.obtenerUsuario();
-    this.login();
-  }*/
 }
