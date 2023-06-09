@@ -35,7 +35,7 @@ export class PrivadaPersonajesComponent {
       nombre: ['', [Validators.required]],
       estado: ['', [Validators.required]],
       especie: ['', [Validators.required]],
-      img: ['', [Validators.required]],
+      img: [''],
       tipo: [''],
       genero: [''],
       origen: [''],
@@ -44,7 +44,7 @@ export class PrivadaPersonajesComponent {
   }
 
   editarPersonaje(personaje: Personajes) {
-    this.miFuncion(personaje);
+    this.setSelectedPersonaje(personaje);
     this.formPersonajes.patchValue({
       id: personaje.id,
       nombre: personaje.nombre,
@@ -60,29 +60,31 @@ export class PrivadaPersonajesComponent {
 
   crearPersonaje() {
     let nuevoPersonaje: Personajes = {
-      id: 0, // Asigna un valor válido para el ID del nuevo personaje
-      nombre: '', // Asigna un valor válido para el nombre del nuevo personaje
-      estado: '', // Asigna un valor válido para el estado del nuevo personaje
-      especie: '', // Asigna un valor válido para la especie del nuevo personaje
-      img: '', // Asigna un valor válido para la URL de la imagen del nuevo personaje
+      id: 0,
+      nombre: '',
+      estado: '',
+      especie: '',
+      img: '',
       tipo: '',
       genero: '',
       origen: '',
       descripcion: '',
       mostrarDescripcion: false
     };
-    this.miFuncion(nuevoPersonaje);
-    this.formPersonajes.patchValue({
-      id: nuevoPersonaje.id,
-      nombre: nuevoPersonaje.nombre,
-      estado: nuevoPersonaje.estado,
-      especie: nuevoPersonaje.especie,
-      img: nuevoPersonaje.img,
-      tipo: nuevoPersonaje.tipo,
-      genero: nuevoPersonaje.genero,
-      origen: nuevoPersonaje.origen,
-      descripcion: nuevoPersonaje.descripcion
-    });
+    if (this.selectedPersonaje !== nuevoPersonaje) {
+      this.setSelectedPersonaje(nuevoPersonaje);
+      this.formPersonajes.patchValue({
+        id: nuevoPersonaje.id,
+        nombre: nuevoPersonaje.nombre,
+        estado: nuevoPersonaje.estado,
+        especie: nuevoPersonaje.especie,
+        img: nuevoPersonaje.img,
+        tipo: nuevoPersonaje.tipo,
+        genero: nuevoPersonaje.genero,
+        origen: nuevoPersonaje.origen,
+        descripcion: nuevoPersonaje.descripcion
+      });
+    }
   }
 
   enviarDatos() {
@@ -103,7 +105,7 @@ export class PrivadaPersonajesComponent {
     }
   }
 
-  miFuncion(personaje: Personajes) {
+  setSelectedPersonaje(personaje: Personajes) {
     this.selectedPersonaje = personaje;
   }
 

@@ -49,7 +49,17 @@
 
 .form-edicion {
   width: 100%;
-  max-width: 500px;
-  margin-bottom: 20px;
+  max-width: 1200px;
+  margin: 5%;
+  display: block;
 }
 
+.panel-crear {
+  max-width: 100px;
+  max-height: 50px;
+  position: relative;
+}
+
+.ancho-maximo{
+  width: 100%;
+}

@@ -21,6 +21,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatRadioModule } from '@angular/material/radio';
+
 
 import { RouterModule } from '@angular/router';
 
@@ -44,7 +46,8 @@ import { RouterModule } from '@angular/router';
     MatExpansionModule,
     ReactiveFormsModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatRadioModule
   ],
   providers: [
     ServicioPersonajesService
