@@ -45,16 +45,21 @@ export class PrivadaPersonajesComponent {
   }
 
   borrarPersonaje(personaje: Personajes) {
-    this.servPersonajes.eliminarPersonaje(personaje.id).subscribe(
-      res => {
-        console.log("Exito al borrar", res);
-        this.obtenerPersonajes();
-      },
-      (err) => {
-        console.error(err);
-      }
-    );
+    const confirmacion = confirm('¿Estás seguro de que quieres borrar el personaje?');
+  
+    if (confirmacion) {
+      this.servPersonajes.eliminarPersonaje(personaje.id).subscribe(
+        res => {
+          console.log("Éxito al borrar", res);
+          this.obtenerPersonajes();
+        },
+        (err) => {
+          console.error(err);
+        }
+      );
+    }
   }
+  
 
   abrirModal(editar: boolean, personajes: Personajes[]) {
     console.log(personajes);
