@@ -60,12 +60,12 @@ export class PrivadaPersonajesComponent {
     console.log(personajes);
     if (editar) {
       this.dialogRef = this.dialog.open(FormModalComponent, {
-        width: '400px',
+        width: '600px',
         data: { selectedPersonaje: this.selectedPersonaje, personajes: this.personajes } // Corrección aquí
       });
     } else {
       this.dialogRef = this.dialog.open(FormModalComponent, {
-        width: '400px',
+        width: '600px',
         data: { personajes: this.personajes } // Corrección aquí
       });
     }

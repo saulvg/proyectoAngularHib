@@ -1,26 +1,48 @@
-<h2 mat-dialog-title>{{ datos ? 'Editar Card' : 'Crear Nueva Card' }}</h2>
+<h2 mat-dialog-title>{{ datos?.selectedPersonaje ? 'Editar Card' : 'Crear Nueva Card' }}</h2>
 
 <mat-dialog-content>
     <form [formGroup]="formulario">
-        <mat-form-field>
-            <mat-label>id</mat-label>
-            <input type="number" matInput [formControlName]="'id'">
-            <mat-error *ngIf="formulario.controls['nombre'].hasError('required')">El nombre es requerido</mat-error>
-        </mat-form-field>
-        <mat-form-field>
+        <mat-form-field class="ancho-maximo">
             <mat-label>Nombre</mat-label>
             <input matInput [formControlName]="'nombre'" required>
             <mat-error *ngIf="formulario.controls['nombre'].hasError('required')">El nombre es requerido</mat-error>
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field class="ancho-maximo">
             <mat-label>Genero</mat-label>
-            <input matInput [formControlName]="'genero'" required>
+            <mat-select [formControlName]="'genero'" required>
+                <mat-option value="Male">Male</mat-option>
+                <mat-option value="Female">Female</mat-option>
+                <mat-option value="unknown">Unknown</mat-option>
+            </mat-select>
             <mat-error *ngIf="formulario.controls['genero'].hasError('required')">El genero es requerido</mat-error>
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field class="ancho-maximo">
             <mat-label>Estado</mat-label>
-            <input matInput [formControlName]="'estado'" required>
+            <mat-select [formControlName]="'estado'" required>
+                <mat-option value="Alive">Alive</mat-option>
+                <mat-option value="Dead">Dead</mat-option>
+            </mat-select>
             <mat-error *ngIf="formulario.controls['estado'].hasError('required')">El estado es requerido</mat-error>
+        </mat-form-field>
+        <mat-form-field class="ancho-maximo">
+            <mat-label>Ruta de la imagen</mat-label>
+            <input matInput [formControlName]="'img'">
+        </mat-form-field>
+        <mat-form-field class="ancho-maximo">
+            <mat-label>Especie</mat-label>
+            <input matInput [formControlName]="'especie'">
+        </mat-form-field>
+        <mat-form-field class="ancho-maximo">
+            <mat-label>Origen</mat-label>
+            <input matInput [formControlName]="'origen'">
+        </mat-form-field>
+        <mat-form-field class="ancho-maximo">
+            <mat-label>Tipo</mat-label>
+            <input matInput [formControlName]="'tipo'">
+        </mat-form-field>
+        <mat-form-field class="ancho-maximo">
+            <mat-label>Descripción</mat-label>
+            <textarea matInput [formControlName]="'descripcion'"></textarea>
         </mat-form-field>
     </form>
 </mat-dialog-content>
