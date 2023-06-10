@@ -11,7 +11,7 @@ import { Personajes } from '../../../interfaces/personajes';
 })
 export class FormModalComponent {
   formulario: FormGroup;
-  @Input() personajes: Personajes[] = []; //  
+  @Input() personajes: Personajes[] = [];
 
   constructor(
     public dialogRef: MatDialogRef<FormModalComponent>,
@@ -19,7 +19,7 @@ export class FormModalComponent {
     private servicioPersonajes: ServicioPersonajesService,
     @Inject(MAT_DIALOG_DATA) public datos: any
   ) {
-    const selectedPersonaje = datos?.selectedPersonaje ?? {}; // Verificar si datos.selectedPersonaje es null o undefined
+    const selectedPersonaje = datos?.selectedPersonaje ?? {};
     this.formulario = this.formBuilder.group({
       id: [selectedPersonaje.id ?? ''],
       nombre: [selectedPersonaje.nombre ?? '', Validators.required],
@@ -33,47 +33,44 @@ export class FormModalComponent {
     });
   }
 
-  ngOnInit() {
-    console.log("Personajes oninit " + this.personajes)
-  }
-
   cerrarModal() {
     this.dialogRef.close();
   }
 
   guardarCambios() {
-
     if (this.formulario.valid) {
-
       const datosFormulario = this.formulario.value;
 
       if (this.datos.selectedPersonaje) {
-        // Si existen los datos, significa que se está editando una card existente
-        // Procesa los datos del formulario para actualizar la card existente
         this.servicioPersonajes.editarPersonaje(datosFormulario).subscribe(
           (res: any) => {
-            console.log("Card actualizada", res);
-            this.dialogRef.close(datosFormulario); // Pasar los datos actualizados de vuelta al componente principal
+            console.log("Personaje actualizado", res);
+            this.dialogRef.close(datosFormulario);
           },
           (err: any) => {
-            console.error("Error al actualizar la card", err);
+            console.error("Error al actualizar el personaje", err);
             // Manejar el error en caso de fallo en la actualización
           }
         );
       } else {
-        // Si no existen los datos, significa que se está creando una nueva card
-        // Procesa los datos del formulario para crear una nueva card
+        const nextId = this.getNextAvailableId(this.datos.personajes);
+        datosFormulario.id = nextId;
         this.servicioPersonajes.crearPersonaje(datosFormulario).subscribe(
           (res: any) => {
-            console.log("Nueva card creada", res);
-            this.dialogRef.close(datosFormulario); // Pasar los datos actualizados de vuelta al componente principal
+            console.log("Nuevo personaje creado", res);
+            this.dialogRef.close(datosFormulario);
           },
           (err: any) => {
-            console.error("Error al crear la nueva card", err);
+            console.error("Error al crear el nuevo personaje", err);
             // Manejar el error en caso de fallo en la creación
           }
         );
       }
     }
+  }
+
+  getNextAvailableId(data: Personajes[]): number {
+    const maxId = data.reduce((max: any, obj: any) => (obj.id > max ? obj.id : max), 0);
+    return maxId + 1;
   }
 }
