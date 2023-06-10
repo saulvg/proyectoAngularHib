@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Episodios } from '../interfaces/episodios';
 import { ServicioEpisodioService } from '../servicios/servicio-episodio.service';
@@ -65,11 +65,23 @@ export class FormularioModalEpisodiosComponent {
     this.formularioEpisodios = this.formBuilder.group({
       id: [nuevoEpisodio ? "" : datosEpisodio.id],
       titulo: [nuevoEpisodio ? "" : datosEpisodio.titulo, [Validators.required]],
-      episodio: [nuevoEpisodio ? "" : datosEpisodio.episodio, [Validators.required]],
+      episodio: [nuevoEpisodio ? "" : datosEpisodio.episodio, [Validators.required, this.formatoValidator()]],
       sinopsis: [nuevoEpisodio ? "" : datosEpisodio.sinopsis, [Validators.required]],
       fechaEmision: [nuevoEpisodio ? "" : new Date(datosEpisodio.fechaEmision).toISOString().slice(0, 10), [Validators.required]],
     });
   };
+  // Validador personalizado para el formato S_,_E_,_ (barras bajas representan hueco para numero)
+  private formatoValidator(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      const formatoRegex = /^S\d+E\d+$/;
+
+      if (control.value && !formatoRegex.test(control.value)) {
+        return { formatoInvalido: true };
+      }
+
+      return null;
+    };
+  }
 
   //Peticion post para crear los episodios
   crearEpisodio(): void {
