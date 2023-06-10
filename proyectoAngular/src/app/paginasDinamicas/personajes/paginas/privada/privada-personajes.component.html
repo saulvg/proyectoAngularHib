@@ -1,10 +1,8 @@
 <div class="contenedor-main">
-    <button (click)="mostrarCrearForm = !mostrarCrearForm" (click)="abrirFormularioPersonajes(personajes, true)">
-        <img class="crudIcono" src="{{crear}}" alt="crear" height="40px">
-    </button>
-    <div class="contenedor-formPersonajes" [ngClass]="{'mostrar':!mostrarCrearForm}">
-        <ng-container *ngTemplateOutlet="templateFormPersonajes"></ng-container>
-        <button mat-raised-button color="primary" (click)="crearPersonaje(personajes)">Crear</button>
+    <div>
+        <button (click)="abrirModal(false, personajes)">
+            <img class="crudIcono" src="{{crear}}" alt="crear" height="40px">
+        </button>
     </div>
 
     <mat-card class="card-personajes" *ngFor="let personaje of personajes">
@@ -34,83 +32,10 @@
                 {{ personaje.mostrarDescripcion ? 'Leer menos' : 'Leer más' }}
             </button>
 
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"
-                (click)="mostrarCrearForm = false">
-                <mat-expansion-panel-header (click)="abrirFormularioPersonajes(personajes,false)">
-                    <mat-panel-title>
-                        <img class="crudIcono" src="{{editar}}" alt="editar" height="40px">
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-
-                <div>
-                    <ng-container *ngTemplateOutlet="templateFormPersonajes; context:{personaje:personaje}"></ng-container>
-                    <button (click)="editarPersonaje()">Actualizar</button>
-                </div>
-            </mat-expansion-panel>
+            <img class="crudIcono" src="{{editar}}" alt="editar" height="40px"
+                (click)="setSelectedPersonaje(personaje); abrirModal(true, personajes)">
 
             <img class="crudIcono" src="{{borrar}}" alt="borrar" height="40px" (click)="borrarPersonaje(personaje)">
-
-
         </mat-card-actions>
     </mat-card>
 </div>
-
-<ng-template #templateFormPersonajes let-personaje>
-    <!-- Formulario -->
-    <form [formGroup]="formPersonajes" class="form-edicion">
-        <div>
-            <mat-form-field class="ancho-maximo">
-                <mat-label>Id</mat-label>
-                <input matInput type="text" formControlName="id">
-            </mat-form-field>
-        </div>
-        <div>
-            <mat-form-field class="ancho-maximo">
-                <mat-label>Nombre</mat-label>
-                <input matInput type="text" formControlName="nombre">
-            </mat-form-field>
-        </div>
-        <div>
-            <mat-form-field class="ancho-maximo">
-                <mat-label>Estado</mat-label>
-                <input matInput type="text" formControlName="estado">
-            </mat-form-field>
-        </div>
-        <div>
-            <mat-form-field class="ancho-maximo">
-                <mat-label>Especie</mat-label>
-                <input matInput type="text" formControlName="especie">
-            </mat-form-field>
-        </div>
-        <div>
-            <mat-form-field class="ancho-maximo">
-                <mat-label>Ruta imagen</mat-label>
-                <input matInput type="text" formControlName="img">
-            </mat-form-field>
-        </div>
-        <div>
-            <mat-form-field class="ancho-maximo">
-                <mat-label>Tipo</mat-label>
-                <input matInput type="text" formControlName="tipo">
-            </mat-form-field>
-        </div>
-        <div>
-            <mat-form-field class="ancho-maximo">
-                <mat-label>Genero</mat-label>
-                <input matInput type="text" formControlName="genero">
-            </mat-form-field>
-        </div>
-        <div>
-            <mat-form-field class="ancho-maximo">
-                <mat-label>Origen</mat-label>
-                <input matInput type="text" formControlName="origen">
-            </mat-form-field>
-        </div>
-        <div>
-            <mat-form-field class="ancho-maximo">
-                <mat-label>Descripcion</mat-label>
-                <input matInput type="text" formControlName="descripcion">
-            </mat-form-field>
-        </div>
-    </form>
-</ng-template>

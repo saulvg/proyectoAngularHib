@@ -22,9 +22,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 import { RouterModule } from '@angular/router';
+import { FormModalComponent } from './paginas/privada/form-modal/form-modal.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,8 @@ import { RouterModule } from '@angular/router';
     VivoMuertoDirective,
     MostrarIconosGeneroDirective,
     PipeDescripcionPipe,
-    VistaPersonajesComponent
+    VistaPersonajesComponent,
+    FormModalComponent
   ],
   imports: [
     CommonModule,
@@ -47,7 +50,8 @@ import { RouterModule } from '@angular/router';
     ReactiveFormsModule,
     MatInputModule,
     MatFormFieldModule,
-    MatRadioModule
+    MatRadioModule,
+    MatDialogModule
   ],
   providers: [
     ServicioPersonajesService

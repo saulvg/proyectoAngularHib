@@ -2,6 +2,8 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Personajes } from '../../interfaces/personajes';
 import { ServicioPersonajesService } from '../../servicios/servicio-personajes.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { FormModalComponent } from './form-modal/form-modal.component';
 
 @Component({
   selector: 'app-privada-personajes',
@@ -9,102 +11,32 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./privada-personajes.component.css']
 })
 export class PrivadaPersonajesComponent {
-  @Input() personajes: Personajes[] = [];
 
   crear = "../../../../../assets/iconos/create.png";
   borrar = "../../../../../assets/iconos/blackhole.png";
   editar = "../../../../../assets/iconos/portal-gun.png";
 
-  panelOpenState = false;
-
-  formPersonajes: FormGroup;
+  @Input() personajes: Personajes[] = []; //  
   selectedPersonaje: any;
   mostrarCrearForm: boolean = false;
+  dialogRef!: MatDialogRef<any>;
 
   @Output() muestraDescripcion: EventEmitter<Personajes> = new EventEmitter<Personajes>();
 
-  constructor(private formBuilder: FormBuilder, private servPersonajes: ServicioPersonajesService) {
-    this.formPersonajes = this.formBuilder.group({});
-  }
+
+  constructor(private formBuilder: FormBuilder, private servPersonajes: ServicioPersonajesService, private dialog: MatDialog) {}
 
   ngOnInit() {
-    this.crearFormulario();
     this.obtenerPersonajes();
   }
 
-  crearFormulario() {
-    this.formPersonajes = this.formBuilder.group({
-      id: [''],
-      nombre: ['', [Validators.required]],
-      estado: ['', [Validators.required]],
-      especie: [''],
-      img: [''],
-      tipo: [''],
-      genero: ['', [Validators.required]],
-      origen: [''],
-      descripcion: ['']
-    });
-  }
-
-  editarPersonaje(): void {
-
-    if (this.formPersonajes.valid) {
-      const datos = this.formPersonajes.value;
-      this.servPersonajes.editarPersonaje(datos).subscribe(
-        res => {
-          console.log("Exito al editar", res);
-          this.obtenerPersonajes();
-        },
-        (err) => {
-          console.log(err);
-        }
-      );
-    } else {
-      console.error("Formulario invalido");
-    }
-
-    //this.setSelectedPersonaje(personaje);
-  }
-
-  crearPersonaje(data: Personajes[]): void {
-    const maxId = data.reduce((max: any, obj: any) => (obj.id > max ? obj.id : max), 0);
-    this.formPersonajes.value.id = maxId + 1;
-
-    // Si el formulario es valido
-    if (this.formPersonajes.valid) {
-      const datos = this.formPersonajes.value;
-      this.servPersonajes.crearPersonaje(datos).subscribe(
-        res => {
-          console.log("Exito al crear", res);
-          //
-          this.obtenerPersonajes();
-          this.mostrarCrearForm = false;
-        },
-        (err) => {
-          console.error(err);
-        }
-      );
-    } else {
-      console.error("Formulario invalido");
-    }
-  }
-
-  enviarDatos() {
-    if (this.formPersonajes.valid) {
-      const datos = this.formPersonajes.value;
-      console.log(this.formPersonajes.value);
-      this.servPersonajes.crearPersonaje(datos).subscribe(
-        res => {
-          console.log('Éxito', res);
-          this.obtenerPersonajes();
-        },
-        err => {
-          console.error(err);
-        }
-      );
-    } else {
-      console.error("Formulario inválido");
-    }
+  obtenerPersonajes() {
+    this.servPersonajes.getPersonajes().subscribe(
+      (res: Personajes[]) => {
+        this.personajes = res;
+        console.log(res);
+      }
+    );
   }
 
   setSelectedPersonaje(personaje: Personajes) {
@@ -124,42 +56,28 @@ export class PrivadaPersonajesComponent {
     );
   }
 
-  obtenerPersonajes() {
-    this.servPersonajes.getPersonajes().subscribe(
-      (res: Personajes[]) => {
-        this.personajes = res;
-        console.log(res);
-      }
-    );
-  }
-
-  abrirFormularioPersonajes(data: any, nuevoPersonaje: boolean): void {
-    if (!nuevoPersonaje) {
-      this.formPersonajes.patchValue({
-        id: data.id,
-        nombre: data.nombre,
-        estado: data.estado,
-        especie: data.especie,
-        img: data.img,
-        tipo: data.tipo,
-        genero: data.genero,
-        origen: data.origen,
-        descripcion: data.descripcion
+  abrirModal(editar: boolean, personajes: Personajes[]) {
+    console.log(personajes);
+    if (editar) {
+      this.dialogRef = this.dialog.open(FormModalComponent, {
+        width: '400px',
+        data: { selectedPersonaje: this.selectedPersonaje, personajes: this.personajes } // Corrección aquí
+      });
+    } else {
+      this.dialogRef = this.dialog.open(FormModalComponent, {
+        width: '400px',
+        data: { personajes: this.personajes } // Corrección aquí
       });
     }
-
-    if (nuevoPersonaje) {
-      this.formPersonajes.patchValue({
-        id: "",
-        nombre: "",
-        estado: "",
-        especie: "",
-        img: "",
-        tipo: "",
-        genero: "",
-        origen: "",
-        descripcion: ""
-      })
-    }
+  
+    this.dialogRef.afterClosed().subscribe(result => {
+      console.log('Modal cerrado', result);
+      if (result) {
+        this.obtenerPersonajes();
+      }
+    });
   }
+  
+
+
 }

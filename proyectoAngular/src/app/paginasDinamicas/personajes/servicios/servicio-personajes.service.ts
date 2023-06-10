@@ -20,12 +20,7 @@ export class ServicioPersonajesService {
   }
 
   editarPersonaje(datos: any): Observable<any> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-type': 'application/json'
-      })
-    }
-    return this.http.put(this.urlApi, datos, httpOptions);
+    return this.http.put(this.urlApi, datos);
   }
 
   eliminarPersonaje(id: number): Observable<any> {
