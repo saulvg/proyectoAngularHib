@@ -1,0 +1,33 @@
+<section class="container-form-episodios">
+    <h2 mat-dialog-title>Formulario Modal</h2>
+    <div mat-dialog-content [formGroup]="formularioEpisodios">
+        <mat-form-field>
+            <input matInput placeholder="titulo" formControlName="titulo">
+            <mat-error *ngIf="formularioEpisodios.controls['titulo'].hasError('required')">El titulo es
+                requerido</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder="episodio" formControlName="episodio">
+            <mat-error *ngIf="formularioEpisodios.controls['episodio'].hasError('required')">El episodio es
+                requerido</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <textarea matInput placeholder="sinopsis" formControlName="sinopsis" cols="20" rows="10"></textarea>
+            <mat-error *ngIf="formularioEpisodios.controls['sinopsis'].hasError('required')">El sinopsis es
+                requerido</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput type="date" placeholder="fechaEmision" formControlName="fechaEmision">
+            <mat-error *ngIf="formularioEpisodios.controls['fechaEmision'].hasError('required')">El fechaEmision es
+                requerido</mat-error>
+        </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-button (click)="close()">Cerrar</button>
+        <button mat-button color="primary" (click)="submitForm()"
+            [disabled]="formularioEpisodios.invalid">Enviar</button>
+    </div>
+</section>

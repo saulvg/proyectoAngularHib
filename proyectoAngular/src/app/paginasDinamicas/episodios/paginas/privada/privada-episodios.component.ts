@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { Episodios } from '../../interfaces/episodios';
 
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ServicioEpisodioService } from '../../servicios/servicio-episodio.service';
+import { MatDialog } from '@angular/material/dialog';
+import { FormularioModalEpisodiosComponent } from '../../formulario-modal-episodios/formulario-modal-episodios.component';
 
 
 @Component({
@@ -17,32 +19,19 @@ export class PrivadaEpisodiosComponent {
   //Array de episodios tipo interfaz de episodios
   episodios: Episodios[] = [];
   formularioEpisodios: FormGroup;
-  mostrarCrearForm: boolean = false;
 
 
-  constructor(private formBuilder: FormBuilder, private srvEpisodios: ServicioEpisodioService) {
+  constructor(private formBuilder: FormBuilder, private srvEpisodios: ServicioEpisodioService, public dialog: MatDialog) {
     this.formularioEpisodios = this.formBuilder.group({});
   };
 
   ngOnInit() {
-    this.crearFormulario();
     this.obtenrEpisodios();
-  };
-
-  //Creamos los campos del formulario reactivo y sus respectivos validadores
-  crearFormulario(): void {
-    this.formularioEpisodios = this.formBuilder.group({
-      id: [""],
-      titulo: ["", [Validators.required]],
-      episodio: ["", [Validators.required]],
-      sinopsis: ["", [Validators.required]],
-      fechaEmision: ["", [Validators.required]]
-    });
   };
 
 
   //Peticion get para obtener los episodios 
-  obtenrEpisodios(): void {
+  private obtenrEpisodios(): void {
     this.srvEpisodios.getEpisodios().subscribe(
       (res: Episodios[]) => {
         this.episodios = res;
@@ -50,29 +39,6 @@ export class PrivadaEpisodiosComponent {
     );
   };
 
-
-  //Peticion put para editar los episodios
-  editarEpisodios(): void {
-
-    //Comporbamos si el formulario es valido
-    if (this.formularioEpisodios.valid) {
-      const datos = this.formularioEpisodios.value;
-
-      this.srvEpisodios.actualizarDatos(datos).subscribe(
-        res => {
-          console.log("Exito al editar", res);
-          //Llamamos a obtener episodios para repintar la pagina
-          this.obtenrEpisodios();
-        },
-        (err) => {
-          console.error(err);
-        }
-      );
-    } else {
-      console.error("Formulario Invalido");
-    };
-
-  };
 
   //Peticion delete para borrar los episodios
   eliminarEpisodio(episodio: Episodios) {
@@ -89,58 +55,36 @@ export class PrivadaEpisodiosComponent {
     );
   };
 
-  //Peticion post para crear los episodios
-  crearEpisodio(data: Episodios[]): void {
-
-    // Encontrar el valor del "id" más alto (suponemos que siguen un orden logico y por lo tanto un nuevo episodio sera el siguiente id existente)
-    const maxId = data.reduce((max: any, obj: any) => (obj.id > max ? obj.id : max), 0);
-    //Asignamos al campo id del episodio el valor proximo del id mas alto encontrdo en el array
-    this.formularioEpisodios.value.id = maxId + 1;
-
-    //Comporbamos si el formulario es valido
-    if (this.formularioEpisodios.valid) {
-      const datos = this.formularioEpisodios.value;
-      this.srvEpisodios.crearEpisodio(datos).subscribe(
-        res => {
-          console.log("Exito al crear", res);
-          //Llamamos a obtener episodios para repintar la pagina
-          this.obtenrEpisodios();
-          this.mostrarCrearForm = false;
-        },
-        (err) => {
-          console.error(err);
-        }
-      );
-    } else {
-      console.error("Formulario Invalido");
-    };
-
-  };
 
 
+  //Editamos un episodio (episodio a editar, false)
+  editar(data: Episodios, nuevoEp: boolean) {
+    this.openFormularioModal(data, nuevoEp)
 
-  //Si el formulario es de editar lo rellenamos con los campos del episodio a editar, si no vaciamos los campos
-  abrirFormularioEpisodios(data: any, nuevoEp: boolean): void {
+  }
 
-    if (!nuevoEp) {
+  //Creamos un episodio (lista de episodios actuales, true)
+  crear(data: Episodios[], nuevoEp: boolean) {
+    this.openFormularioModal(data, nuevoEp)
 
-      this.formularioEpisodios.patchValue({
-        id: data.id,
-        titulo: data.titulo,
-        episodio: data.episodio,
-        sinopsis: data.sinopsis,
-        fechaEmision: new Date(data.fechaEmision).toISOString().slice(0, 10)
-      });
-    };
+  }
 
-    if (nuevoEp) {
-      this.formularioEpisodios.patchValue({
-        id: "",
-        titulo: "",
-        episodio: "",
-        sinopsis: "",
-        fechaEmision: ""
-      });
-    };
-  };
+
+  private openFormularioModal(data: any, nuevoEp: boolean): void {
+
+    const dialogRef = this.dialog.open(FormularioModalEpisodiosComponent, {
+      width: '400px',
+      //Le pasamos al componente modal
+      //data.data -> episodio actual o lista de episodios del back, dependiendo de si se crea uno nuevo o se acutaliza 
+      //data.nuevoEp -> valor boleano para saber si es un nuevo episodio o no lo es
+      data: { data, nuevoEp }
+    });
+
+    //Base de material para el modal, en este caso cada vez que se cierra el modal, repintamos los datos que llegan del back/episodios
+    dialogRef.afterClosed().subscribe(result => {
+      //Llamamos a obtener episodios para repintar la pagina
+      this.obtenrEpisodios()
+    });
+  }
+
 };

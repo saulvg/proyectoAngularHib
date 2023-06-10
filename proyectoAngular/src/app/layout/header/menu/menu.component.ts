@@ -11,11 +11,11 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class MenuComponent {
   private breakpointObserver = inject(BreakpointObserver);
-  exiteToken: boolean = false
+  exiteToken: boolean = false;
   valorCookie: string = '';
 
 
-  constructor(private cookies: CookieService) { }
+  constructor(private cookies: CookieService) { };
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -24,24 +24,29 @@ export class MenuComponent {
     );
 
   ngOnInit() {
-    this.obtenerToken()
+    this.obtenerToken();
+  };
 
-  }
-
-  obtenerToken() {
-    const token = this.cookies.get('token')
-
+  //Funcion para actualizar el valor de existetoken y cargar un boton u otro en la lista
+  private obtenerToken() {
+    const token = this.cookies.get('token');
     if (token) {
-      this.exiteToken = true
-    }
+      this.exiteToken = true;
+    } else {
+      this.exiteToken = false;
+    };
+  };
+
+  //Refrescamos la pagina para que el token de las cookies se actualice
+  cerrarSesion(): void {
+    this.cookies.delete('token');
+    this.exiteToken = false;
+    this.refrescarPagina();
   }
 
-  cerrarSesion() {
-    this.cookies.set('token', '')
-    //this.cookies.delete('token')
-    //this.obtenerToken()
-    //this.valorCookie = this.cookies.get('token');
 
-  }
+  private refrescarPagina(): void {
+    window.location.reload();
+  };
 
-}
+};

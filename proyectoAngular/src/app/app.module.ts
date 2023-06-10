@@ -27,6 +27,8 @@ import { InyectarTokenInterceptor } from './compartido/interceptores/inyectar-to
 
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +52,7 @@ import { InyectarTokenInterceptor } from './compartido/interceptores/inyectar-to
     MatCardModule,
     MatRadioModule,
     MatSnackBarModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [
     CookieService,

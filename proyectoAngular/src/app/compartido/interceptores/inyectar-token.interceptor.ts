@@ -8,14 +8,16 @@ import {
 import { Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 
+//Interceptor para inyectar el token de las cookies en este caso a la cabecera del las peticiones
 @Injectable()
 export class InyectarTokenInterceptor implements HttpInterceptor {
 
   constructor(private cookies: CookieService) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    try {
 
+    //Intentamos obter el valor del token y asignarlo a la cabecera en las peticiones, si no... 
+    try {
       const token = this.cookies.get('token')
       let newReq = request
       newReq = request.clone(

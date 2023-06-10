@@ -10,21 +10,21 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class VistaComponentEpisodios {
   episodios: Episodios[] = [];
+  //Si existe token pintamos el componente de usuario logeado si no el de usuario publico
+  exiteToken: boolean = false;
 
-  exiteToken: boolean = false
-
-  constructor(private srvEpisodios: ServicioEpisodioService, private cookies: CookieService) { }
+  constructor(private cookies: CookieService) { }
 
   ngOnInit() {
     this.obtenerToken()
   }
 
   obtenerToken() {
-    const token = this.cookies.get('token')
-
+    const token = this.cookies.get("token")
     if (token) {
-      this.exiteToken = true
-    }
-  }
+      this.exiteToken = true;
+    };
+  };
+
 
 }

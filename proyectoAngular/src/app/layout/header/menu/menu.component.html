@@ -11,9 +11,8 @@
       <a mat-list-item class="opciones-nav" routerLink="quienes-somos">Quienes somos</a>
       <a mat-list-item class="opciones-nav" routerLink="contactanos">Contactanos</a>
     </mat-nav-list>
-    <ng-container *ngTemplateOutlet="exiteToken ? logout : login">
 
-    </ng-container>
+    <ng-container *ngTemplateOutlet="exiteToken ? logout : login"></ng-container>
 
 
   </mat-sidenav>
@@ -34,10 +33,9 @@
 <ng-template #login>
   <a id="login-nav" routerLink="autenticacion">LogIn</a>
 
-  {{exiteToken}}
 </ng-template>
 
 <ng-template #logout>
   <a id="login-nav" (click)="cerrarSesion()">LogOut</a>
-  {{exiteToken}}
+
 </ng-template>

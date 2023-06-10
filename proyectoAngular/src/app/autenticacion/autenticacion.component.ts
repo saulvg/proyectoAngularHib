@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { FormBuilder, FormGroup, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
 import { ServcicioAutenticacionService } from './servicios/servcicio-autenticacion.service';
 import { Router } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
 
+
+//Componente que para gestionar el login 
 @Component({
   selector: 'app-autenticacion',
   templateUrl: './autenticacion.component.html',
@@ -13,58 +13,76 @@ import { CookieService } from 'ngx-cookie-service';
 export class AutenticacionComponent {
   mostrarPassword: boolean = false;
   hasError: boolean = false;
-  errorMessage: string = ""
+  errorMessage: string = "";
   loginCorrecto: boolean = false;
 
-  formularioLogin: FormGroup = new FormGroup({})
+  formularioLogin: FormGroup = new FormGroup({});
 
-  constructor(private srvAuth: ServcicioAutenticacionService, private formBuilder: FormBuilder, private router: Router) { }
-
-
+  constructor(private srvAuth: ServcicioAutenticacionService, private formBuilder: FormBuilder, private router: Router) { };
 
   ngOnInit() {
     this.formularioLogin = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
-    })
-  }
+      password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(22), this.passwordValidator()]],
+    });
+  };
 
-  iniciarSesion() {
+  iniciarSesion(): void {
+
     if (this.formularioLogin.valid) {
-      const { email, password } = this.formularioLogin.value
+      const { email, password } = this.formularioLogin.value;
+      //Peticion al servicio
       this.srvAuth.enviarCredenciales(email, password).subscribe(
         res => {
-          console.log("Datos del formulario ", res);
-          //this.snackBar.open('El formulario es correcto', 'Cerrar', { duration: 3000 });
-          this.loginCorrecto = true
-          this.redireccion()
+          this.loginCorrecto = true;
+          this.redirigirPagina();
           this.hasError = false; // Reiniciar el estado de error
-          //this.router.navigate(['/'])
 
         },
         err => {
           console.log('Error', err.error.message);
-          this.errorMessage = err.error.message
+          this.errorMessage = err.error.message;
           this.hasError = true; // Mostrar el mensaje de error
 
         }
-      )
-      //this.snackBar.open('El formulario es correcto', 'Cerrar', { duration: 3000 });
+      );
     } else {
-      console.log("FORMULARIO INVALIDO :(");
-    }
-  }
+      console.log("Formulario Invalido");
+    };
+  };
 
   togglePasswordVisibility() {
     this.mostrarPassword = !this.mostrarPassword;
+  };
+
+
+  private redirigirPagina(): void {
+    setTimeout(() => {
+      this.loginCorrecto = false;
+      this.router.navigate(['/']);
+    }, 2000);
+    setTimeout(() => {
+      window.location.reload();
+    }, 2300);
+  };
+
+  //Validador para verificar si la contraseha tiene al menos dos numeros, dos letras mayusculas y dos letras minusculas
+  private passwordValidator(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      const password = control.value;
+
+      const regex = /^(?=.*\d.*\d)(?=.*[A-Z].*[A-Z])(?=.*[a-z].*[a-z])/;
+
+      if (regex.test(password)) {
+        // La contraseha cumple con los requisitos
+        return null;
+      } else {
+        // La contraseha no cumple con los requisitos
+        return { passwordInvalid: true };
+      }
+    };
   }
 
-  redireccion() {
-    setTimeout(() => {
-      this.router.navigate(['/'])
-      this.loginCorrecto = false
-    }, 2000)
-  }
 
 
 }
