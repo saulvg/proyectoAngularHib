@@ -15,8 +15,11 @@ export class PrivadaPersonajesComponent {
   borrar = "../../../../../assets/iconos/blackhole.png";
   editar = "../../../../../assets/iconos/portal-gun.png";
 
+  panelOpenState = false;
+
   formPersonajes: FormGroup;
   selectedPersonaje: any;
+  mostrarCrearForm: boolean = false;
 
   @Output() muestraDescripcion: EventEmitter<Personajes> = new EventEmitter<Personajes>();
 
@@ -31,59 +34,58 @@ export class PrivadaPersonajesComponent {
 
   crearFormulario() {
     this.formPersonajes = this.formBuilder.group({
-      id: ['', [Validators.required]],
+      id: [''],
       nombre: ['', [Validators.required]],
       estado: ['', [Validators.required]],
-      especie: ['', [Validators.required]],
+      especie: [''],
       img: [''],
       tipo: [''],
-      genero: [''],
+      genero: ['', [Validators.required]],
       origen: [''],
       descripcion: ['']
     });
   }
 
-  editarPersonaje(personaje: Personajes) {
-    this.setSelectedPersonaje(personaje);
-    this.formPersonajes.patchValue({
-      id: personaje.id,
-      nombre: personaje.nombre,
-      estado: personaje.estado,
-      especie: personaje.especie,
-      img: personaje.img,
-      tipo: personaje.tipo,
-      genero: personaje.genero,
-      origen: personaje.origen,
-      descripcion: personaje.descripcion
-    });
+  editarPersonaje(): void {
+
+    if (this.formPersonajes.valid) {
+      const datos = this.formPersonajes.value;
+      this.servPersonajes.editarPersonaje(datos).subscribe(
+        res => {
+          console.log("Exito al editar", res);
+          this.obtenerPersonajes();
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+    } else {
+      console.error("Formulario invalido");
+    }
+
+    //this.setSelectedPersonaje(personaje);
   }
 
-  crearPersonaje() {
-    let nuevoPersonaje: Personajes = {
-      id: 0,
-      nombre: '',
-      estado: '',
-      especie: '',
-      img: '',
-      tipo: '',
-      genero: '',
-      origen: '',
-      descripcion: '',
-      mostrarDescripcion: false
-    };
-    if (this.selectedPersonaje !== nuevoPersonaje) {
-      this.setSelectedPersonaje(nuevoPersonaje);
-      this.formPersonajes.patchValue({
-        id: nuevoPersonaje.id,
-        nombre: nuevoPersonaje.nombre,
-        estado: nuevoPersonaje.estado,
-        especie: nuevoPersonaje.especie,
-        img: nuevoPersonaje.img,
-        tipo: nuevoPersonaje.tipo,
-        genero: nuevoPersonaje.genero,
-        origen: nuevoPersonaje.origen,
-        descripcion: nuevoPersonaje.descripcion
-      });
+  crearPersonaje(data: Personajes[]): void {
+    const maxId = data.reduce((max: any, obj: any) => (obj.id > max ? obj.id : max), 0);
+    this.formPersonajes.value.id = maxId + 1;
+
+    // Si el formulario es valido
+    if (this.formPersonajes.valid) {
+      const datos = this.formPersonajes.value;
+      this.servPersonajes.crearPersonaje(datos).subscribe(
+        res => {
+          console.log("Exito al crear", res);
+          //
+          this.obtenerPersonajes();
+          this.mostrarCrearForm = false;
+        },
+        (err) => {
+          console.error(err);
+        }
+      );
+    } else {
+      console.error("Formulario invalido");
     }
   }
 
@@ -107,13 +109,17 @@ export class PrivadaPersonajesComponent {
 
   setSelectedPersonaje(personaje: Personajes) {
     this.selectedPersonaje = personaje;
+    console.log("setSelectedPersonaje: " + this.selectedPersonaje);
   }
 
   borrarPersonaje(personaje: Personajes) {
     this.servPersonajes.eliminarPersonaje(personaje.id).subscribe(
-      (res: Personajes[]) => {
-        this.personajes = res;
+      res => {
+        console.log("Exito al borrar", res);
         this.obtenerPersonajes();
+      },
+      (err) => {
+        console.error(err);
       }
     );
   }
@@ -125,5 +131,35 @@ export class PrivadaPersonajesComponent {
         console.log(res);
       }
     );
+  }
+
+  abrirFormularioPersonajes(data: any, nuevoPersonaje: boolean): void {
+    if (!nuevoPersonaje) {
+      this.formPersonajes.patchValue({
+        id: data.id,
+        nombre: data.nombre,
+        estado: data.estado,
+        especie: data.especie,
+        img: data.img,
+        tipo: data.tipo,
+        genero: data.genero,
+        origen: data.origen,
+        descripcion: data.descripcion
+      });
+    }
+
+    if (nuevoPersonaje) {
+      this.formPersonajes.patchValue({
+        id: "",
+        nombre: "",
+        estado: "",
+        especie: "",
+        img: "",
+        tipo: "",
+        genero: "",
+        origen: "",
+        descripcion: ""
+      })
+    }
   }
 }

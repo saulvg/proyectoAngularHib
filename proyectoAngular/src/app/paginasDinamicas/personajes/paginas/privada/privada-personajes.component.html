@@ -1,13 +1,63 @@
 <div class="contenedor-main">
-    <mat-expansion-panel class="panel-crear" hideToggle>
-        <mat-expansion-panel-header>
-            <mat-panel-title (click)="crearPersonaje()">
-                <img class="crudIcono" src="{{crear}}" alt="crear" height="40px">
-            </mat-panel-title>
-        </mat-expansion-panel-header>
-    </mat-expansion-panel>
+    <button (click)="mostrarCrearForm = !mostrarCrearForm" (click)="abrirFormularioPersonajes(personajes, true)">
+        <img class="crudIcono" src="{{crear}}" alt="crear" height="40px">
+    </button>
+    <div class="contenedor-formPersonajes" [ngClass]="{'mostrar':!mostrarCrearForm}">
+        <ng-container *ngTemplateOutlet="templateFormPersonajes"></ng-container>
+        <button mat-raised-button color="primary" (click)="crearPersonaje(personajes)">Crear</button>
+    </div>
+
+    <mat-card class="card-personajes" *ngFor="let personaje of personajes">
+
+        <mat-card-header>
+            <mat-card-title>{{ personaje.nombre }}</mat-card-title>
+            <mat-card-subtitle>{{ personaje.especie }}</mat-card-subtitle>
+        </mat-card-header>
+
+        <img mat-card-image src="{{personaje.img}}" alt="imgPersonaje" class="personaje-img" />
+
+        <mat-card-content>
+            <ul class="lista-personajes">
+                <li class="liIcono"><img class="vivoMuertoIcono" alt="iconoVivoMuerto" height="50px"
+                        [appVivoMuerto]="personaje.estado"></li>
+                <li class="liIcono"><img class="generoIcono" alt="iconoGenero" height="50px"
+                        [appMostrarIconosGenero]="personaje.genero"></li>
+                <li class="descripcion"><b>Descripción:</b>
+                    {{ personaje.mostrarDescripcion ? personaje.descripcion : (personaje.descripcion | pipeDescripcion)
+                    }}
+                </li>
+            </ul>
+        </mat-card-content>
+
+        <mat-card-actions>
+            <button mat-button (click)="setSelectedPersonaje(personaje)">
+                {{ personaje.mostrarDescripcion ? 'Leer menos' : 'Leer más' }}
+            </button>
+
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"
+                (click)="mostrarCrearForm = false">
+                <mat-expansion-panel-header (click)="abrirFormularioPersonajes(personajes,false)">
+                    <mat-panel-title>
+                        <img class="crudIcono" src="{{editar}}" alt="editar" height="40px">
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <div>
+                    <ng-container *ngTemplateOutlet="templateFormPersonajes; context:{personaje:personaje}"></ng-container>
+                    <button (click)="editarPersonaje()">Actualizar</button>
+                </div>
+            </mat-expansion-panel>
+
+            <img class="crudIcono" src="{{borrar}}" alt="borrar" height="40px" (click)="borrarPersonaje(personaje)">
+
+
+        </mat-card-actions>
+    </mat-card>
+</div>
+
+<ng-template #templateFormPersonajes let-personaje>
     <!-- Formulario -->
-    <form [formGroup]="formPersonajes" class="form-edicion" (ngSubmit)="enviarDatos()" *ngIf="selectedPersonaje">
+    <form [formGroup]="formPersonajes" class="form-edicion">
         <div>
             <mat-form-field class="ancho-maximo">
                 <mat-label>Id</mat-label>
@@ -62,40 +112,5 @@
                 <input matInput type="text" formControlName="descripcion">
             </mat-form-field>
         </div>
-        <button mat-raised-button color="primary" [disabled]="formPersonajes.invalid" type="submit">Guardar</button>
     </form>
-
-    <mat-card class="card-personajes" *ngFor="let personaje of personajes">
-        <mat-card-header>
-            <mat-card-title>{{ personaje.nombre }}</mat-card-title>
-            <mat-card-subtitle>{{ personaje.especie }}</mat-card-subtitle>
-        </mat-card-header>
-        <img mat-card-image src="{{personaje.img}}" alt="imgPersonaje" class="personaje-img" />
-        <mat-card-content>
-            <ul class="lista-personajes">
-                <li class="liIcono"><img class="vivoMuertoIcono" alt="iconoVivoMuerto" height="50px"
-                        [appVivoMuerto]="personaje.estado"></li>
-                <li class="liIcono"><img class="generoIcono" alt="iconoGenero" height="50px"
-                        [appMostrarIconosGenero]="personaje.genero"></li>
-                <li class="descripcion"><b>Descripción:</b>
-                    {{ personaje.mostrarDescripcion ? personaje.descripcion : (personaje.descripcion | pipeDescripcion)
-                    }}
-                </li>
-            </ul>
-        </mat-card-content>
-        <mat-card-actions>
-            <button mat-button (click)="setSelectedPersonaje(personaje)">
-                {{ personaje.mostrarDescripcion ? 'Leer menos' : 'Leer más' }}
-            </button>
-            <img class="crudIcono" src="{{borrar}}" alt="borrar" height="40px" (click)="borrarPersonaje(personaje)">
-
-            <mat-expansion-panel class="panel-edicion" hideToggle>
-                <mat-expansion-panel-header>
-                    <mat-panel-title (click)="editarPersonaje(personaje)">
-                        <img class="crudIcono" src="{{editar}}" alt="editar" height="40px">
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-            </mat-expansion-panel>
-        </mat-card-actions>
-    </mat-card>
-</div>
+</ng-template>
