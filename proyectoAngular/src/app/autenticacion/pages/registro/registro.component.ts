@@ -1,42 +1,38 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
-import { ServcicioAutenticacionService } from './servicios/servcicio-autenticacion.service';
-
+import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { ServcicioAutenticacionService } from '../../servicios/servcicio-autenticacion.service';
 import { Router } from '@angular/router';
 
-
-//Componente que para gestionar el login 
-
 @Component({
-  selector: 'app-autenticacion',
-  templateUrl: './autenticacion.component.html',
-  styleUrls: ['./autenticacion.component.css']
+  selector: 'app-registro',
+  templateUrl: './registro.component.html',
+  styleUrls: ['./registro.component.css']
 })
-export class AutenticacionComponent {
+export class RegistroComponent {
   mostrarPassword: boolean = false;
   hasError: boolean = false;
   errorMessage: string = "";
-  loginCorrecto: boolean = false;
+  registroCorrecto: boolean = false;
 
-  formularioLogin: FormGroup = new FormGroup({});
+  formularioRegistro: FormGroup = new FormGroup({});
 
   constructor(private srvAuth: ServcicioAutenticacionService, private formBuilder: FormBuilder, private router: Router) { };
 
   ngOnInit() {
-    this.formularioLogin = this.formBuilder.group({
+    this.formularioRegistro = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(22), this.passwordValidator()]],
     });
   };
 
-  iniciarSesion(): void {
+  regsitroUsuario(): void {
 
-    if (this.formularioLogin.valid) {
-      const { email, password } = this.formularioLogin.value;
+    if (this.formularioRegistro.valid) {
+      const { email, password } = this.formularioRegistro.value;
       //Peticion al servicio
-      this.srvAuth.enviarCredenciales(email, password).subscribe(
+      this.srvAuth.registrarUsuaio(email, password).subscribe(
         res => {
-          this.loginCorrecto = true;
+          this.registroCorrecto = true;
           this.redirigirPagina();
           this.hasError = false; // Reiniciar el estado de error
 
@@ -60,12 +56,9 @@ export class AutenticacionComponent {
 
   private redirigirPagina(): void {
     setTimeout(() => {
-      this.loginCorrecto = false;
-      this.router.navigate(['/']);
+      this.registroCorrecto = false;
+      this.router.navigate(['/autenticacion']);
     }, 2000);
-    setTimeout(() => {
-      window.location.reload();
-    }, 2300);
   };
 
   //Validador para verificar si la contraseha tiene al menos dos numeros, dos letras mayusculas y dos letras minusculas
@@ -84,7 +77,5 @@ export class AutenticacionComponent {
       }
     };
   }
-
-
 
 }

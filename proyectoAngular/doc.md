@@ -1,3 +1,8 @@
+## Descripcion ##
+Hemos decidido crear una página web basada en Rick y Morty para que los usuarios puedan obtener datos de interés sobre la serie. En la web, los usuarios podrán consultar información sobre los episodios, los personajes y los planetas que existen en la serie.
+
+Además, los usuarios registrados, a quienes consideramos administradores, tendrán la posibilidad de crear, editar, modificar y eliminar secciones de las páginas mencionadas anteriormente.
+
 ## Page ##
 
 + Estaticas
@@ -16,16 +21,15 @@ Episodios
 * A tener en cuenta -> si estamos logeados estas tres paginas tendran CRUD(Crear, Editar, Borrar, Leer)
 
 ## Pipes ## 
-+ Si personaje muerto o vivo cambio color
-+ Si planeta dimension desconocida ICONO interrogante si conocido planeta?
-+ Episodios acondicionar a formato fecha el dia de emision
-+ ?? ordenar temporadas o personajes ascendente y descendente ??
++ Leer mas
++ Si planeta dimension desconocida ICONO interrogante si conocido planeta
++ Episodios acondicionar el formato fecha
++ Episodios acondicionar el formato temporada
  
 ## Directivas ## 
-- si estamos logeados me aparece una opcion mas en el menu
-+ En el listado si tenemos token mostramos el CRUD, si no solo el listado *ngIf
-+ Bucle para el listado *ngFor
-+ Desplegable en cada componente de la lista con info extra *ngClass
++ Personajes "vivo o muerto" para cambiar el icono
++ Personajes "genero" para cambiar el icono
++ Compartido "fallo al cargar imagen"
 
 
 ## Estructura ##
@@ -33,11 +37,13 @@ Episodios
 APP 
 |  
 |---LayOut
-|       |--Header 
-|       |--Nav  ? dentro de header(consejo depende la estetica pero esteban dice si)
+|       |--Header
+|       |   |
+|       |   |-Nav
+|       |
 |       |--Footer
 |       
-|---PaginasEstaticas (carpeta con componentes)
+|---PaginasEstaticas 
 |           |--HomePage 
 |           |--QuienesSomos
 |           |--Contactanos
@@ -53,13 +59,19 @@ APP
 |           |       |               |--Update()
 |           |       |               |--Delete() 
 |           |       |
-|           |       |--Pipes---|Cambio color (personajes)
+|           |       |
+|           |       |--Directivas----|
+|           |       |                |--VivioMuerrto
+|           |       |                |--Genero
+|           |       |               
+|           |       |               
+|           |       |
+|           |       |--Pipes---|Leer mas
 |           |       |
 |           |       |               
 |           |       |--Interfaces---|personajes:{}
 |           |       |
 |           |       |               
-|           |       |--DTO---|personajes:{}
 |           |       |
 |           |       |
 |           |       |
@@ -77,13 +89,12 @@ APP
 |           |       |                |--Delete() 
 |           |       |
 |           |       |
-|           |       |--Pipes---|ICONO interrogante dimension desconocida
+|           |       |--Pipes---|dimension desconocida
 |           |       |
 |           |       |               
 |           |       |--Interfaces---|planetas:{}
 |           |       |
 |           |       |               
-|           |       |--DTO---|planetas:{}
 |           |       |
 |           |       |
 |           |       |
@@ -103,13 +114,14 @@ APP
 |                    |              |--Delete() 
 |                    |
 |                    |
-|                    |--Pipes---|Formato fecha 
+|                    |--Pipes---|
+|                    |          |--Formato fecha
+|                    |          |--Formato temporada
 |                    |
 |                    |               
 |                    |--Interfaces---|Episodios:{}
 |                    |
 |                    |               
-|                    |--DTO---|Episodios:{}
 |                    |
 |                    |
 |                    |
@@ -119,18 +131,36 @@ APP
 |
 |
 |           
-|---Compartida(Directivas-comunes)
+|---Compartida
 |          |
 |          |--Directivas---|
-|                          |--Mostrar CRUD en dinamicas
-|                          |--Bucle listado en dinamicas
-|                          |--InfoExtra   
+|          |               |--Fallo al cargar imagen
+|          |                
+|          |
+|          |                   
+|          |--Interceptores---|
+|          |                  |--Inyectar token
+|          |                
+|          |
+|          |                   
+|          |--Guardianes---|
+|                          |--Guardian de sesion iniciada
+|                          
+|                             
+|
+|
+|
 |
 |
 |
 |---Autentificacion-----|
                         |-Pagina login
-                        |-Autenticacion (interceptores para añadir el token en cada peticion)
+                        |       |
+                        |       |--Login
+                        |       |--Registro
+                        |
+                        |-Servicio
+                        |-Interface
 
  
  
@@ -151,7 +181,7 @@ JSON
 - comentarios css separados con -
 - Idioma: Español
 - CamelCase para variabels, carpetas, etc...
-- Funciones normales
+- Funciones normales (function(){})
 - Declaramos variables encima del constructor y la inicializamos dentro de el
 - ngOnInit (si hace falta) debajo del constructor
 - mayuscula para: clases, interfaces, DTO
@@ -174,8 +204,4 @@ JSON
 ## ENLACES DE INTERES ##
 - Figma desing -> https://www.figma.com/file/U0QEhPH95rcm2SiPHhQdjh/Untitled?type=design&node-id=0-1&t=jp3umXEFzWUt8gpG-0
 ## TODO ##
-- descargar y añadir -> funte: Get Schwifty
-- ahadir directiva de imgRota a todas las img, ejemplo en planetas html (no te olvides de importar la directiva en los modulos)
 ## DUDAS ##
-- Deben poder registrarse los usuarios ?
-- Si es asi debe haber pagina de register ?
