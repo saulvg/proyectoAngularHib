@@ -25,7 +25,6 @@ export class SesionGuard implements CanActivate {
   comprobarSesionCookie(): boolean {
     //En algunas funcion es impredecibles utilizamos tryCatch
     try {
-      this.router.navigate(['/'])
 
       // Verificar si la cookie de sesion cumple la condicion
       return !(this.cookie.check('token'));

@@ -28,7 +28,7 @@ export class QuienesSomosComponent/*  implements Equipo */ {
         nombre: 'Selene Vila',
         img: '../../../assets/img/imgSelene.jpeg',
         alt: "imgAdrian",
-        descripcion: 'Descripcion generica para usuario',
+        descripcion: 'Mi nombre es Selene y formo parte del grupo encargado de hacer esta web sobre Rick y Morty.',
         linkGit: "https://github.com/MSelene"
       },
       {
