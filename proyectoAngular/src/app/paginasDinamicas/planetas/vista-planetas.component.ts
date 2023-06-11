@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Planetas } from './interfaces/planetas';
 import { ServicioPlanetasService } from './servicios/servicio-planetas.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-vista-planetas',
@@ -10,9 +11,9 @@ import { ServicioPlanetasService } from './servicios/servicio-planetas.service';
 export class VistaPlanetasComponent {
 
   planetas: Planetas[] = [];
-  existeToken: boolean = true;
+  existeToken: boolean = false;
 
-  constructor(private srvPlanetas: ServicioPlanetasService/*, private cookies: CookieService*/){
+  constructor(private cookies: CookieService){
 
   }
 
@@ -21,10 +22,10 @@ export class VistaPlanetasComponent {
   }
 
   obtenerToken(){
-    /*const token = this.cookies.get('token');
+    const token = this.cookies.get('token');
 
     if(token){
       this.existeToken = true;
-    }*/
+    }
   }
 }

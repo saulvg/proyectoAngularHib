@@ -1,10 +1,10 @@
-<div class="section-planetas">
+<div class="contenedor-main">
     
-    <div>
-        <button (click)="abrirModal(false, planetas)">
-            <img class="crudIcono" src="{{ crear }}" alt="crear" height="40px">
+
+        <button class="btn-fomrs btn-ahadir" (click)="abrirModal(false, planetas)">
+           <div></div>
         </button>
-    </div>
+
     
 
     <!--
@@ -19,7 +19,7 @@
             <mat-card-subtitle>{{ planeta.dimension }}</mat-card-subtitle>
         </mat-card-header>
 
-        <img mat-card-image src="{{ planeta.img }}" alt="imgPlaneta" class="personaje-img" />
+        <img mat-card-image src="{{ planeta.img }}" alt="imgPlaneta" class="planeta-img"  [appImgRota]="planeta.img"/>
 
         <mat-card-content>
             <p class="descripcion">
@@ -28,9 +28,12 @@
         </mat-card-content>
 
         <mat-card-actions>
-            <img class="crudIcono" src="{{ editar }}" alt="editar" height="40px" (click)="setPlanetaSeleccionado(planeta); abrirModal(true, planetas)">
+            <div class="contenedor-btn-control-form">
+                <button class="btn-fomrs btn-editar" (click)="setPlanetaSeleccionado(planeta); abrirModal(true, planetas)"><div></div></button>
 
-            <img class="crudIcono" src="{{ borrar }}" alt="borrar" height="40px" (click)="borrarPlaneta(planeta)">
+                 <button class="btn-fomrs btn-borrar" (click)="borrarPlaneta(planeta)"><div></div></button>
+            </div>
+            
             <!-- 
             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" (click)="mostrarCrearForm = false">
                 <mat-expansion-panel-header (click)="abrirFormularioPlanetas(planeta, false)">

@@ -28,6 +28,7 @@ export class ServicioPlanetasService {
       })
     }*/
     const url = "planetas";
+    console.log("estoy en el servicio");
     return this.http.put(this.urlApi + url, datos/*, httpOptions*/)
     /*
     const url = `${this.urlApi}/${id}`;

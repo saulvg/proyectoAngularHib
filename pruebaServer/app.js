@@ -137,6 +137,10 @@ app.get("/planetas", (req, res) => {
   res.json(planetas);
 });
 
+
+
+
+
 // Endpoint para crear un nuevo planeta (POST)
 app.post("/planetas", (req, res) => {
   const nuevoPlaneta = req.body; // Suponemos que los datos del nuevo episodio se envían en el cuerpo de la solicitud

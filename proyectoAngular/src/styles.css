@@ -54,6 +54,7 @@ h1 {
     display: flex;
     justify-content: space-around;
     margin: 1rem;
+    width: 100%;
 }
 
 .btn-fomrs {
