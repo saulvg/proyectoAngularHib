@@ -317,6 +317,10 @@ const usuarios = [
     password: "PasswordPrueba123",
   },
 ];
+app.get("/usuarios", (req, res) => {
+  res.json(usuarios);
+});
+
 app.post("/usuarios", (req, res) => {
   const { email, password } = req.body;
 
@@ -332,6 +336,25 @@ app.post("/usuarios", (req, res) => {
   } else {
     res.status(401).json({ message: "Email o contraseha incorrectos" });
   }
+});
+
+app.post("/usuarios/register", (req, res)=>{
+  const {email, password} = req.body;
+
+  const usuarioExiste = usuarios.find((u)=>u.email === email)
+  if(usuarioExiste){
+    res.status(400).json({message:"Usuario ya existe"})
+    return
+  }
+
+  const nuevoUsuario = {
+    id:usuarios.length +1,
+    email: email,
+    password: password
+  }
+
+  usuarios.push(nuevoUsuario)
+  res.json({message: "Usuario creado con exito"})
 });
 
 app.listen(3002, () => {

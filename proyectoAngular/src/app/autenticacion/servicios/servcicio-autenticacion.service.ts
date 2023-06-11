@@ -33,4 +33,17 @@ export class ServcicioAutenticacionService {
 
   }
 
+  registrarUsuaio(email: string, password: string): Observable<any> {
+
+    const url = '/register'
+
+    const body: Usuarios = {
+      email,
+      password
+    }
+
+    return this.http.post(this.urlApi + url, body)
+
+  }
+
 }

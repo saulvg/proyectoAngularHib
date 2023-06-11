@@ -1,0 +1,57 @@
+<section class="contenido-body">
+    <div class="card-container">
+        <header>
+            <h1 class="titulo">Registro</h1>
+        </header>
+        <main>
+            <div>
+                <form [formGroup]="formularioRegistro" (ngSubmit)="regsitroUsuario()"
+                    *ngIf="!registroCorrecto;else cargando">
+                    <mat-form-field>
+                        <input matInput placeholder="Email" formControlName="email">
+                        <mat-error *ngIf="formularioRegistro.controls['email'].hasError('required')">El email es
+                            requerido</mat-error>
+                        <mat-error *ngIf="formularioRegistro.controls['password'].hasError('email')">Email
+                            inválido</mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput placeholder="Contraseña" formControlName="password"
+                            [type]="mostrarPassword ? 'text' : 'password'">
+
+                        <mat-icon matSuffix (click)="togglePasswordVisibility()">{{ mostrarPassword ? 'visibility_off' :
+                            'visibility' }}</mat-icon>
+                        <mat-error *ngIf="formularioRegistro.controls['password'].hasError('required')">La contraseña es
+                            requerida</mat-error>
+                        <mat-error *ngIf="formularioRegistro.controls['password'].hasError('passwordValidator')">La
+                            contraseña debe tener 2 numeros 2 mayuscuals y 2 minusculas</mat-error>
+                        <mat-error *ngIf="formularioRegistro.controls['password'].hasError('minLength')">Longitud minima
+                            6
+                            caracteres</mat-error>
+                        <mat-error *ngIf="formularioRegistro.controls['password'].hasError('maxLength')">Longitud maxima
+                            22
+                            caracteres</mat-error>
+                    </mat-form-field>
+
+                    <p class="extra-info">La contraseña debe tener al menos dos numeros 2 mayuscular y 2
+                        minusculas</p>
+
+                    <button mat-raised-button color="primary" [disabled]="!formularioRegistro.valid">Enviar</button>
+
+                </form>
+                <div *ngIf="hasError" class="error-message">
+                    <p class="error-text">¡Oh no! Parece que algo salió mal en nuestro portal interdimensional.</p>
+                    <p class="error-text">Rick está ocupado solucionando problemas en otra dimensión.</p>
+                    <p class="error-text">Deberas volver a intentar iniciar sesion porque...</p>
+                    <p class="error-text"><strong>{{errorMessage}}</strong> </p>
+                </div>
+            </div>
+        </main>
+    </div>
+</section>
+
+<!-- TEMPLATES -->
+<ng-template #cargando>
+    <div class="spiner-container">
+        <mat-spinner></mat-spinner>
+    </div>
+</ng-template>
