@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { PersonajesRoutingModule } from './personajes-routing.module';
-import { PipeVivoMuertoPipe } from './pipes/pipe-vivo-muerto.pipe';
 import { PublicaPersonajesComponent } from './paginas/publica/publica-personajes.component';
 import { PrivadaPersonajesComponent } from './paginas/privada/privada-personajes.component';
 
@@ -17,18 +16,27 @@ import { VivoMuertoDirective } from './directivas/mostrar-icono-vivoMuerto.direc
 import { MostrarIconosGeneroDirective } from './directivas/mostrar-iconos-genero.directive';
 import { PipeDescripcionPipe } from './pipes/pipe-descripcion.pipe';
 import { VistaPersonajesComponent } from './vista-personajes.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
+
 
 import { RouterModule } from '@angular/router';
+import { FormModalComponent } from './paginas/privada/form-modal/form-modal.component';
 
 @NgModule({
   declarations: [
-    PipeVivoMuertoPipe,
     PublicaPersonajesComponent,
     PrivadaPersonajesComponent,
     VivoMuertoDirective,
     MostrarIconosGeneroDirective,
     PipeDescripcionPipe,
-    VistaPersonajesComponent
+    VistaPersonajesComponent,
+    FormModalComponent
   ],
   imports: [
     CommonModule,
@@ -36,7 +44,14 @@ import { RouterModule } from '@angular/router';
     MatCardModule,
     MatButtonModule,
     HttpClientModule,
-    RouterModule
+    RouterModule,
+    MatExpansionModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatRadioModule,
+    MatDialogModule,
+    MatSelectModule
   ],
   providers: [
     ServicioPersonajesService

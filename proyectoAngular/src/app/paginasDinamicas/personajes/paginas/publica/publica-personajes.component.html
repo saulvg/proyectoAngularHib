@@ -7,15 +7,22 @@
         <img mat-card-image src="{{personaje.img}}" alt="imgPersonaje" class="personaje-img" />
         <mat-card-content>
             <ul class="lista-personajes">
+                <!-- Uso la directiva [appVivoMuerto] para cambiar el dato del personaje por un icono -->
                 <li class="liIcono"><img class="vivoMuertoIcono" alt="iconoVivoMuerto" height="50px"
                         [appVivoMuerto]="personaje.estado"></li>
+
+                <!-- Uso la directiva [appMostrarIconosGenero] para cambiar el dato del personaje por un icono -->
                 <li class="liIcono"><img class="generoIcono" alt="iconoGenero" height="50px"
                         [appMostrarIconosGenero]="personaje.genero"></li>
+
+                <!-- Si mostrar descripcion es verdadero mostrara todo el texto, sino utiliza el pipe
+                     para mostrar la descripción reducida -->
                 <li class="descripcion"><b>Descripción:</b> {{ personaje.mostrarDescripcion ? personaje.descripcion
                     : (personaje.descripcion | pipeDescripcion) }}</li>
             </ul>
         </mat-card-content>
         <mat-card-actions>
+            <!-- Al pulsar en leer mas llama a muestraDescripcion y cambia el texto del boton a 'leer menos' -->
             <button mat-button (click)="muestraDescripcion(personaje)">
                 {{ personaje.mostrarDescripcion ? 'Leer menos' : 'Leer más' }}
             </button>
