@@ -71,8 +71,10 @@ app.put("/episodios", (req, res) => {
 });
 
 // Endpoint para eliminar un episodio existente (DELETE)
-app.delete("/episodios", (req, res) => {
-  const episodioId = req.body.id;
+
+app.delete('/episodios/:id', (req, res) => {
+  const episodioId = req.params.id;
+  
 
   // Ejemplo de eliminación en un array en memoria
   const episodioIndex = episodios.findIndex(
@@ -97,7 +99,8 @@ app.post("/episodios", (req, res) => {
   const nuevoEpisodio = req.body; // Suponemos que los datos del nuevo episodio se envían en el cuerpo de la solicitud
 
   // Ejemplo de guardado en un array en memoria
-  episodios.push(nuevoEpisodio);
+  episodios.unshift(nuevoEpisodio)
+  
 
   res.status(201).json({
     message: "Episodio creado correctamente",
@@ -313,7 +316,52 @@ const usuarios = [
 app.get("/usuarios", (req, res) => {
   res.json(usuarios);
 });
+  
 
-app.listen(3002, () => {
-  console.log("Server escuchando =P");
-});
+    // Endpoint para eliminar un personajes existente (DELETE)
+app.delete('/personajes', (req, res) => {
+    const personajesId = req.body.id;
+  
+  
+    // Ejemplo de eliminación en un array en memoria
+    const personajeIndex = personajes.findIndex(personaje => personaje.id === parseInt(personajesId));
+  
+    if (personajeIndex !== -1) {
+        personajes.splice(personajeIndex, 1);
+  
+      res.json({
+        message: `Personaje ${personajesId} eliminado correctamente`
+      });
+    } else {
+      res.status(404).json({
+        message: `Personaje ${personajesId} no encontrado`
+      });
+    }})
+
+       
+
+    /* ## USUARIOS ##  */
+  
+  const usuarios = [
+      {
+          "id": 1,
+          "email":"test@test.com",
+          "password":"PasswordPrueba123"
+      },
+      
+  ]
+  app.post('/usuarios',(req, res) => {
+      const {email, password} = req.body
+      
+      const usuario = usuarios.find(u => u.email === email && u.password === password)
+
+      if(usuario){
+        res.json({message:'Inicio de sesion exitoso', token:'asdfs3245235dfv345vfdsgvfd54'})
+      }else{
+        res.status(401).json({message: 'Email o contraseha incorrectos'})
+      }
+  })
+
+app.listen(3002, ()=>{
+    console.log('Server escuchando =P');
+})

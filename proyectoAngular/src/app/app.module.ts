@@ -21,6 +21,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatRippleModule } from '@angular/material/core';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
+import { InyectarTokenInterceptor } from './compartido/interceptores/inyectar-token.interceptor';
+
+
 
 
 
@@ -30,7 +35,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     HomeComponent,
     QuienesSomosComponent,
     ContactanosComponent,
-    NotFoundComponent
+    NotFoundComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -45,9 +51,17 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatRippleModule,
     MatCardModule,
     MatRadioModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    CookieService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InyectarTokenInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

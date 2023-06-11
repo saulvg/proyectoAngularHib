@@ -1,6 +1,12 @@
 footer {
-    position: fixed;
+    position: static;
     bottom: 0;
     width: 100%;
     background-color: var(--colorPrincipal);
+    margin-top: 2rem;
+}
+
+footer p {
+    margin: 0;
+    height: 3rem;
 }

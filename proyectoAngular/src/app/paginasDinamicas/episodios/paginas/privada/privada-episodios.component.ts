@@ -1,8 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { Episodios } from '../../interfaces/episodios';
 
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ServicioEpisodioService } from '../../servicios/servicio-episodio.service';
+import { MatDialog } from '@angular/material/dialog';
+import { FormularioModalEpisodiosComponent } from '../../formulario-modal-episodios/formulario-modal-episodios.component';
 
 
 @Component({
@@ -11,59 +13,78 @@ import { ServicioEpisodioService } from '../../servicios/servicio-episodio.servi
   styleUrls: ['./privada-episodios.component.css']
 })
 export class PrivadaEpisodiosComponent {
-  @Input() episodios: Episodios[] = [];
 
-  formularioEpisodios: FormGroup
+  //Variable de material para el contenido del desplegable
+  panelOpenState = false;
+  //Array de episodios tipo interfaz de episodios
+  episodios: Episodios[] = [];
+  formularioEpisodios: FormGroup;
 
 
-  constructor(private formBuilder: FormBuilder, private srvEpisodios: ServicioEpisodioService) {
+  constructor(private formBuilder: FormBuilder, private srvEpisodios: ServicioEpisodioService, public dialog: MatDialog) {
     this.formularioEpisodios = this.formBuilder.group({});
-  }
+  };
 
   ngOnInit() {
-    this.crearFormulario();
+    this.obtenrEpisodios();
+  };
+
+
+  //Peticion get para obtener los episodios 
+  private obtenrEpisodios(): void {
+    this.srvEpisodios.getEpisodios().subscribe(
+      (res: Episodios[]) => {
+        this.episodios = res;
+      }
+    );
+  };
+
+
+  //Peticion delete para borrar los episodios
+  eliminarEpisodio(episodio: Episodios) {
+    this.srvEpisodios.eliminarEpisodio(episodio.id).subscribe(
+      res => {
+        console.log("Exito al borrar", res);
+        //Llamamos a obtener episodios para repintar la pagina
+        this.obtenrEpisodios();
+      },
+      (err) => {
+        console.error(err);
+
+      }
+    );
+  };
+
+
+
+  //Editamos un episodio (episodio a editar, false)
+  editar(data: Episodios, nuevoEp: boolean) {
+    this.openFormularioModal(data, nuevoEp)
+
   }
 
-  crearFormulario() {
-    this.formularioEpisodios = this.formBuilder.group({
-      id: ['', [Validators.required]],
-      titulo: ['', [Validators.required]],
-      episodio: ['', [Validators.required]],
-      sinopsis: ['', [Validators.required]],
-      fechaEmision: ['', [Validators.required]]
+  //Creamos un episodio (lista de episodios actuales, true)
+  crear(data: Episodios[], nuevoEp: boolean) {
+    this.openFormularioModal(data, nuevoEp)
+
+  }
+
+
+  private openFormularioModal(data: any, nuevoEp: boolean): void {
+
+    const dialogRef = this.dialog.open(FormularioModalEpisodiosComponent, {
+      width: '400px',
+      //Le pasamos al componente modal
+      //data.data -> episodio actual o lista de episodios del back, dependiendo de si se crea uno nuevo o se acutaliza 
+      //data.nuevoEp -> valor boleano para saber si es un nuevo episodio o no lo es
+      data: { data, nuevoEp }
+    });
+
+    //Base de material para el modal, en este caso cada vez que se cierra el modal, repintamos los datos que llegan del back/episodios
+    dialogRef.afterClosed().subscribe(result => {
+      //Llamamos a obtener episodios para repintar la pagina
+      this.obtenrEpisodios()
     });
   }
 
-  editarEpisodio(episodio: Episodios) {
-
-    this.formularioEpisodios.patchValue({
-      id: episodio.id,
-      titulo: episodio.titulo,
-      episodio: episodio.episodio,
-      sinopsis: episodio.sinopsis,
-      fechaEmision: new Date(episodio.fechaEmision).toISOString().slice(0, 10)
-    });
-  }
-
-  enviarDatos() {
-
-    if (this.formularioEpisodios.valid) {
-      const datos = this.formularioEpisodios.value
-
-      this.srvEpisodios.actualizarDatos(datos).subscribe(
-        res => {
-          console.log('Exito', res);
-
-        },
-        (err) => {
-          console.error(err);
-
-        }
-      )
-    } else {
-      console.error('Formulario Invalido');
-    }
-
-  }
-
-}
+};

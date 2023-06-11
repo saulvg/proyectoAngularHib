@@ -4,6 +4,9 @@ import { HomeComponent } from './paginasEstaticas/home/home.component';
 import { QuienesSomosComponent } from './paginasEstaticas/quienes-somos/quienes-somos.component';
 import { ContactanosComponent } from './paginasEstaticas/contactanos/contactanos.component';
 import { NotFoundComponent } from './paginasEstaticas/not-found/not-found.component';
+import { SesionGuard } from './compartido/guardianes/sesion.guard';
+
+
 
 const routes: Routes = [
   {
@@ -24,7 +27,8 @@ const routes: Routes = [
   },
   {
     path: 'autenticacion',
-    loadChildren: () => import('./autenticacion/autenticacion.module').then(m => m.AutenticacionModule)
+    loadChildren: () => import('./autenticacion/autenticacion.module').then(m => m.AutenticacionModule),
+    canActivate: [SesionGuard]
   },
   {
     path: 'quienes-somos',

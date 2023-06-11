@@ -1,32 +1,69 @@
-.contenedor-formulario {
-    margin: 5%;
+/*  ## cardLogin ##*/
+.card-container {
+    width: 300px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    text-align: center;
 }
 
-.cabecera {
-    margin-bottom: 10px;
+.contenido-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
 }
 
-.ancho-maximo {
+.titulo {
+    margin-bottom: 20px;
+}
+
+.card-container .titulo {
+    text-align: left;
+}
+
+form {
+    width: 100%;
+    text-align: center;
+}
+
+mat-form-field {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+mat-icon {
+    cursor: pointer;
+}
+
+button {
     width: 100%;
 }
 
-.top-padding {
-    padding-top: 3px;
+.mat-form-field mat-error {
+    color: red !important;
 }
 
-.example-container mat-form-field + mat-form-field {
-    margin-left: 8px;
+.error-message {
+    text-align: center;
+    margin-top: 2rem;
 }
-  
-.example-right-align {
-    text-align: right;
+
+.error-image {
+    width: 200px;
+    height: auto;
 }
-  
-input.example-right-align::-webkit-outer-spin-button,
-input.example-right-align::-webkit-inner-spin-button {
-    display: none;
+
+.error-text {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: red;
 }
-  
-input.example-right-align {
-    -moz-appearance: textfield;
+
+/* ## Spiner ## */
+.spiner-container {
+    display: flex;
+    justify-content: center;
 }
