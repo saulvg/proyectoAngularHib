@@ -4,7 +4,7 @@
             <mat-card-title>{{ personaje.nombre }}</mat-card-title>
             <mat-card-subtitle>{{ personaje.especie }}</mat-card-subtitle>
         </mat-card-header>
-        <img mat-card-image src="{{personaje.img}}" alt="imgPersonaje" class="personaje-img" />
+        <img mat-card-image [src]="personaje.img" alt="imgPersonaje" class="personaje-img" [appImgRota]="personaje.img">
         <mat-card-content>
             <ul class="lista-personajes">
                 <!-- Uso la directiva [appVivoMuerto] para cambiar el dato del personaje por un icono -->

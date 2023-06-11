@@ -142,29 +142,11 @@ app.post("/planetas", (req, res) => {
   const nuevoPlaneta = req.body; // Suponemos que los datos del nuevo episodio se envían en el cuerpo de la solicitud
 
   // Ejemplo de guardado en un array en memoria
-  planetas.push(nuevoPlaneta);
+  planetas.unshift(nuevoPlaneta);
 
   res.status(201).json({
     message: "Planeta creado correctamente",
     planetas: nuevoPlaneta,
-  });
-});
-
-// Endpoint para actualizar un episodio existente (PUT)
-app.put("/planetas", (req, res) => {
-  const planetaActualizado = req.body;
-
-  // Endpoint para crear un nuevo planeta (POST)
-  app.post("/planetas", (req, res) => {
-    const nuevoPlaneta = req.body; // Suponemos que los datos del nuevo episodio se envían en el cuerpo de la solicitud
-
-    // Ejemplo de guardado en un array en memoria
-    planetas.unshift(nuevoPlaneta);
-
-    res.status(201).json({
-      message: "Planeta creado correctamente",
-      planetas: nuevoPlaneta,
-    });
   });
 });
 

@@ -23,6 +23,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
+import { DirectivasModule } from 'src/app/compartido/directivas/directivas.module';
+
 
 
 import { RouterModule } from '@angular/router';
@@ -51,7 +53,8 @@ import { FormModalComponent } from './paginas/privada/form-modal/form-modal.comp
     MatFormFieldModule,
     MatRadioModule,
     MatDialogModule,
-    MatSelectModule
+    MatSelectModule,
+    DirectivasModule
   ],
   providers: [
     ServicioPersonajesService
