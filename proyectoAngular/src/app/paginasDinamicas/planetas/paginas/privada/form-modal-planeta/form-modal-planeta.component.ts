@@ -30,9 +30,11 @@ export class FormModalPlanetaComponent {
   }
 
   guardarCambios(){
+  
     if(this.formulario.valid){
+      
       const datosFormulario = this.formulario.value;
-
+console.log("entro", datosFormulario);
       if(this.datos.planetaSeleccionado){
         this.servicioPlanetas.editarPlaneta(datosFormulario).subscribe(
           (res: any) => {

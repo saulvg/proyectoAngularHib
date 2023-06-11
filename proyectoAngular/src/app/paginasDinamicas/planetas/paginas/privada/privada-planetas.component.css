@@ -1,6 +1,31 @@
 .card-planetas {
     max-width: 400px;
     display: flex;   
+    
+    justify-content: space-around;
+}
+
+.planeta-img {
+    object-fit: contain;   
+    object-position: center;   
+    height: 40%;   
+    background-color: rgb(204, 187, 165);
+}
+
+.contenedor-main {
+    display: flex;   
+    justify-content: center;   
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.descripcion {
+    overflow-y:scroll;
+    height: 100px;
+}
+/*.card-planetas {
+    max-width: 400px;
+    display: flex;   
     justify-content: space-around;
 }
 
@@ -23,28 +48,6 @@
     height: 100px;
 }
   
-.crudIcono {
-    width: 40px;
-    margin: 5px;
-  }
-  
-.crudIcono:hover {
-    opacity: 0.8;
-    cursor: pointer;
-}
-
-.form-edicion {
-    width: 100%;
-    max-width: 1200px;
-    margin: 5%;
-    display: 20px;
-}
-
-.panel-crear {
-    max-width: 100px;
-    max-height: 50px;
-    position: relative;
-}
 
 .ancho-maximo {
     width: 100%;
@@ -65,4 +68,4 @@
 .modal-content {
     background-color: white;
     padding: 20px;
-}
+}*/

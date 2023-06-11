@@ -30,8 +30,8 @@
 
         <mat-card-actions>
             <!-- Abre el formulario modal como editar porque el booleano 'edicion' es true -->
-            <img class="crudIcono" src="{{editar}}" alt="editar" height="40px"
-                (click)="setPersonajeSeleccionado(personaje); abrirModal(true, personajes)">
+            <button class="crudIcono" alt="editar" height="40px"
+                (click)="setPersonajeSeleccionado(personaje); abrirModal(true, personajes)"></button>
 
             <img class="crudIcono" src="{{borrar}}" alt="borrar" height="40px" (click)="borrarPersonaje(personaje)">
         </mat-card-actions>
