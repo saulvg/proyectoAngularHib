@@ -1,4 +1,4 @@
 export interface Usuarios {
-    correo: string;
-    contrasenya: string;
+    email: string;
+    password: string;
 }

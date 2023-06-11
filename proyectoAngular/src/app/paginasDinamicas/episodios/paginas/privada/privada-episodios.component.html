@@ -1,49 +1,29 @@
 <div class="section-episodios">
+    <button class="btn-fomrs btn-ahadir" (click)="crear(episodios, true)">
+        <div></div>
+    </button>
+
     <mat-card class="card-episodios" *ngFor="let episodio of episodios">
+
         <mat-card-header>
             <mat-card-title>{{episodio.titulo}}</mat-card-title>
             <mat-card-subtitle>{{episodio.episodio | pipeFormatoTemporada}}</mat-card-subtitle>
         </mat-card-header>
+
         <mat-card-content>
             <p>{{episodio.sinopsis}}</p>
             <mat-card-subtitle>{{episodio.fechaEmision | pipeFormatoFecha}}</mat-card-subtitle>
-            <!-- <p>{{ longText }}</p> -->
             <mat-divider></mat-divider>
         </mat-card-content>
-        <mat-card-actions>
-            <button mat-button>Editar</button>
-            <button mat-button>Borrar</button>
-            <!--  -->
-            <mat-expansion-panel hideToggle>
-                <mat-expansion-panel-header>
-                    <mat-panel-title (click)="editarEpisodio(episodio)">
-                        Editar
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-                <form [formGroup]="formularioEpisodios" (ngSubmit)="enviarDatos()">
-                    <pre>
-                        {{episodio | json}}
-                    </pre>
-                    <div>
-                        <label for="nombre">Nombre</label>
-                        <input type="text" formControlName="titulo">
-                    </div>
-                    <div>
-                        <label for="temporada">Temporada</label>
-                        <input type="text" formControlName="episodio">
-                    </div>
-                    <div>
-                        <label for="descripcion">Descripcion</label>
-                        <textarea name="descripcion" formControlName="sinopsis" cols="20" rows="10"></textarea>
-                    </div>
-                    <div>
-                        <label for="fecha">Fecha</label>
-                        <input type="date" formControlName="fechaEmision">
-                    </div>
-                    <button type="submit">Guardar</button>
-                </form>
-            </mat-expansion-panel>
-            <!--  -->
-        </mat-card-actions>
+        <div class="contenedor-btn-control-form">
+            <button class="btn-fomrs btn-borrar" (click)="eliminarEpisodio(episodio)">
+                <div></div>
+            </button>
+            <button class="btn-fomrs btn-editar" (click)="editar(episodio, false)">
+                <div></div>
+            </button>
+        </div>
+
+
     </mat-card>
 </div>

@@ -1,69 +1,90 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { Usuarios } from './interfaces/usuarios';
+import { FormBuilder, FormGroup, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
 import { ServcicioAutenticacionService } from './servicios/servcicio-autenticacion.service';
-/*
-@Component({
-  selector: 'app-autenticacion',
-  templateUrl: './autenticacion.component.html',
-  styleUrls: ['./autenticacion.component.css']
-})*/
+
+import { Router } from '@angular/router';
+
+
+//Componente que para gestionar el login 
+
 @Component({
   selector: 'app-autenticacion',
   templateUrl: './autenticacion.component.html',
   styleUrls: ['./autenticacion.component.css']
 })
 export class AutenticacionComponent {
-  hide = true;
-/*
-  correo: string;
-  contrasenya: string;
-  
-  public usuarios: Usuarios[] = [];*/
+  mostrarPassword: boolean = false;
+  hasError: boolean = false;
+  errorMessage: string = "";
+  loginCorrecto: boolean = false;
 
-  constructor (/*private srvUsuarios: ServcicioAutenticacionService*/private formBuilder: FormBuilder, private snackBar: MatSnackBar) {
-    /*this.correo = "";
-    this.contrasenya = "";*/
-   }
+  formularioLogin: FormGroup = new FormGroup({});
 
-  formulario = this.formBuilder.group({
-    correo: ['', [Validators.required, Validators.email]],
-    contrasenya: ['', Validators.required],
-  });
+  constructor(private srvAuth: ServcicioAutenticacionService, private formBuilder: FormBuilder, private router: Router) { };
 
-  iniciarSesion(){
-    if(this.formulario.valid){
-      console.log("Datos del formulario ", this.formulario.value);
-      this.snackBar.open('El formulario es correcto', 'Cerrar', { duration: 3000});
+  ngOnInit() {
+    this.formularioLogin = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(22), this.passwordValidator()]],
+    });
+  };
+
+  iniciarSesion(): void {
+
+    if (this.formularioLogin.valid) {
+      const { email, password } = this.formularioLogin.value;
+      //Peticion al servicio
+      this.srvAuth.enviarCredenciales(email, password).subscribe(
+        res => {
+          this.loginCorrecto = true;
+          this.redirigirPagina();
+          this.hasError = false; // Reiniciar el estado de error
+
+        },
+        err => {
+          console.log('Error', err.error.message);
+          this.errorMessage = err.error.message;
+          this.hasError = true; // Mostrar el mensaje de error
+
+        }
+      );
     } else {
-      console.log("FORMULARIO INVALIDO :(");
-    }
+      console.log("Formulario Invalido");
+    };
+  };
+
+  togglePasswordVisibility() {
+    this.mostrarPassword = !this.mostrarPassword;
+  };
+
+
+  private redirigirPagina(): void {
+    setTimeout(() => {
+      this.loginCorrecto = false;
+      this.router.navigate(['/']);
+    }, 2000);
+    setTimeout(() => {
+      window.location.reload();
+    }, 2300);
+  };
+
+  //Validador para verificar si la contraseha tiene al menos dos numeros, dos letras mayusculas y dos letras minusculas
+  private passwordValidator(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      const password = control.value;
+
+      const regex = /^(?=.*\d.*\d)(?=.*[A-Z].*[A-Z])(?=.*[a-z].*[a-z])/;
+
+      if (regex.test(password)) {
+        // La contraseha cumple con los requisitos
+        return null;
+      } else {
+        // La contraseha no cumple con los requisitos
+        return { passwordInvalid: true };
+      }
+    };
   }
 
-  /*obtenerUsuario(){
-    this.srvUsuarios.getCuentas().subscribe(
-      (res: Usuarios[]) => {
-        this.usuarios = res;
-      }
-    );
 
-    if(res.correo === this.correo){
 
-    }
-  };*/
-/*
-  login(){
-    const usuario = { correo: this.correo, contrasenya: this.contrasenya};
-    this.srvUsuarios.getCuentas(usuario).subscribe((data) => {
-      console.log("Sesión iniciada");
-    });
-
-  }*/
-/*
-  ngOnInit(){
-    //this.iniciarSesion();
-    //this.obtenerUsuario();
-    this.login();
-  }*/
 }
