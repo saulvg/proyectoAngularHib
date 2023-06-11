@@ -59,7 +59,6 @@ app.put("/episodios", (req, res) => {
     episodioExistente.episodio = episodioActualizado.episodio;
     episodioExistente.fechaEmision = episodioActualizado.fechaEmision;
 
-
     res.json({
       message: `Episodio ${episodioActualizado.id} actualizado correctamente`,
       episodio: episodioExistente,
@@ -73,9 +72,8 @@ app.put("/episodios", (req, res) => {
 
 // Endpoint para eliminar un episodio existente (DELETE)
 
-app.delete('/episodios/:id', (req, res) => {
+app.delete("/episodios/:id", (req, res) => {
   const episodioId = req.params.id;
-  
 
   // Ejemplo de eliminación en un array en memoria
   const episodioIndex = episodios.findIndex(
@@ -100,8 +98,7 @@ app.post("/episodios", (req, res) => {
   const nuevoEpisodio = req.body; // Suponemos que los datos del nuevo episodio se envían en el cuerpo de la solicitud
 
   // Ejemplo de guardado en un array en memoria
-  episodios.unshift(nuevoEpisodio)
-  
+  episodios.unshift(nuevoEpisodio);
 
   res.status(201).json({
     message: "Episodio creado correctamente",
@@ -157,53 +154,55 @@ app.post("/planetas", (req, res) => {
 app.put("/planetas", (req, res) => {
   const planetaActualizado = req.body;
 
-
   // Endpoint para crear un nuevo planeta (POST)
-  app.post('/planetas', (req, res) => {
-    const nuevoPlaneta = req.body; // Suponemos que los datos del nuevo episodio se envían en el cuerpo de la solicitud  
-  
+  app.post("/planetas", (req, res) => {
+    const nuevoPlaneta = req.body; // Suponemos que los datos del nuevo episodio se envían en el cuerpo de la solicitud
+
     // Ejemplo de guardado en un array en memoria
-    planetas.unshift(nuevoPlaneta)
-    
-  
+    planetas.unshift(nuevoPlaneta);
+
     res.status(201).json({
-      message: 'Planeta creado correctamente',
+      message: "Planeta creado correctamente",
       planetas: nuevoPlaneta,
+    });
+  });
+});
 
- 
+// Endpoint para actualizar un episodio existente (PUT)
+app.put("/planetas", (req, res) => {
+  const planetaActualizado = req.body;
 
-  // Endpoint para actualizar un episodio existente (PUT)
-app.put('/planetas', (req, res) => {
-  const planetaActualizado = req.body; 
- 
-   // Ejemplo de actualización en un array en memoria
-   const planetaExistente = planetas.find((planeta) => planeta.id === parseInt(planetaActualizado.id));
- 
-   if (planetaExistente) {
-       planetaExistente.nombre = planetaActualizado.nombre;
-       planetaExistente.img = planetaActualizado.img;
-       planetaExistente.dimension = planetaActualizado.dimension;
-       planetaExistente.descripcion = planetaActualizado.descripcion;
- 
-     res.json({
-       message: `Planeta ${planetaActualizado.id} actualizado correctamente`,
-       planeta: planetaExistente,
-     });
-   } else {
-     res.status(404).json({
-       message: `Planeta ${planetaActualizado.id} no encontrado`
-     });
-   }
- });
+  // Ejemplo de actualización en un array en memoria
+  const planetaExistente = planetas.find(
+    (planeta) => planeta.id === parseInt(planetaActualizado.id)
+  );
 
-  // Endpoint para eliminar un planetas existente (DELETE)
-app.delete('/planetas/:id', (req, res) => {
+  if (planetaExistente) {
+    planetaExistente.nombre = planetaActualizado.nombre;
+    planetaExistente.img = planetaActualizado.img;
+    planetaExistente.dimension = planetaActualizado.dimension;
+    planetaExistente.descripcion = planetaActualizado.descripcion;
+
+    res.json({
+      message: `Planeta ${planetaActualizado.id} actualizado correctamente`,
+      planeta: planetaExistente,
+    });
+  } else {
+    res.status(404).json({
+      message: `Planeta ${planetaActualizado.id} no encontrado`,
+    });
+  }
+});
+
+// Endpoint para eliminar un planetas existente (DELETE)
+app.delete("/planetas/:id", (req, res) => {
   const planetasId = req.params.id;
-
 
   // Ejemplo de eliminación en un array en memoria
 
-  const planetasIndex = planetas.findIndex((planeta) => planeta.id === parseInt(planetasId));
+  const planetasIndex = planetas.findIndex(
+    (planeta) => planeta.id === parseInt(planetasId)
+  );
 
   if (planetasIndex !== -1) {
     planetas.splice(planetasIndex, 1);
@@ -329,58 +328,26 @@ const usuarios = [
   {
     id: 1,
     email: "test@test.com",
-    password: "passwordPrueba123",
+    password: "PasswordPrueba123",
   },
 ];
-app.get("/usuarios", (req, res) => {
-  res.json(usuarios);
+app.post("/usuarios", (req, res) => {
+  const { email, password } = req.body;
+
+  const usuario = usuarios.find(
+    (u) => u.email === email && u.password === password
+  );
+
+  if (usuario) {
+    res.json({
+      message: "Inicio de sesion exitoso",
+      token: "asdfs3245235dfv345vfdsgvfd54",
+    });
+  } else {
+    res.status(401).json({ message: "Email o contraseha incorrectos" });
+  }
 });
-  
 
-    // Endpoint para eliminar un personajes existente (DELETE)
-app.delete('/personajes', (req, res) => {
-    const personajesId = req.body.id;
-  
-  
-    // Ejemplo de eliminación en un array en memoria
-    const personajeIndex = personajes.findIndex(personaje => personaje.id === parseInt(personajesId));
-  
-    if (personajeIndex !== -1) {
-        personajes.splice(personajeIndex, 1);
-  
-      res.json({
-        message: `Personaje ${personajesId} eliminado correctamente`
-      });
-    } else {
-      res.status(404).json({
-        message: `Personaje ${personajesId} no encontrado`
-      });
-    }})
-
-       
-
-    /* ## USUARIOS ##  */
-  
-  const usuarios = [
-      {
-          "id": 1,
-          "email":"test@test.com",
-          "password":"PasswordPrueba123"
-      },
-      
-  ]
-  app.post('/usuarios',(req, res) => {
-      const {email, password} = req.body
-      
-      const usuario = usuarios.find(u => u.email === email && u.password === password)
-
-      if(usuario){
-        res.json({message:'Inicio de sesion exitoso', token:'asdfs3245235dfv345vfdsgvfd54'})
-      }else{
-        res.status(401).json({message: 'Email o contraseha incorrectos'})
-      }
-  })
-
-app.listen(3002, ()=>{
-    console.log('Server escuchando =P');
-})
+app.listen(3002, () => {
+  console.log("Server escuchando =P");
+});
