@@ -1,0 +1,30 @@
+<h2 mat-dialog-title>{{ datos?.selectedPlaneta ? 'Editar Card' : 'Crear Nueva Card' }}</h2>
+
+<mat-dialog-content>
+    <form [formGroup]="formulario">
+        <mat-form-field class="ancho-maximo">
+            <mat-label>Nombre</mat-label>
+            <input matInput [formControlName]="'nombre'" required>
+            <mat-error *ngIf="formulario.controls['nombre'].hasError('required')">El nombre es obligatorio</mat-error>
+        </mat-form-field>
+        <mat-form-field class="ancho-maximo">
+            <mat-label>Dimension</mat-label>
+            <input matInput [formControlName]="'dimension'" required>
+            <mat-error *ngIf="formulario.controls['dimension'].hasError('required')">La dimension es obligatoria</mat-error>
+        </mat-form-field>
+        <mat-form-field class="ancho-maximo">
+            <mat-label>Descripción</mat-label>
+            <input matInput [formControlName]="'descripcion'" required>
+            <mat-error *ngIf="formulario.controls['descripcion'].hasError('required')">La descripción es obligatoria</mat-error>
+        </mat-form-field>
+        <mat-form-field class="ancho-maximo">
+            <mat-label>Imagen</mat-label>
+            <input matInput [formControlName]="'img'">
+         </mat-form-field>
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-button (click)="cerrarModal()">Cancelar</button>
+    <button mat-button color="primary" (click)="guardarCambios()">Guardar</button>
+</mat-dialog-actions>

@@ -11,7 +11,7 @@ import { ServicioPlanetasService } from '../../servicios/servicio-planetas.servi
 })
 export class PublicaPlanetasComponent /*implements Planetas*/{
  // public planetas: Planetas[] = [];
-  @Input () planetas: Planetas[] = [];
+  planetas: Planetas[] = [];
   /*
   id!: number;
   nombre!: string;

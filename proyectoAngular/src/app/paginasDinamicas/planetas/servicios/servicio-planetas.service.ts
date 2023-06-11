@@ -22,31 +22,32 @@ export class ServicioPlanetasService {
   }
 
   editarPlaneta(datos: any): Observable<any> {
-    const httpOptions = {
+   /* const httpOptions = {
       headers: new HttpHeaders({
         'Content-type': 'application/json'
       })
-    }
+    }*/
     const url = "planetas";
-    return this.http.put(this.urlApi + url, datos, httpOptions)
+    return this.http.put(this.urlApi + url, datos/*, httpOptions*/)
     /*
     const url = `${this.urlApi}/${id}`;
     return this.http.put(url, planeta);*/
   }
 
   eliminarPlaneta(id: number): Observable<any> {
+    console.log(id);
     const urlPlanetas = "planetas";
     const url = `${this.urlApi + urlPlanetas}/${id}`;
     return this.http.delete(url);
   }
-
-  actualizarDatos(datos: any): Observable<any> {
-    const httpOptions = {
+  
+  //actualizarDatos(datos: any): Observable<any> {
+    /*const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
-    }
-    const url = "planetas";
-    return this.http.put(this.urlApi + url, datos, httpOptions);
-  }
+    }*/
+    /*const url = "planetas";
+    return this.http.put(this.urlApi + url, datos);
+  }*/
 }

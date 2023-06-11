@@ -153,7 +153,7 @@ app.put('/planetas', (req, res) => {
   const planetaActualizado = req.body; 
  
    // Ejemplo de actualización en un array en memoria
-   const planetaExistente = planetas.find(planeta => planeta.id === parseInt(planetaActualizado.id));
+   const planetaExistente = planetas.find((planeta) => planeta.id === parseInt(planetaActualizado.id));
  
    if (planetaExistente) {
        planetaExistente.nombre = planetaActualizado.nombre;
@@ -163,7 +163,7 @@ app.put('/planetas', (req, res) => {
  
      res.json({
        message: `Planeta ${planetaActualizado.id} actualizado correctamente`,
-       planeta: planetaExistente
+       planeta: planetaExistente,
      });
    } else {
      res.status(404).json({
@@ -173,12 +173,12 @@ app.put('/planetas', (req, res) => {
  });
 
   // Endpoint para eliminar un planetas existente (DELETE)
-app.delete('/planetas', (req, res) => {
+app.delete('/planetas/:id', (req, res) => {
   const planetasId = req.params.id;
 
 
   // Ejemplo de eliminación en un array en memoria
-  const planetasIndex = planetas.findIndex(planeta => planeta.id === parseInt(planetasId));
+  const planetasIndex = planetas.findIndex((planeta) => planeta.id === parseInt(planetasId));
 
   if (planetasIndex !== -1) {
       planetas.splice(planetasIndex, 1);

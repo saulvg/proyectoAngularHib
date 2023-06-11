@@ -17,13 +17,16 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatDialogModule } from '@angular/material/dialog';
+import { FormModalPlanetaComponent } from './paginas/privada/form-modal-planeta/form-modal-planeta.component';
 
 @NgModule({
   declarations: [
     PipeConocidoDesconocidoPipe,
     PrivadaPlanetasComponent,
     PublicaPlanetasComponent,
-    VistaPlanetasComponent
+    VistaPlanetasComponent,
+    FormModalPlanetaComponent
   ],
   imports: [
     CommonModule,
@@ -37,7 +40,9 @@ import { MatInputModule } from '@angular/material/input';
     MatExpansionModule,
     ReactiveFormsModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatFormFieldModule,
+    MatDialogModule
   ],
   providers: [
     ServicioPlanetasService

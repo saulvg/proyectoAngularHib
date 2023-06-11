@@ -35,6 +35,34 @@
 
 .form-edicion {
     width: 100%;
-    max-width: 500px;
-    margin-bottom: 20px;
-  }
+    max-width: 1200px;
+    margin: 5%;
+    display: 20px;
+}
+
+.panel-crear {
+    max-width: 100px;
+    max-height: 50px;
+    position: relative;
+}
+
+.ancho-maximo {
+    width: 100%;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+}

@@ -10,21 +10,21 @@ import { ServicioPlanetasService } from './servicios/servicio-planetas.service';
 export class VistaPlanetasComponent {
 
   planetas: Planetas[] = [];
-  prueba: boolean = true;
+  existeToken: boolean = true;
 
-    constructor(private srvPlanetas: ServicioPlanetasService) { }
-          ngOnInit() {
-                this.obtenerPlanetas();
-                };
-                  obtenerPlanetas() {
-                        this.srvPlanetas.getPlanetas().subscribe(
-                                (res: Planetas[]) => {
-                                          this.planetas = res
-                                              }
-                                                  );
-                                                  };
-                                                    cli() {
-                                                         this.prueba = !this.prueba
-                                                          }
+  constructor(private srvPlanetas: ServicioPlanetasService/*, private cookies: CookieService*/){
 
+  }
+
+  ngOnInit(){
+    this.obtenerToken();
+  }
+
+  obtenerToken(){
+    /*const token = this.cookies.get('token');
+
+    if(token){
+      this.existeToken = true;
+    }*/
+  }
 }
