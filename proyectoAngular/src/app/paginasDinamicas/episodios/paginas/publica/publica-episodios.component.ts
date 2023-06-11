@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Episodios } from '../../interfaces/episodios';
 import { ServicioEpisodioService } from '../../servicios/servicio-episodio.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-publica-episodios',
@@ -10,7 +11,7 @@ import { ServicioEpisodioService } from '../../servicios/servicio-episodio.servi
 export class PublicaEpisodiosComponent {
   episodios: Episodios[] = [];
 
-  constructor(private srvEpisodios: ServicioEpisodioService) { };
+  constructor(private srvEpisodios: ServicioEpisodioService, private router: Router) { };
 
   ngOnInit() {
     this.obtenrEpisodios();
@@ -20,7 +21,11 @@ export class PublicaEpisodiosComponent {
     this.srvEpisodios.getEpisodios().subscribe(
       (res: Episodios[]) => {
         this.episodios = res;
-        console.log(res);
+      },
+      (err) => {
+        console.log("Soy error", err);
+        this.router.navigate(['/not-found']);
+
       }
     );
   };

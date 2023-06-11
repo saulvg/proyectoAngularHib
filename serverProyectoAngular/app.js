@@ -39,6 +39,30 @@ const episodios = [
     sinopsis:
       "Bienvenido al Chiquito Ipsum, el generador de texto de relleno para tus diseños de antes de los dolores. Dale a Fistrum para que te salga ese pedaso de texto Chiquito en estado puro. Si te crees muy moderno dale a Latin que te lo pongo con cuarto y mitad de romanooo... Jarl!!",
   },
+  {
+    id: 3,
+    titulo: "Anatomy Park",
+    fechaEmision: "December 16, 2013",
+    episodio: "S01E03",
+    sinopsis:
+      "Bienvenido al Chiquito Ipsum, el generador de texto de relleno para tus diseños de antes de los dolores. Dale a Fistrum para que te salga ese pedaso de texto Chiquito en estado puro. Si te crees muy moderno dale a Latin que te lo pongo con cuarto y mitad de romanooo... Jarl!!",
+  },
+  {
+    id: 8,
+    titulo: "Rixty Minutes",
+    fechaEmision: "March 17, 2014",
+    episodio: "S01E08",
+    sinopsis:
+      "Bienvenido al Chiquito Ipsum, el generador de texto de relleno para tus diseños de antes de los dolores. Dale a Fistrum para que te salga ese pedaso de texto Chiquito en estado puro. Si te crees muy moderno dale a Latin que te lo pongo con cuarto y mitad de romanooo... Jarl!!",
+  },
+  {
+    id: 15,
+    titulo: "Total Rickall",
+    fechaEmision: "August 16, 2015",
+    episodio: "S02E04",
+    sinopsis:
+      "Bienvenido al Chiquito Ipsum, el generador de texto de relleno para tus diseños de antes de los dolores. Dale a Fistrum para que te salga ese pedaso de texto Chiquito en estado puro. Si te crees muy moderno dale a Latin que te lo pongo con cuarto y mitad de romanooo... Jarl!!",
+  },
 ];
 app.get("/episodios", (req, res) => {
   res.json(episodios);
@@ -110,7 +134,7 @@ const planetas = [
   {
     id: 3,
     nombre: "Citadel of Ricks",
-    img: "",
+    img: "https://i.pinimg.com/originals/53/5b/c9/535bc9151399dff1daab1a82d1477190.jpg",
     dimension: "unknown",
     descripcion:
       "La Citadel, conocida originalmente como The Citadel of Ricks, era una ciudadela trans-dimensional ciudad-estado poblada completamente por Ricks y Mortys a lo largo de las infinitas realidades. La Citadel se encontraba originalmente en una dimensión desconocida, pero fue teletranspotada por Rick C-137 directamente a la prisión principal de la Federación Galáctica de la Dimension C-131. Era utilizada como un lugar de ocio, un punto de encuentro o un lugar de protección para muchos Ricks y Mortys.",
@@ -128,6 +152,30 @@ const planetas = [
     nombre: "Blips and Chitz",
     img: "https://www.eventeny.com/users/pic/22017-business-product-720v7ocarpdc1597333301-600.jpg",
     dimension: "Replacement Dimension",
+    descripcion:
+      "Blips and Chitz es un arcade intergaláctico. Su ubicación es desconocida, pero se puede ver que está en un espacio más que en un planeta.",
+  },
+  {
+    id: 20,
+    nombre: "Earth (Replacement Dimension)",
+    img: "https://static.wikia.nocookie.net/rickandmorty/images/0/00/S1e1_dimension_35C.png",
+    dimension: "Replacement Dimension",
+    descripcion:
+      "Blips and Chitz es un arcade intergaláctico. Su ubicación es desconocida, pero se puede ver que está en un espacio más que en un planeta.",
+  },
+  {
+    id: 17,
+    nombre: "Earth (5-126)",
+    img: "https://static.wikia.nocookie.net/rickandmorty/images/7/74/Screenshot_2015-10-05_at_1.24.48_PM.png",
+    dimension: "Dimension 5-126",
+    descripcion:
+      "Blips and Chitz es un arcade intergaláctico. Su ubicación es desconocida, pero se puede ver que está en un espacio más que en un planeta.",
+  },
+  {
+    id: 18,
+    nombre: "Mr. Goldenfold's dream",
+    img: "",
+    dimension: "Dream",
     descripcion:
       "Blips and Chitz es un arcade intergaláctico. Su ubicación es desconocida, pero se puede ver que está en un espacio más que en un planeta.",
   },
@@ -237,6 +285,42 @@ const personajes = [
     tipo: "Bepisian",
     genero: "unknown",
     origen: "Bepis 9",
+    descripcion:
+      "Bienvenido al Chiquito Ipsum, el generador de texto de relleno para tus diseños de antes de los dolores. Dale a Fistrum para que te salga ese pedaso de texto Chiquito en estado puro. Si te crees muy moderno dale a Latin que te lo pongo con cuarto y mitad de romanooo... Jarl!!",
+  },
+  {
+    id: 16,
+    nombre: "Amish Cyborg",
+    estado: "Dead",
+    especie: "Alien",
+    img: "https://rickandmortyapi.com/api/character/avatar/16.jpeg",
+    tipo: "Parasite",
+    genero: "Male",
+    origen: "unknown",
+    descripcion:
+      "Bienvenido al Chiquito Ipsum, el generador de texto de relleno para tus diseños de antes de los dolores. Dale a Fistrum para que te salga ese pedaso de texto Chiquito en estado puro. Si te crees muy moderno dale a Latin que te lo pongo con cuarto y mitad de romanooo... Jarl!!",
+  },
+  {
+    id: 9,
+    nombre: "Agency Director",
+    estado: "Dead",
+    especie: "Human",
+    img: "https://rickandmortyapi.com/api/character/avatar/9.jpeg",
+    tipo: "",
+    genero: "Male",
+    origen: "Earth (Replacement Dimension)",
+    descripcion:
+      "Bienvenido al Chiquito Ipsum, el generador de texto de relleno para tus diseños de antes de los dolores. Dale a Fistrum para que te salga ese pedaso de texto Chiquito en estado puro. Si te crees muy moderno dale a Latin que te lo pongo con cuarto y mitad de romanooo... Jarl!!",
+  },
+  {
+    id: 6,
+    nombre: "Abadango Cluster Princess",
+    estado: "Alive",
+    especie: "Alien",
+    img: "https://rickandmortyapi.com/api/character/avatar/6.jpeg",
+    tipo: "",
+    genero: "Female",
+    origen: "Abadango",
     descripcion:
       "Bienvenido al Chiquito Ipsum, el generador de texto de relleno para tus diseños de antes de los dolores. Dale a Fistrum para que te salga ese pedaso de texto Chiquito en estado puro. Si te crees muy moderno dale a Latin que te lo pongo con cuarto y mitad de romanooo... Jarl!!",
   },

@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ServicioEpisodioService } from '../../servicios/servicio-episodio.service';
 import { MatDialog } from '@angular/material/dialog';
 import { FormularioModalEpisodiosComponent } from '../../formulario-modal-episodios/formulario-modal-episodios.component';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -21,7 +22,7 @@ export class PrivadaEpisodiosComponent {
   formularioEpisodios: FormGroup;
 
 
-  constructor(private formBuilder: FormBuilder, private srvEpisodios: ServicioEpisodioService, public dialog: MatDialog) {
+  constructor(private formBuilder: FormBuilder, private srvEpisodios: ServicioEpisodioService, public dialog: MatDialog, private router: Router) {
     this.formularioEpisodios = this.formBuilder.group({});
   };
 
@@ -35,6 +36,11 @@ export class PrivadaEpisodiosComponent {
     this.srvEpisodios.getEpisodios().subscribe(
       (res: Episodios[]) => {
         this.episodios = res;
+      },
+      (err) => {
+        console.log("Soy error", err);
+        this.router.navigate(['/not-found']);
+
       }
     );
   };
