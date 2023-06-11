@@ -3,14 +3,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { Planetas } from '../../interfaces/planetas';
 import { ServicioPlanetasService } from '../../servicios/servicio-planetas.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-publica-planetas',
   templateUrl: './publica-planetas.component.html',
   styleUrls: ['./publica-planetas.component.css']
 })
-export class PublicaPlanetasComponent /*implements Planetas*/{
- // public planetas: Planetas[] = [];
+export class PublicaPlanetasComponent /*implements Planetas*/ {
+  // public planetas: Planetas[] = [];
   planetas: Planetas[] = [];
   /*
   id!: number;
@@ -19,7 +20,7 @@ export class PublicaPlanetasComponent /*implements Planetas*/{
   dimension!: string;
   descripcion!: string;*/
 
-  constructor(private srvPlanetas: ServicioPlanetasService){
+  constructor(private srvPlanetas: ServicioPlanetasService, private router: Router) {
 
     /*
     this.planetas=[
@@ -45,15 +46,20 @@ export class PublicaPlanetasComponent /*implements Planetas*/{
           descripcion: "Bienvenido al Chiquito Ipsum, el generador de texto de relleno para tus diseños de antes de los dolores. Dale a Fistrum para que te salga ese pedaso de texto Chiquito en estado puro. Si te crees muy moderno dale a Latin que te lo pongo con cuarto y mitad de romanooo... Jarl!!"
       }
     ]*/
-      
-    
-    
+
+
+
   }
 
-  obtenerPlaneta(){
+  obtenerPlaneta() {
     this.srvPlanetas.getPlanetas().subscribe(
       (res: Planetas[]) => {
         this.planetas = res;
+      },
+      (err) => {
+        console.log("Soy error", err);
+        this.router.navigate(['/not-found']);
+
       }
     );
   };

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Personajes } from '../../interfaces/personajes';
 import { ServicioPersonajesService } from '../../servicios/servicio-personajes.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-publica-personajes',
@@ -11,13 +12,18 @@ export class PublicaPersonajesComponent {
 
   personajes: Personajes[] = [];
 
-  constructor(private servPersonajes: ServicioPersonajesService) { }
+  constructor(private servPersonajes: ServicioPersonajesService, private router: Router) { }
 
   /** Llama a la funcion getPersonajes() del servicio para obtener un array de todos los personajes */
   obtenerPersonajes() {
     this.servPersonajes.getPersonajes().subscribe(
       (res: Personajes[]) => {
         this.personajes = res;
+      },
+      (err) => {
+        console.log("Soy error", err);
+        this.router.navigate(['/not-found']);
+
       }
     )
   }
