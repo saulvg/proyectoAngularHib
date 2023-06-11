@@ -11,18 +11,22 @@ export class ServicioPersonajesService {
 
   constructor(private http: HttpClient) { }
 
+  /** Recibe todos los personajes */
   getPersonajes(): Observable<any> {
     return this.http.get(this.urlApi);
   }
 
+  /** Crear un nuevo personaje */
   crearPersonaje(personaje: any): Observable<any> {
     return this.http.post(this.urlApi, personaje);
   }
 
+  /** Editar un personaje */
   editarPersonaje(datos: any): Observable<any> {
     return this.http.put(this.urlApi, datos);
   }
 
+  /** Eliminar un personaje */
   eliminarPersonaje(id: number): Observable<any> {
     console.log(id);
     const url = `${this.urlApi}/${id}`;

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Personajes } from '../../interfaces/personajes';
 import { ServicioPersonajesService } from '../../servicios/servicio-personajes.service';
-import { VivoMuertoDirective } from '../../directivas/mostrar-icono-vivoMuerto.directive';
 
 @Component({
   selector: 'app-publica-personajes',
@@ -11,10 +10,10 @@ import { VivoMuertoDirective } from '../../directivas/mostrar-icono-vivoMuerto.d
 export class PublicaPersonajesComponent {
 
   personajes: Personajes[] = [];
-  mostrar = false;
 
   constructor(private servPersonajes: ServicioPersonajesService) { }
 
+  /** Llama a la funcion getPersonajes() del servicio para obtener un array de todos los personajes */
   obtenerPersonajes() {
     this.servPersonajes.getPersonajes().subscribe(
       (res: Personajes[]) => {
@@ -27,6 +26,9 @@ export class PublicaPersonajesComponent {
     this.obtenerPersonajes();
   }
 
+  /**Recibe un personaje, cambia su propiedad mostrarDescripcion (boolean),
+   * si es true -> false, si es false -> true
+   */
   muestraDescripcion(personaje: Personajes) {
     personaje.mostrarDescripcion = !personaje.mostrarDescripcion;
   }

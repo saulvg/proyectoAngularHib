@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { PersonajesRoutingModule } from './personajes-routing.module';
-import { PipeVivoMuertoPipe } from './pipes/pipe-vivo-muerto.pipe';
 import { PublicaPersonajesComponent } from './paginas/publica/publica-personajes.component';
 import { PrivadaPersonajesComponent } from './paginas/privada/privada-personajes.component';
 
@@ -31,7 +30,6 @@ import { FormModalComponent } from './paginas/privada/form-modal/form-modal.comp
 
 @NgModule({
   declarations: [
-    PipeVivoMuertoPipe,
     PublicaPersonajesComponent,
     PrivadaPersonajesComponent,
     VivoMuertoDirective,

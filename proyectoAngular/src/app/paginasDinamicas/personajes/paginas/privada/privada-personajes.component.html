@@ -1,5 +1,6 @@
 <div class="contenedor-main">
     <div>
+        <!-- Abre el formulario modal como crear porque el booleano 'edicion' es falso -->
         <button (click)="abrirModal(false, personajes)">
             <img class="crudIcono" src="{{crear}}" alt="crear" height="40px">
         </button>
@@ -28,12 +29,9 @@
         </mat-card-content>
 
         <mat-card-actions>
-            <button mat-button (click)="setSelectedPersonaje(personaje)">
-                {{ personaje.mostrarDescripcion ? 'Leer menos' : 'Leer más' }}
-            </button>
-
+            <!-- Abre el formulario modal como editar porque el booleano 'edicion' es true -->
             <img class="crudIcono" src="{{editar}}" alt="editar" height="40px"
-                (click)="setSelectedPersonaje(personaje); abrirModal(true, personajes)">
+                (click)="setPersonajeSeleccionado(personaje); abrirModal(true, personajes)">
 
             <img class="crudIcono" src="{{borrar}}" alt="borrar" height="40px" (click)="borrarPersonaje(personaje)">
         </mat-card-actions>
