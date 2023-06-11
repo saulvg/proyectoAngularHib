@@ -10,12 +10,23 @@ import { MatButtonModule } from '@angular/material/button';
 import { ServicioPlanetasService } from './servicios/servicio-planetas.service';
 import { HttpClientModule } from '@angular/common/http';
 import { DirectivasModule } from 'src/app/compartido/directivas/directivas.module';
+import { VistaPlanetasComponent } from './vista-planetas.component';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatDialogModule } from '@angular/material/dialog';
+import { FormModalPlanetaComponent } from './paginas/privada/form-modal-planeta/form-modal-planeta.component';
 
 @NgModule({
   declarations: [
     PipeConocidoDesconocidoPipe,
     PrivadaPlanetasComponent,
-    PublicaPlanetasComponent
+    PublicaPlanetasComponent,
+    VistaPlanetasComponent,
+    FormModalPlanetaComponent
   ],
   imports: [
     CommonModule,
@@ -23,8 +34,15 @@ import { DirectivasModule } from 'src/app/compartido/directivas/directivas.modul
     MatCardModule,
     MatButtonModule,
     HttpClientModule,
-    DirectivasModule
-
+    DirectivasModule,
+    MatDividerModule,
+    MatProgressBarModule,
+    MatExpansionModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatDialogModule
   ],
   providers: [
     ServicioPlanetasService

@@ -1,22 +1,18 @@
-<section class="contenido-body">
-    <header>
-        <h1 class="titulo">Planetas</h1>
-    </header>
-    <main class="contenedor-main">
-        <mat-card class="card-planetas" *ngFor="let planeta of planetas">
-            <mat-card-header>
-                <mat-card-title>{{planeta.nombre}}</mat-card-title>
-                <mat-card-subtitle>{{planeta.dimension}}</mat-card-subtitle>
-            </mat-card-header>
-            <img mat-card-image [src]="planeta.img" alt="Imagen del planeta" class="planeta-img"
-                [appImgRota]="planeta.img">
-            <mat-card-content>
-                <p class="descripcion">
-                    {{planeta.descripcion}}
-                </p>
-            </mat-card-content>
 
-        </mat-card>
-    </main>
+<div class="contenedor-main">
+    <mat-card class="card-planetas" *ngFor="let planeta of planetas">
+        <mat-card-header>
+            <mat-card-title>{{planeta.nombre}}</mat-card-title>
+            <mat-card-subtitle>{{planeta.dimension}}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image [src]="planeta.img" alt="Imagen del planeta" class="planeta-img"
+            [appImgRota]="planeta.img">
+        <mat-card-content>
+            <p class="descripcion">
+                {{planeta.descripcion}}
+            </p>
+        </mat-card-content>
 
-</section>
+    </mat-card>
+</div>
+

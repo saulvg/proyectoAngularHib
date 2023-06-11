@@ -59,6 +59,7 @@ app.put("/episodios", (req, res) => {
     episodioExistente.episodio = episodioActualizado.episodio;
     episodioExistente.fechaEmision = episodioActualizado.fechaEmision;
 
+
     res.json({
       message: `Episodio ${episodioActualizado.id} actualizado correctamente`,
       episodio: episodioExistente,
@@ -156,35 +157,53 @@ app.post("/planetas", (req, res) => {
 app.put("/planetas", (req, res) => {
   const planetaActualizado = req.body;
 
-  // Ejemplo de actualización en un array en memoria
-  const planetaExistente = planetas.find(
-    (planeta) => planeta.id === parseInt(planetaActualizado.id)
-  );
 
-  if (planetaExistente) {
-    planetaExistente.titulo = planetaActualizado.titulo;
-    //planetaExistente.fechaEmision = planetaActualizado.fechaEmision;
-    planetaExistente.sinopsis = planetaActualizado.sinopsis;
+  // Endpoint para crear un nuevo planeta (POST)
+  app.post('/planetas', (req, res) => {
+    const nuevoPlaneta = req.body; // Suponemos que los datos del nuevo episodio se envían en el cuerpo de la solicitud  
+  
+    // Ejemplo de guardado en un array en memoria
+    planetas.unshift(nuevoPlaneta)
+    
+  
+    res.status(201).json({
+      message: 'Planeta creado correctamente',
+      planetas: nuevoPlaneta,
 
-    res.json({
-      message: `Planeta ${planetaActualizado.id} actualizado correctamente`,
-      planeta: planetaExistente,
-    });
-  } else {
-    res.status(404).json({
-      message: `Planeta ${planetaActualizado.id} no encontrado`,
-    });
-  }
-});
+ 
 
-// Endpoint para eliminar un planetas existente (DELETE)
-app.delete("/planetas", (req, res) => {
-  const planetasId = req.body.id;
+  // Endpoint para actualizar un episodio existente (PUT)
+app.put('/planetas', (req, res) => {
+  const planetaActualizado = req.body; 
+ 
+   // Ejemplo de actualización en un array en memoria
+   const planetaExistente = planetas.find((planeta) => planeta.id === parseInt(planetaActualizado.id));
+ 
+   if (planetaExistente) {
+       planetaExistente.nombre = planetaActualizado.nombre;
+       planetaExistente.img = planetaActualizado.img;
+       planetaExistente.dimension = planetaActualizado.dimension;
+       planetaExistente.descripcion = planetaActualizado.descripcion;
+ 
+     res.json({
+       message: `Planeta ${planetaActualizado.id} actualizado correctamente`,
+       planeta: planetaExistente,
+     });
+   } else {
+     res.status(404).json({
+       message: `Planeta ${planetaActualizado.id} no encontrado`
+     });
+   }
+ });
+
+  // Endpoint para eliminar un planetas existente (DELETE)
+app.delete('/planetas/:id', (req, res) => {
+  const planetasId = req.params.id;
+
 
   // Ejemplo de eliminación en un array en memoria
-  const planetasIndex = planetas.findIndex(
-    (planeta) => planeta.id === parseInt(planetasId)
-  );
+
+  const planetasIndex = planetas.findIndex((planeta) => planeta.id === parseInt(planetasId));
 
   if (planetasIndex !== -1) {
     planetas.splice(planetasIndex, 1);

@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
 import { ServcicioAutenticacionService } from './servicios/servcicio-autenticacion.service';
+
 import { Router } from '@angular/router';
 
 
 //Componente que para gestionar el login 
+
 @Component({
   selector: 'app-autenticacion',
   templateUrl: './autenticacion.component.html',

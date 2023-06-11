@@ -1,0 +1,13 @@
+<section class="contenido-body ">  
+    <header>       
+        <h1 class="titulo">Planetas</h1>   
+    </header>    
+    <!--<button (click)="cli()">cambia</button>-->    
+    <ng-container *ngIf="!existeToken;else privada">        
+        <app-publica-planetas></app-publica-planetas>    
+    </ng-container>
+</section>
+<ng-template #privada>    
+    <h2>PRIVADO</h2>   
+    <app-privada-planetas></app-privada-planetas>
+</ng-template>
