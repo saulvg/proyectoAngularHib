@@ -16,6 +16,14 @@ import { FormatoTemporadaPipe } from './pipes/pipe-formato-temporada.pipe';
 import { VistaComponentEpisodios } from './vista-episodios.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormularioModalEpisodiosComponent } from './formulario-modal-episodios/formulario-modal-episodios.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+
+
+
+
 
 
 @NgModule({
@@ -25,6 +33,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     PrivadaEpisodiosComponent,
     FormatoTemporadaPipe,
     VistaComponentEpisodios,
+    FormularioModalEpisodiosComponent,
   ],
   imports: [
     CommonModule,
@@ -35,7 +44,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatButtonModule,
     HttpClientModule,
     MatExpansionModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule
+
   ],
   providers: [
     ServicioEpisodioService

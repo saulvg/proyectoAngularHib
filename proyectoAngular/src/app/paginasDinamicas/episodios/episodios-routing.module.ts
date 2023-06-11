@@ -5,18 +5,12 @@ import { PublicaEpisodiosComponent } from './paginas/publica/publica-episodios.c
 import { VistaComponentEpisodios } from './vista-episodios.component';
 
 const routes: Routes = [
-  /* {
-    path: '',
-    component: PublicaEpisodiosComponent
-  }, */
+  //Pintamos la vista quien contiene tanto el componente publico como el privado
   {
     path: '',
     component: VistaComponentEpisodios
   },
-  /* {
-    path: 'privada',
-    component: PrivadaEpisodiosComponent
-  } */
+
 
 ];
 

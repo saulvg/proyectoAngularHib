@@ -1,44 +1,43 @@
 <section class="contenido-body">
-    <header>
-        <h1>Login</h1>
-    </header>
-    <main>
-        <div>
-            <form [formGroup]="formulario" class="contenedor-formulario" (ngSubmit)="iniciarSesion()">
-                <mat-card>
-                    <mat-card-header>
-                        <mat-card-title>Iniciar Sesión</mat-card-title>
-                    </mat-card-header>
-                    <mat-card-content>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <mat-form-field class="ancho-maximo">
-                                    <label>Correo: </label>
-                                    <input formControlName="correo" matInput placeholder="Tu correo">
-                                    <mat-error *ngIf="formulario.get('correo')!.invalid && formulario.get('correo')!.touched">
-                                        Introduce un correo electrónico válido
-                                    </mat-error>
-                                </mat-form-field>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <mat-form-field class="ancho-maximo">
-                                    <label>Contraseña: </label>
-                                    <input matInput formControlName="contrasenya" placeholder="Tu contraseña" [type]="hide ? 'password' : 'text'">
-                                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                                    </button>
-                                </mat-form-field>
-                            </div>
-                        </div>
-                    </mat-card-content>
-                    <mat-card-actions>
-                        <button mat-raised-button color="primary" [disabled]="formulario.invalid">Iniciar Sesión</button>
-                    </mat-card-actions>
-                </mat-card>
-            
-            </form>
-        </div>
-    </main>
+    <div class="card-container">
+        <header>
+            <h1 class="titulo">Login</h1>
+        </header>
+        <main>
+            <div>
+                <form [formGroup]="formularioLogin" (ngSubmit)="iniciarSesion()" *ngIf="!loginCorrecto;else cargando">
+                    <mat-form-field>
+                        <input matInput placeholder="Email" formControlName="email">
+                        <mat-error *ngIf="formularioLogin.controls['email'].hasError('required')">El email es
+                            requerido</mat-error>
+                        <mat-error *ngIf="formularioLogin.controls['password'].hasError('email')">Email
+                            inválido</mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput placeholder="Contraseña" formControlName="password"
+                            [type]="mostrarPassword ? 'text' : 'password'">
+                        <mat-icon matSuffix (click)="togglePasswordVisibility()">{{ mostrarPassword ? 'visibility_off' :
+                            'visibility' }}</mat-icon>
+                        <mat-error *ngIf="formularioLogin.controls['password'].hasError('required')">La contraseña es
+                            requerida</mat-error>
+                    </mat-form-field>
+                    <button mat-raised-button color="primary" [disabled]="!formularioLogin.valid">Enviar</button>
+
+                </form>
+                <div *ngIf="hasError" class="error-message">
+                    <p class="error-text">¡Oh no! Parece que algo salió mal en nuestro portal interdimensional.</p>
+                    <p class="error-text">Rick está ocupado solucionando problemas en otra dimensión.</p>
+                    <p class="error-text">Deberas volver a intentar iniciar sesion porque...</p>
+                    <p class="error-text">Melon!!! <br><strong>{{errorMessage}}</strong> </p>
+                </div>
+            </div>
+        </main>
+    </div>
 </section>
+
+<!-- TEMPLATES -->
+<ng-template #cargando>
+    <div class="spiner-container">
+        <mat-spinner></mat-spinner>
+    </div>
+</ng-template>
