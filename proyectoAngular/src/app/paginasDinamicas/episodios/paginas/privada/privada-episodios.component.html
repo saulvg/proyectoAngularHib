@@ -1,5 +1,8 @@
 <div class="section-episodios">
-    <button (click)="crear(episodios, true)">NUevoCrear</button>
+    <button class="btn-fomrs btn-ahadir" (click)="crear(episodios, true)">
+        <div></div>
+    </button>
+
     <mat-card class="card-episodios" *ngFor="let episodio of episodios">
 
         <mat-card-header>
@@ -12,8 +15,14 @@
             <mat-card-subtitle>{{episodio.fechaEmision | pipeFormatoFecha}}</mat-card-subtitle>
             <mat-divider></mat-divider>
         </mat-card-content>
-        <button (click)="editar(episodio, false)">Editar</button>
-        <button (click)="eliminarEpisodio(episodio)">Borrar</button>
+        <div class="contenedor-btn-control-form">
+            <button class="btn-fomrs btn-borrar" (click)="eliminarEpisodio(episodio)">
+                <div></div>
+            </button>
+            <button class="btn-fomrs btn-editar" (click)="editar(episodio, false)">
+                <div></div>
+            </button>
+        </div>
 
 
     </mat-card>

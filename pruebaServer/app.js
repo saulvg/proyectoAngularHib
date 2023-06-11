@@ -305,13 +305,20 @@ app.delete('/personajes', (req, res) => {
       {
           "id": 1,
           "email":"test@test.com",
-          "password":"passwordPrueba123"
+          "password":"PasswordPrueba123"
       },
       
   ]
-  app.get('/usuarios',(req, res) => {
+  app.post('/usuarios',(req, res) => {
+      const {email, password} = req.body
       
-      res.json(usuarios)
+      const usuario = usuarios.find(u => u.email === email && u.password === password)
+
+      if(usuario){
+        res.json({message:'Inicio de sesion exitoso', token:'asdfs3245235dfv345vfdsgvfd54'})
+      }else{
+        res.status(401).json({message: 'Email o contraseha incorrectos'})
+      }
   })
 
 app.listen(3002, ()=>{
