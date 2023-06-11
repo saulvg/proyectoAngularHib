@@ -23,7 +23,7 @@ const routes: Routes = [
   },
   {
     path: 'episodios',
-    loadChildren: () => import('./paginasDinamicas/episodios/episodios.module').then(m => m.EpisodiosModule)
+    loadChildren: () => import('./paginasDinamicas/episodios/episodios.module').then(m => m.EpisodiosModule),
   },
   {
     path: 'autenticacion',

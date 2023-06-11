@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AutenticacionComponent } from './pages/login/autenticacion.component';
 import { RegistroComponent } from './pages/registro/registro.component';
+import { SesionGuard } from '../compartido/guardianes/sesion.guard';
 
 const routes: Routes = [
   {

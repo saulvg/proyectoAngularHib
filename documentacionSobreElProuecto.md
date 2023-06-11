@@ -22,7 +22,6 @@ Episodios
 
 ## Pipes ## 
 + Leer mas
-+ Si planeta dimension desconocida ICONO interrogante si conocido planeta
 + Episodios acondicionar el formato fecha
 + Episodios acondicionar el formato temporada
  

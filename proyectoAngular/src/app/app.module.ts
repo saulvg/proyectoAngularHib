@@ -24,6 +24,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { InyectarTokenInterceptor } from './compartido/interceptores/inyectar-token.interceptor';
+import { SesionGuard } from './compartido/guardianes/sesion.guard';
 
 
 
@@ -60,7 +61,8 @@ import { InyectarTokenInterceptor } from './compartido/interceptores/inyectar-to
       provide: HTTP_INTERCEPTORS,
       useClass: InyectarTokenInterceptor,
       multi: true
-    }
+    },
+    SesionGuard
   ],
   bootstrap: [AppComponent]
 })
