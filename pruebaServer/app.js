@@ -154,7 +154,6 @@ app.post("/planetas", (req, res) => {
   });
 });
 
-
 // Endpoint para actualizar un episodio existente (PUT)
 app.put("/planetas", (req, res) => {
   const planetaActualizado = req.body;

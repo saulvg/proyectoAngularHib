@@ -1,14 +1,12 @@
 <section class="contenido-body ">
     <header>
-        <h1 class="titulo">Personajes</h1>
+        <h1 class="titulo">Episodios</h1>
     </header>
-    <button (click)="cli()">Privado</button>
-    <ng-container *ngIf="prueba;else privada">
+    <ng-container *ngIf="!exiteToken;else privada">
         <app-publica-personajes></app-publica-personajes>
     </ng-container>
 </section>
 
 <ng-template #privada>
-    <h2>Privada</h2>
     <app-privada-personajes></app-privada-personajes>
 </ng-template>

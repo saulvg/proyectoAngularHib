@@ -1,8 +1,7 @@
 <div class="contenedor-main">
     <div>
-        <!-- Abre el formulario modal como crear porque el booleano 'edicion' es falso -->
-        <button (click)="abrirModal(false, personajes)">
-            <img class="crudIcono" src="{{crear}}" alt="crear" height="40px">
+        <button class="btn-fomrs btn-ahadir" (click)="abrirModal(false, personajes)">
+            <div></div>
         </button>
     </div>
 
@@ -13,7 +12,8 @@
             <mat-card-subtitle>{{ personaje.especie }}</mat-card-subtitle>
         </mat-card-header>
 
-        <img mat-card-image src="{{personaje.img}}" alt="imgPersonaje" class="personaje-img" />
+        <img mat-card-image src="{{personaje.img}}" alt="imgPersonaje" class="personaje-img"
+            [appImgRota]="personaje.img" />
 
         <mat-card-content>
             <ul class="lista-personajes">
@@ -30,10 +30,15 @@
 
         <mat-card-actions>
             <!-- Abre el formulario modal como editar porque el booleano 'edicion' es true -->
-            <button class="crudIcono" alt="editar" height="40px"
-                (click)="setPersonajeSeleccionado(personaje); abrirModal(true, personajes)"></button>
-
-            <img class="crudIcono" src="{{borrar}}" alt="borrar" height="40px" (click)="borrarPersonaje(personaje)">
+            <div class="contenedor-btn-control-form">
+                <button class="btn-fomrs btn-editar"
+                    (click)="setPersonajeSeleccionado(personaje); abrirModal(true, personajes)">
+                    <div></div>
+                </button>
+                <button class="btn-fomrs btn-borrar" (click)="borrarPersonaje(personaje)">
+                    <div></div>
+                </button>
+            </div>
         </mat-card-actions>
     </mat-card>
 </div>
